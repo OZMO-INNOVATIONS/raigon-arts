@@ -2343,8 +2343,7 @@ select[data-vuexy-select2-init="true"] {
 /* Left Hero Banner */
 .login-banner {
   flex: 1.15;
-  background: linear-gradient(135deg, #DDCB9D 0%, #C4AE73 100%), url('../assets/images/img2.png') center/cover no-repeat;
-  background-blend-mode: multiply;
+  background: url('../assets/images/img2.png') center/cover no-repeat;
   padding: 48px 44px;
   display: flex;
   flex-direction: column;
