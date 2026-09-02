@@ -2340,9 +2340,9 @@ select[data-vuexy-select2-init="true"] {
 .login-banner {
   flex: 1.15;
   background:
-    linear-gradient(145deg, rgba(15, 23, 42, 0.92) 0%, rgba(30, 27, 75, 0.94) 55%, rgba(115, 103, 240, 0.70) 100%),
+    linear-gradient(135deg, rgba(20, 16, 48, 0.88) 0%, rgba(30, 27, 75, 0.90) 50%, rgba(115, 103, 240, 0.65) 100%),
     url('../assets/images/sample_frame_1.jpg') center/cover no-repeat;
-  padding: 44px 40px;
+  padding: 48px 44px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -2354,75 +2354,15 @@ select[data-vuexy-select2-init="true"] {
 /* Translucent Watermark Logo Background */
 .login-watermark-logo {
   position: absolute;
-  right: -50px;
-  bottom: -30px;
-  width: 380px;
-  height: 380px;
-  opacity: 0.09;
+  right: -40px;
+  bottom: -20px;
+  width: 320px;
+  height: 320px;
+  opacity: 0.15;
   filter: drop-shadow(0 0 30px rgba(115, 103, 240, 0.6));
   pointer-events: none;
-  transform: rotate(-14deg);
+  transform: rotate(-12deg);
   z-index: 1;
-}
-
-/* Deluxe Floating Brand Logo Frame Showcase */
-.login-brand-frame-showcase {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  padding: 22px;
-  margin: 20px 0 16px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
-  position: relative;
-  z-index: 5;
-  transition: all 0.3s ease;
-}
-
-.login-brand-frame-showcase:hover {
-  transform: translateY(-3px);
-  border-color: rgba(255, 184, 0, 0.4);
-  box-shadow: 0 20px 50px rgba(115, 103, 240, 0.35);
-}
-
-.login-frame-border {
-  width: 104px;
-  height: 104px;
-  border-radius: 18px;
-  padding: 5px;
-  background: linear-gradient(135deg, #FFB800 0%, #7367F0 60%, #8F85F3 100%);
-  box-shadow: 0 8px 24px rgba(115, 103, 240, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.login-hero-img-logo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 14px;
-  background: #FFFFFF;
-}
-
-.login-frame-caption {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  font-weight: 700;
-  color: #FFFFFF;
-  background: rgba(115, 103, 240, 0.35);
-  padding: 5px 14px;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  letter-spacing: 0.02em;
 }
 
 /* Glassmorphism Brand Badge */
@@ -2471,16 +2411,16 @@ select[data-vuexy-select2-init="true"] {
 }
 
 .login-banner-hero {
-  margin-top: 14px;
+  margin-top: 24px;
 }
 
 .login-hero-title {
   font-family: var(--font-heading);
-  font-size: 30px;
+  font-size: 34px;
   font-weight: 700;
   line-height: 1.25;
   color: #FFFFFF !important;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   letter-spacing: -0.02em;
 }
 
@@ -2492,18 +2432,18 @@ select[data-vuexy-select2-init="true"] {
 }
 
 .login-hero-desc {
-  font-size: 13.5px;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.82);
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
   max-width: 420px;
 }
 
 .login-banner-footer {
-  margin-top: 24px;
+  margin-top: 36px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  gap: 12px;
 }
 
 .login-badge {
@@ -2529,7 +2469,7 @@ select[data-vuexy-select2-init="true"] {
 /* Right Form Area */
 .login-form-area {
   width: 480px;
-  padding: 48px 44px;
+  padding: 52px 48px;
   background: #FFFFFF;
   display: flex;
   flex-direction: column;
@@ -2546,29 +2486,7 @@ select[data-vuexy-select2-init="true"] {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 24px;
-}
-
-.login-form-logo-box {
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #7367F0 0%, #8F85F3 100%);
-  padding: 4px;
-  overflow: hidden;
-  box-shadow: 0 6px 20px rgba(115, 103, 240, 0.35);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  border: 1.5px solid rgba(115, 103, 240, 0.2);
-}
-
-.login-form-logo-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
+  margin-bottom: 50px;
 }
 
 .login-form-icon-wrap {
