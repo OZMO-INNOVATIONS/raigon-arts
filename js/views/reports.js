@@ -71,7 +71,7 @@ class ReportsView {
       <!-- TIMEFRAME BANNER ALERT -->
       <div class="reports-timeframe-banner">
         <div style="display: flex; align-items: center; gap: 10px;">
-          <span class="badge" style="background: linear-gradient(72.47deg, #000000 0%, #D4BF8A 100%); color: #FFFFFF; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 6px;">
+          <span class="badge" style="background: linear-gradient(to right, #000000 0%, #D4BF8A 100%); color: #FFFFFF; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 6px; overflow: hidden; box-shadow: none;">
             <i class="fa-solid fa-calendar-check"></i> Filter Mode
           </span>
           <span style="font-weight: 700; font-size: 14px; color: var(--text-primary);">${timeframeLabel}</span>
@@ -297,7 +297,7 @@ class ReportsView {
               <thead>
                 <tr>
                   <th>Customer Name</th>
-                  <th>Phone</th>
+                  <th>Phone No</th>
                   <th>Frame Details</th>
                   <th>Total Billed</th>
                   <th>Advance Paid</th>
@@ -326,20 +326,20 @@ class ReportsView {
                       ${c.dueBalance > 0 ? '₹' + c.dueBalance.toLocaleString('en-IN') : '₹0 (Settled)'}
                     </td>
                     <td>
-                      ${c.dueBalance > 0 
-                        ? `<span class="badge badge-pending"><i class="badge-dot"></i> Pending Due</span>`
-                        : `<span class="badge badge-completed"><i class="badge-dot"></i> Fully Paid</span>`
-                      }
+                      ${c.dueBalance > 0
+        ? `<span class="badge badge-pending"><i class="badge-dot"></i> Pending Due</span>`
+        : `<span class="badge badge-completed"><i class="badge-dot"></i> Fully Paid</span>`
+      }
                     </td>
                     <td style="text-align: right;">
-                      ${c.dueBalance > 0 
-                        ? `<button class="btn btn-sm btn-primary" onclick="window.RaigonToast.show('WhatsApp payment reminder sent to ${c.name}!', 'success')">
+                      ${c.dueBalance > 0
+        ? `<button class="btn btn-sm btn-primary" onclick="window.RaigonToast.show('WhatsApp payment reminder sent to ${c.name}!', 'success')">
                             <i class="fa-brands fa-whatsapp"></i> Remind
                            </button>`
-                        : `<button class="btn btn-sm btn-secondary" onclick="window.RaigonToast.show('Account balance is fully settled.', 'info')">
+        : `<button class="btn btn-sm btn-secondary" onclick="window.RaigonToast.show('Account balance is fully settled.', 'info')">
                             <i class="fa-solid fa-check"></i> Paid
                            </button>`
-                      }
+      }
                     </td>
                   </tr>
                 `).join('')}
@@ -358,7 +358,7 @@ class ReportsView {
               <thead>
                 <tr>
                   <th>Archived Customer</th>
-                  <th>Phone Number</th>
+                  <th>Phone No</th>
                   <th>Frame Order Details</th>
                   <th>Delivery Date</th>
                   <th>Amount Settled</th>

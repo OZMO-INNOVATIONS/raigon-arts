@@ -132,7 +132,7 @@ class DashboardView {
               <tr>
                 <th>Customer ID</th>
                 <th>Customer Name</th>
-                <th>Phone</th>
+                <th>Phone No</th>
                 <th>Frame Size</th>
                 <th>Frame Type</th>
                 <th>Qty</th>
@@ -183,6 +183,7 @@ class DashboardView {
     let badgeClass = 'badge-pending';
     if (status === 'In Progress') badgeClass = 'badge-in-progress';
     if (status === 'Completed') badgeClass = 'badge-completed';
+    if (status === 'Delivered') badgeClass = 'badge-delivered';
     if (status === 'Cancelled') badgeClass = 'badge-cancelled';
 
     return `

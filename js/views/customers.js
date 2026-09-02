@@ -257,7 +257,7 @@ class CustomersView {
               <tr>
                 <th style="width: 110px;">Customer ID</th>
                 <th style="width: 170px;">Customer Name</th>
-                <th style="width: 130px;">Phone Number</th>
+                <th style="width: 130px;">Phone No</th>
                 <th style="width: 180px;">Address</th>
                 <th style="width: 150px;">Selected Photos</th>
                 <th style="width: 110px;">Frame Size</th>

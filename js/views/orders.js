@@ -13,7 +13,7 @@ class OrdersView {
     const customers = window.RaigonStorage.getCustomers();
     const filtered = customers.filter(c => {
       const matchTab = this.currentTab === 'All' || c.orderStatus === this.currentTab;
-      const matchSearch = !this.searchQuery || 
+      const matchSearch = !this.searchQuery ||
         c.id.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
         c.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
         c.phone.includes(this.searchQuery);
@@ -57,7 +57,7 @@ class OrdersView {
               <tr>
                 <th style="width: 110px;">Order ID</th>
                 <th style="width: 160px;">Customer</th>
-                <th style="width: 130px;">Phone</th>
+                <th style="width: 130px;">Phone No</th>
                 <th style="width: 100px;">Photos</th>
                 <th style="width: 160px;">Frame Specs</th>
                 <th style="width: 70px;">Qty</th>
