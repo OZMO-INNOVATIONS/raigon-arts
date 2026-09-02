@@ -683,34 +683,34 @@ class CustomersView {
                     <div class="view-photo-card-name" title="${p.name}">${p.name}</div>
                     <div style="display: flex; align-items: center; gap: 8px; margin-top: 4px;">
                       <span class="view-photo-spec-pill"><i class="fa-solid fa-image"></i> Photo #${idx + 1}</span>
-                      <span class="text-xs text-muted">${p.size || '3 MB'}</span>
+                      <span class="text-xs text-muted font-bold">${p.size || '3 MB'}</span>
                     </div>
                   </div>
-                  <button type="button" class="btn btn-secondary btn-sm" onclick="window.RaigonModal.openLightbox('${p.url}', '${p.name}')" title="Zoom Photo">
+                  <button type="button" class="btn btn-primary btn-sm" style="border-radius: 20px; padding: 6px 14px; font-weight: 700; font-size: 12px;" onclick="window.RaigonModal.openLightbox('${p.url}', '${p.name}')" title="Zoom Photo">
                     <i class="fa-solid fa-magnifying-glass-plus"></i> View
                   </button>
                 </div>
 
                 <div class="view-photo-card-specs-body">
-                  <div class="info-item-row" style="padding: 4px 0;">
-                    <span class="info-item-label"><i class="fa-solid fa-ruler-combined text-primary"></i> Frame Size:</span>
-                    <span class="info-item-value text-primary font-bold">${p.frameSize || cust.frameSize || '12 × 18 inch'}</span>
+                  <div class="info-item-row" style="padding: 6px 0; border-bottom: 1px dashed rgba(212, 191, 138, 0.25);">
+                    <span class="info-item-label" style="font-weight: 600; color: var(--text-secondary);"><i class="fa-solid fa-ruler-combined text-gold" style="color: #000000;"></i> Frame Size:</span>
+                    <span class="info-item-value font-bold" style="color: #000000; font-size: 13.5px;">${p.frameSize || cust.frameSize || '12 × 18 inch'}</span>
                   </div>
-                  <div class="info-item-row" style="padding: 4px 0;">
-                    <span class="info-item-label"><i class="fa-solid fa-box text-primary"></i> Frame Type & Material:</span>
-                    <span class="info-item-value">${p.frameType || cust.frameType || 'Wooden'} • ${p.material || cust.material || 'Teak Wood'}</span>
+                  <div class="info-item-row" style="padding: 6px 0; border-bottom: 1px dashed rgba(212, 191, 138, 0.25);">
+                    <span class="info-item-label" style="font-weight: 600; color: var(--text-secondary);"><i class="fa-solid fa-box text-gold" style="color: #000000;"></i> Frame Type & Material:</span>
+                    <span class="info-item-value font-bold" style="color: #000000;">${p.frameType || cust.frameType || 'Wooden'} • ${p.material || cust.material || 'Teak Wood'}</span>
                   </div>
-                  <div class="info-item-row" style="padding: 4px 0;">
-                    <span class="info-item-label"><i class="fa-solid fa-palette text-primary"></i> Color & Finish:</span>
-                    <span class="info-item-value">${p.color || cust.color || 'Walnut Brown'}</span>
+                  <div class="info-item-row" style="padding: 6px 0; border-bottom: 1px dashed rgba(212, 191, 138, 0.25);">
+                    <span class="info-item-label" style="font-weight: 600; color: var(--text-secondary);"><i class="fa-solid fa-palette text-gold" style="color: #000000;"></i> Color & Finish:</span>
+                    <span class="info-item-value font-bold" style="color: #000000;">${p.color || cust.color || 'Walnut Brown'}</span>
                   </div>
-                  <div class="info-item-row" style="padding: 4px 0;">
-                    <span class="info-item-label"><i class="fa-solid fa-compass text-primary"></i> Orientation & Qty:</span>
-                    <span class="info-item-value">${p.orientation || cust.orientation || 'Landscape'} • ${p.quantity || 1} Frame(s)</span>
+                  <div class="info-item-row" style="padding: 6px 0;">
+                    <span class="info-item-label" style="font-weight: 600; color: var(--text-secondary);"><i class="fa-solid fa-compass text-gold" style="color: #000000;"></i> Orientation & Qty:</span>
+                    <span class="info-item-value font-bold" style="color: #000000;">${p.orientation || cust.orientation || 'Landscape'} • ${p.quantity || 1} Frame(s)</span>
                   </div>
                   ${(p.notes || cust.notes) ? `
-                    <div style="margin-top: 4px; padding: 6px 10px; background: rgba(255, 159, 67, 0.1); border: 1px solid rgba(255, 159, 67, 0.25); border-radius: 6px; font-size: 11.5px; color: #D97706;">
-                      <strong>Notes:</strong> ${p.notes || cust.notes}
+                    <div style="margin-top: 8px; padding: 10px 14px; background: rgba(212, 191, 138, 0.12); border: 1px solid rgba(212, 191, 138, 0.35); border-left: 3.5px solid #D4BF8A; border-radius: 10px; font-size: 12px; color: #000000;">
+                      <strong style="color: #000000;"><i class="fa-solid fa-note-sticky" style="color: #000000; margin-right: 4px;"></i> Notes:</strong> ${p.notes || cust.notes}
                     </div>
                   ` : ''}
                 </div>
