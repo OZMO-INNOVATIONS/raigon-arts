@@ -583,17 +583,16 @@ h6 {
 }
 
 .brand-icon {
-  width: 38px;
-  height: 38px;
-  background: linear-gradient(72.47deg, #7367F0 22.16%, rgba(115, 103, 240, 0.7) 76.47%);
-  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  background: #FFFFFF !important;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #FFFFFF;
-  font-size: 18px;
-  font-weight: 800;
-  box-shadow: var(--shadow-primary);
+  padding: 3px;
+  box-shadow: 0 4px 12px rgba(115, 103, 240, 0.18);
+  border: 1.5px solid rgba(115, 103, 240, 0.3);
   flex-shrink: 0;
   overflow: hidden;
 }
@@ -601,8 +600,8 @@ h6 {
 .brand-icon img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  border-radius: inherit;
+  object-fit: contain;
+  border-radius: 6px;
 }
 
 .brand-text {
@@ -2339,15 +2338,26 @@ select[data-vuexy-select2-init="true"] {
 /* Left Hero Banner */
 .login-banner {
   flex: 1.15;
-  background:
-    linear-gradient(145deg, rgba(15, 23, 42, 0.90) 0%, rgba(30, 27, 75, 0.94) 55%, rgba(115, 103, 240, 0.55) 100%),
-    url('../assets/images/imgz1\ \(1\).jpeg') center/cover no-repeat;
+  background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 50%, #2D2766 100%);
   padding: 48px 44px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
   border-right: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.login-banner::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(115, 103, 240, 0.35) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 /* Glassmorphism Brand Badge */
@@ -2355,14 +2365,14 @@ select[data-vuexy-select2-init="true"] {
   display: flex;
   align-items: center;
   gap: 14px;
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.16);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  padding: 10px 18px;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 10px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   width: fit-content;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 .login-brand-pill .brand-title {
@@ -2380,19 +2390,25 @@ select[data-vuexy-select2-init="true"] {
 }
 
 .glow-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 10px;
-  background: linear-gradient(72.47deg, #7367F0 22.16%, rgba(115, 103, 240, 0.7) 76.47%);
-  box-shadow: 0 2px 8px 0 rgba(115, 103, 240, 0.48);
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: #FFFFFF !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .glow-icon img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  border-radius: 10px;
 }
 
 .login-banner-hero {
