@@ -1863,7 +1863,7 @@ h6 {
   border: 1.5px solid var(--border-color);
   border-radius: 6px;
   background-color: var(--bg-surface);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237367F0' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23000000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
   background-size: 16px 16px;
@@ -1908,7 +1908,7 @@ h6 {
 .form-select:hover,
 .form-select-sm:hover,
 .form-select-lg:hover {
-  border-color: #7367F0;
+  border-color: #D4BF8A;
   box-shadow: var(--shadow-sm);
 }
 
@@ -1917,9 +1917,9 @@ h6 {
 .form-select-lg:focus,
 .form-input:focus,
 .form-textarea:focus {
-  border-color: #7367F0;
+  border-color: #D4BF8A;
   background-color: var(--bg-surface);
-  box-shadow: 0 0 0 3.5px rgba(115, 103, 240, 0.22);
+  box-shadow: 0 0 0 3.5px rgba(212, 191, 138, 0.28);
 }
 
 /* Hide native HTML select elements once enhanced with Vuexy Select2 */
@@ -1975,8 +1975,8 @@ select[data-vuexy-select2-init="true"] {
 
 .vuexy-select2-trigger:hover,
 .vuexy-select2-container.open .vuexy-select2-trigger {
-  border-color: #7367F0;
-  box-shadow: 0 0 0 3.5px rgba(115, 103, 240, 0.22);
+  border-color: #D4BF8A;
+  box-shadow: 0 0 0 3.5px rgba(212, 191, 138, 0.28);
 }
 
 .vuexy-select2-label {
@@ -1987,7 +1987,7 @@ select[data-vuexy-select2-init="true"] {
 }
 
 .vuexy-select2-arrow {
-  color: #7367F0;
+  color: #000000;
   font-size: 12px;
   transition: transform 0.2s ease;
   margin-left: 8px;
@@ -2007,7 +2007,7 @@ select[data-vuexy-select2-init="true"] {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  box-shadow: 0 10px 32px rgba(47, 43, 61, 0.28);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.16);
   z-index: 99999999 !important;
   opacity: 0;
   visibility: hidden;
@@ -2027,6 +2027,15 @@ select[data-vuexy-select2-init="true"] {
   overflow-y: auto;
 }
 
+.vuexy-select2-options::-webkit-scrollbar {
+  width: 5px;
+}
+
+.vuexy-select2-options::-webkit-scrollbar-thumb {
+  background: #D4BF8A;
+  border-radius: 4px;
+}
+
 .vuexy-select2-option {
   padding: 8px 12px;
   font-size: 13px;
@@ -2039,15 +2048,15 @@ select[data-vuexy-select2-init="true"] {
 }
 
 .vuexy-select2-option:hover {
-  background-color: var(--bg-surface-subtle);
-  color: #7367F0;
+  background-color: rgba(212, 191, 138, 0.14);
+  color: #000000;
 }
 
-/* Selected Vuexy Item (Matching 2nd Image: Soft Violet background & Bold Purple text) */
+/* Selected Vuexy Item (Soft Gold background & Black text) */
 .vuexy-select2-option.selected {
-  background-color: #F2F0FF;
-  color: #7367F0 !important;
-  font-weight: 600;
+  background-color: rgba(212, 191, 138, 0.22);
+  color: #000000 !important;
+  font-weight: 700;
 }
 
 .form-section-header {
