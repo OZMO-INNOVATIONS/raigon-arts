@@ -151,7 +151,7 @@ class VuexySelect2 {
       labelSpan.textContent = selectedOpt ? selectedOpt.text : 'Select option';
       
       if (isStatusBadge && selectedOpt) {
-        const valLower = selectedOpt.value.toLowerCase();
+        const valLower = selectedOpt.value.toLowerCase().replace(/\s+/g, '-');
         trigger.className = `vuexy-select2-trigger status-select-badge status-badge-${valLower}`;
       }
 
@@ -159,7 +159,7 @@ class VuexySelect2 {
         const item = document.createElement('div');
         item.className = 'vuexy-select2-option';
         if (isStatusBadge) {
-          item.classList.add(`status-option-${opt.value.toLowerCase()}`);
+          item.classList.add(`status-option-${opt.value.toLowerCase().replace(/\s+/g, '-')}`);
         }
         if (opt.selected) {
           item.classList.add('selected');

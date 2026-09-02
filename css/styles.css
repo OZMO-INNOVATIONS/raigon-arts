@@ -1927,8 +1927,18 @@ h6 {
 }
 
 /* Hide native HTML select elements once enhanced with Vuexy Select2 */
-select[data-vuexy-select2-init="true"] {
+select[data-vuexy-select2-init="true"],
+select.form-select[data-vuexy-select2-init="true"],
+select.status-select-badge[data-vuexy-select2-init="true"] {
   display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  z-index: -9999 !important;
 }
 
 /* ==========================================================================
@@ -2005,6 +2015,64 @@ select[data-vuexy-select2-init="true"] {
   z-index: 9999 !important;
 }
 
+/* Status Badge Select2 Trigger Styles */
+.vuexy-select2-container.status-select-badge-wrap {
+  width: auto !important;
+  min-width: 125px;
+  display: inline-block;
+}
+
+.vuexy-select2-trigger.status-select-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.vuexy-select2-trigger.status-badge-pending {
+  background-color: rgba(255, 159, 67, 0.14) !important;
+  color: #FF9F43 !important;
+  border: 1px solid rgba(255, 159, 67, 0.35) !important;
+}
+.vuexy-select2-trigger.status-badge-pending .vuexy-select2-arrow { color: #FF9F43 !important; }
+
+.vuexy-select2-trigger.status-badge-in-progress,
+.vuexy-select2-trigger.status-badge-progress {
+  background-color: rgba(0, 186, 209, 0.14) !important;
+  color: #00BAD1 !important;
+  border: 1px solid rgba(0, 186, 209, 0.35) !important;
+}
+.vuexy-select2-trigger.status-badge-in-progress .vuexy-select2-arrow,
+.vuexy-select2-trigger.status-badge-progress .vuexy-select2-arrow { color: #00BAD1 !important; }
+
+.vuexy-select2-trigger.status-badge-completed {
+  background-color: rgba(40, 199, 111, 0.14) !important;
+  color: #28C76F !important;
+  border: 1px solid rgba(40, 199, 111, 0.35) !important;
+}
+.vuexy-select2-trigger.status-badge-completed .vuexy-select2-arrow { color: #28C76F !important; }
+
+.vuexy-select2-trigger.status-badge-delivered {
+  background-color: rgba(212, 191, 138, 0.2) !important;
+  color: #000000 !important;
+  border: 1px solid #D4BF8A !important;
+}
+.vuexy-select2-trigger.status-badge-delivered .vuexy-select2-arrow { color: #000000 !important; }
+
+.vuexy-select2-trigger.status-badge-cancelled {
+  background-color: rgba(234, 84, 85, 0.14) !important;
+  color: #EA5455 !important;
+  border: 1px solid rgba(234, 84, 85, 0.35) !important;
+}
+.vuexy-select2-trigger.status-badge-cancelled .vuexy-select2-arrow { color: #EA5455 !important; }
+
 /* Floating Portal Dropdown Popover Menu (Appended to document.body) */
 .vuexy-select2-dropdown {
   position: fixed;
@@ -2060,6 +2128,44 @@ select[data-vuexy-select2-init="true"] {
 .vuexy-select2-option.selected {
   background-color: rgba(212, 191, 138, 0.22);
   color: #000000 !important;
+  font-weight: 700;
+}
+
+/* Status Options Styling inside Popover */
+.vuexy-select2-option.status-option-pending:hover,
+.vuexy-select2-option.status-option-pending.selected {
+  background-color: rgba(255, 159, 67, 0.15) !important;
+  color: #FF9F43 !important;
+  font-weight: 700;
+}
+
+.vuexy-select2-option.status-option-in-progress:hover,
+.vuexy-select2-option.status-option-progress:hover,
+.vuexy-select2-option.status-option-in-progress.selected,
+.vuexy-select2-option.status-option-progress.selected {
+  background-color: rgba(0, 186, 209, 0.15) !important;
+  color: #00BAD1 !important;
+  font-weight: 700;
+}
+
+.vuexy-select2-option.status-option-completed:hover,
+.vuexy-select2-option.status-option-completed.selected {
+  background-color: rgba(40, 199, 111, 0.15) !important;
+  color: #28C76F !important;
+  font-weight: 700;
+}
+
+.vuexy-select2-option.status-option-delivered:hover,
+.vuexy-select2-option.status-option-delivered.selected {
+  background-color: rgba(212, 191, 138, 0.25) !important;
+  color: #000000 !important;
+  font-weight: 700;
+}
+
+.vuexy-select2-option.status-option-cancelled:hover,
+.vuexy-select2-option.status-option-cancelled.selected {
+  background-color: rgba(234, 84, 85, 0.15) !important;
+  color: #EA5455 !important;
   font-weight: 700;
 }
 
