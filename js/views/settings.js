@@ -40,7 +40,7 @@ class SettingsView {
                   <div style="width: 100%; height: 100%; border-radius: 18px; overflow: hidden; border: 1.5px solid rgba(115, 103, 240, 0.35); box-shadow: 0 8px 24px -4px rgba(115, 103, 240, 0.25); background: #FFFFFF; display: flex; align-items: center; justify-content: center;">
                     <img id="shopLogoPreview" src="${currentLogo}" alt="Shop Logo" style="width: 100%; height: 100%; object-fit: cover;">
                   </div>
-                  <div style="position: absolute; bottom: -4px; right: -4px; width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #7367F0 0%, #6358E1 100%); color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 11px; box-shadow: 0 4px 10px rgba(115, 103, 240, 0.4); border: 2.5px solid #FFFFFF;">
+                  <div style="position: absolute; bottom: -4px; right: -4px; width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(72.47deg, #000000 0%, #D4BF8A 100%); color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 11px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); border: 2.5px solid #FFFFFF;">
                     <i class="fa-solid fa-camera"></i>
                   </div>
                 </div>
@@ -48,7 +48,7 @@ class SettingsView {
                 <div>
                   <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 4px;">
                     <h4 style="font-size: 16.5px; font-weight: 700; color: var(--text-primary); margin: 0;">Workshop Brand Logo</h4>
-                    <span class="badge" style="background: rgba(115,103,240,0.12); color: #7367F0; font-weight: 600; font-size: 11px; padding: 2px 8px; border-radius: 6px;">PNG, JPG, WEBP</span>
+                    <span class="badge" style="background: rgba(212,191,138,0.18); color: #B38F38; font-weight: 600; font-size: 11px; padding: 2px 8px; border-radius: 6px;">PNG, JPG, WEBP</span>
                   </div>
                   <p class="text-xs text-muted" style="margin: 0; line-height: 1.5; max-width: 480px;">Upload your high-res shop logo for invoices, framing job slips, customer receipts, and workshop headers.</p>
                 </div>

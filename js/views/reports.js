@@ -71,13 +71,13 @@ class ReportsView {
       <!-- TIMEFRAME BANNER ALERT -->
       <div class="reports-timeframe-banner">
         <div style="display: flex; align-items: center; gap: 10px;">
-          <span class="badge" style="background: #7367F0; color: #FFFFFF; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 6px;">
+          <span class="badge" style="background: linear-gradient(72.47deg, #000000 0%, #D4BF8A 100%); color: #FFFFFF; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 6px;">
             <i class="fa-solid fa-calendar-check"></i> Filter Mode
           </span>
           <span style="font-weight: 700; font-size: 14px; color: var(--text-primary);">${timeframeLabel}</span>
         </div>
         <span class="text-xs text-muted" style="display: flex; align-items: center; gap: 6px;">
-          <i class="fa-solid fa-circle-info" style="color: #7367F0;"></i>
+          <i class="fa-solid fa-circle-info" style="color: #D4BF8A;"></i>
           Auto-Archive Policy: Orders completed & delivered >7 days ago are stored permanently in Reports
         </span>
       </div>
@@ -110,12 +110,12 @@ class ReportsView {
               <span class="metric-label" style="text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; font-weight: 700; color: var(--text-muted);">Advance Collected</span>
               <h3 class="metric-value" style="font-size: 24px; font-weight: 800; color: var(--text-primary); margin-top: 4px;">₹${filteredAdvance.toLocaleString('en-IN')}</h3>
             </div>
-            <div class="metric-icon-box" style="color: #7367F0; background: #F2F0FF; width: 44px; height: 44px; border-radius: 12px;">
+            <div class="metric-icon-box" style="color: #FFFFFF; background: linear-gradient(72.47deg, #000000 0%, #D4BF8A 100%); width: 44px; height: 44px; border-radius: 12px;">
               <i class="fa-solid fa-piggy-bank"></i>
             </div>
           </div>
           <div>
-            <span class="badge" style="background: rgba(115,103,240,0.12); color: #7367F0; font-size: 11.5px; font-weight: 600;">
+            <span class="badge" style="background: rgba(212,191,138,0.18); color: #B38F38; font-size: 11.5px; font-weight: 600;">
               <i class="fa-solid fa-shield-check"></i> 48.1% Collection Ratio
             </span>
           </div>
@@ -146,12 +146,12 @@ class ReportsView {
               <span class="metric-label" style="text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; font-weight: 700; color: var(--text-muted);">Average Order Value (AOV)</span>
               <h3 class="metric-value" style="font-size: 24px; font-weight: 800; color: var(--text-primary); margin-top: 4px;">₹${avgOrderValue.toLocaleString('en-IN')}</h3>
             </div>
-            <div class="metric-icon-box" style="color: #FF9F43; background: #FFF0E1; width: 44px; height: 44px; border-radius: 12px;">
+            <div class="metric-icon-box" style="color: #B38F38; background: #FAF3E0; width: 44px; height: 44px; border-radius: 12px;">
               <i class="fa-solid fa-receipt"></i>
             </div>
           </div>
           <div>
-            <span class="badge" style="background: rgba(255,159,67,0.12); color: #FF9F43; font-size: 11.5px; font-weight: 600;">
+            <span class="badge" style="background: rgba(212,191,138,0.18); color: #B38F38; font-size: 11.5px; font-weight: 600;">
               <i class="fa-solid fa-bag-shopping"></i> ${Math.round(totalOrdersCount * timeframeMultiplier)} Orders Analyzed
             </span>
           </div>
@@ -170,8 +170,8 @@ class ReportsView {
               <p class="text-xs text-muted">Monthly billed revenue trajectory</p>
             </div>
             <div style="display: flex; gap: 12px; font-size: 12px; font-weight: 600;">
-              <span style="display: flex; align-items: center; gap: 6px; color: #7367F0;">
-                <span style="width: 10px; height: 10px; border-radius: 50%; background: #7367F0; display: inline-block;"></span> Revenue (₹)
+              <span style="display: flex; align-items: center; gap: 6px; color: #B38F38;">
+                <span style="width: 10px; height: 10px; border-radius: 50%; background: #D4BF8A; display: inline-block;"></span> Revenue (₹)
               </span>
             </div>
           </div>
@@ -179,8 +179,8 @@ class ReportsView {
           <svg viewBox="0 0 520 210" style="width: 100%; height: auto; background: var(--bg-surface-subtle); border-radius: var(--radius-sm); padding: 12px;">
             <defs>
               <linearGradient id="purpleGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#7367F0" stop-opacity="0.35"/>
-                <stop offset="100%" stop-color="#7367F0" stop-opacity="0.02"/>
+                <stop offset="0%" stop-color="#D4BF8A" stop-opacity="0.45"/>
+                <stop offset="100%" stop-color="#D4BF8A" stop-opacity="0.02"/>
               </linearGradient>
             </defs>
 
@@ -189,15 +189,15 @@ class ReportsView {
             <line x1="40" y1="60" x2="480" y2="60" stroke="#DBDADE" stroke-dasharray="4" stroke-width="1" />
 
             <polygon fill="url(#purpleGrad)" points="40,160 40,140 113,120 186,135 260,90 333,65 406,80 480,35 480,160" />
-            <polyline fill="none" stroke="#7367F0" stroke-width="3" stroke-linecap="round" points="40,140 113,120 186,135 260,90 333,65 406,80 480,35" />
+            <polyline fill="none" stroke="#D4BF8A" stroke-width="3" stroke-linecap="round" points="40,140 113,120 186,135 260,90 333,65 406,80 480,35" />
 
-            <circle cx="40" cy="140" r="4" fill="#FFFFFF" stroke="#7367F0" stroke-width="2" />
-            <circle cx="113" cy="120" r="4" fill="#FFFFFF" stroke="#7367F0" stroke-width="2" />
-            <circle cx="186" cy="135" r="4" fill="#FFFFFF" stroke="#7367F0" stroke-width="2" />
-            <circle cx="260" cy="90" r="4" fill="#FFFFFF" stroke="#7367F0" stroke-width="2" />
-            <circle cx="333" cy="65" r="4" fill="#FFFFFF" stroke="#7367F0" stroke-width="2" />
-            <circle cx="406" cy="80" r="4" fill="#FFFFFF" stroke="#7367F0" stroke-width="2" />
-            <circle cx="480" cy="35" r="6" fill="#7367F0" stroke="#FFFFFF" stroke-width="2" />
+            <circle cx="40" cy="140" r="4" fill="#FFFFFF" stroke="#D4BF8A" stroke-width="2" />
+            <circle cx="113" cy="120" r="4" fill="#FFFFFF" stroke="#D4BF8A" stroke-width="2" />
+            <circle cx="186" cy="135" r="4" fill="#FFFFFF" stroke="#D4BF8A" stroke-width="2" />
+            <circle cx="260" cy="90" r="4" fill="#FFFFFF" stroke="#D4BF8A" stroke-width="2" />
+            <circle cx="333" cy="65" r="4" fill="#FFFFFF" stroke="#D4BF8A" stroke-width="2" />
+            <circle cx="406" cy="80" r="4" fill="#FFFFFF" stroke="#D4BF8A" stroke-width="2" />
+            <circle cx="480" cy="35" r="6" fill="#D4BF8A" stroke="#000000" stroke-width="2" />
 
             <text x="40" y="180" font-size="11" font-weight="600" fill="#5D596C" text-anchor="middle">Apr</text>
             <text x="113" y="180" font-size="11" font-weight="600" fill="#5D596C" text-anchor="middle">May</text>
@@ -205,7 +205,7 @@ class ReportsView {
             <text x="260" y="180" font-size="11" font-weight="600" fill="#5D596C" text-anchor="middle">Jul</text>
             <text x="333" y="180" font-size="11" font-weight="600" fill="#5D596C" text-anchor="middle">Aug</text>
             <text x="406" y="180" font-size="11" font-weight="600" fill="#5D596C" text-anchor="middle">Sep</text>
-            <text x="480" y="180" font-size="11" font-weight="700" fill="#7367F0" text-anchor="middle">Oct</text>
+            <text x="480" y="180" font-size="11" font-weight="700" fill="#000000" text-anchor="middle">Oct</text>
           </svg>
         </div>
 
@@ -218,10 +218,10 @@ class ReportsView {
             <div>
               <div class="flex justify-between text-sm font-semibold" style="margin-bottom: 4px;">
                 <span>12 × 18 inch (Large Gallery)</span>
-                <span style="color: #7367F0;">45% of volume</span>
+                <span style="color: #B38F38;">45% of volume</span>
               </div>
               <div style="height: 8px; background: var(--bg-surface-subtle); border-radius: 4px; overflow: hidden;">
-                <div style="width: 45%; height: 100%; background: #7367F0;"></div>
+                <div style="width: 45%; height: 100%; background: linear-gradient(72.47deg, #000000 0%, #D4BF8A 100%);"></div>
               </div>
             </div>
 

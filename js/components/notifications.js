@@ -168,7 +168,7 @@ class VuexyNotifications {
         <div style="display: flex; align-items: center; justify-content: space-between;">
           <div style="display: flex; align-items: center; gap: 8px;">
             <h4 style="margin: 0; font-size: 15px; font-weight: 700; color: var(--text-primary);">Action Notifications 🔔</h4>
-            <span class="badge" style="background: rgba(197, 168, 105, 0.14); color: #C5A869; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px;">${totalCount} Active</span>
+            <span class="badge" style="background: rgba(212,191,138,0.18); color: #B38F38; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px;">${totalCount} Active</span>
           </div>
           <button type="button" class="notif-clear-btn" onclick="window.RaigonNotifications.close()" title="Close Notifications">
             <i class="fa-solid fa-xmark"></i>
