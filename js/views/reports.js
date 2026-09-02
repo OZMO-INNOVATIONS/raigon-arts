@@ -259,7 +259,7 @@ class ReportsView {
           <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--border-color);">
             <div class="text-xs font-bold uppercase text-muted" style="letter-spacing: 0.05em; margin-bottom: 8px;">Popular Material Types</div>
             <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-              <span class="badge" style="background: #F2F0FF; color: #7367F0;">Teak Wood (40%)</span>
+              <span class="badge" style="background: rgba(212,191,138,0.18); color: #B38F38;">Teak Wood (40%)</span>
               <span class="badge" style="background: #DAF8E6; color: #28C76F;">Synthetic Molded (35%)</span>
               <span class="badge" style="background: #E0F8FA; color: #00BAD1;">Metallic (15%)</span>
               <span class="badge" style="background: #FFF0E1; color: #FF9F43;">Glass Mat (10%)</span>

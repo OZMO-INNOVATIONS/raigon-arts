@@ -2054,12 +2054,12 @@ select[data-vuexy-select2-init="true"] {
   font-family: var(--font-heading);
   font-size: 13px;
   font-weight: 700;
-  color: #7367F0;
+  color: #000000;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 10px 14px;
-  background: rgba(115, 103, 240, 0.07);
-  border-left: 4px solid #7367F0;
+  background: rgba(212, 191, 138, 0.14);
+  border-left: 4px solid #D4BF8A;
   border-radius: 6px;
   margin: 22px 0 16px 0;
   display: flex;
@@ -2068,41 +2068,41 @@ select[data-vuexy-select2-init="true"] {
 }
 
 .form-section-header i {
-  color: #7367F0;
+  color: #000000;
   font-size: 14px;
 }
 
 [data-theme="dark"] .form-section-header {
-  background: rgba(115, 103, 240, 0.14);
-  color: #9E95F5;
-  border-left-color: #9E95F5;
+  background: rgba(212, 191, 138, 0.18);
+  color: #D4BF8A;
+  border-left-color: #D4BF8A;
 }
 
 [data-theme="dark"] .form-section-header i {
-  color: #9E95F5;
+  color: #D4BF8A;
 }
 
 /* Drag and Drop Uploader */
 .dropzone-container {
-  border: 2px dashed rgba(115, 103, 240, 0.35);
+  border: 2px dashed rgba(212, 191, 138, 0.5);
   border-radius: 12px;
   padding: 24px 20px;
   text-align: center;
-  background-color: rgba(115, 103, 240, 0.03);
+  background-color: rgba(212, 191, 138, 0.04);
   cursor: pointer;
   transition: all 0.25s ease;
 }
 
 .dropzone-container:hover,
 .dropzone-container.drag-over {
-  border-color: #7367F0;
-  background-color: rgba(115, 103, 240, 0.08);
+  border-color: #D4BF8A;
+  background-color: rgba(212, 191, 138, 0.12);
   transform: translateY(-2px);
 }
 
 .dropzone-icon {
   font-size: 36px;
-  color: #7367F0;
+  color: #000000;
   margin-bottom: 8px;
 }
 
@@ -2825,20 +2825,20 @@ select[data-vuexy-select2-init="true"] {
 }
 
 .frame-config-card:hover {
-  border-color: rgba(115, 103, 240, 0.5);
+  border-color: rgba(212, 191, 138, 0.6);
   background: var(--bg-surface-subtle);
   transform: translateY(-1px);
 }
 
 .frame-config-card.active {
-  border-color: #7367F0;
-  background: linear-gradient(135deg, rgba(115, 103, 240, 0.06) 0%, rgba(255, 255, 255, 0.95) 100%), var(--bg-surface);
-  box-shadow: 0 4px 18px rgba(115, 103, 240, 0.14);
+  border-color: #D4BF8A;
+  background: linear-gradient(135deg, rgba(212, 191, 138, 0.12) 0%, rgba(255, 255, 255, 0.95) 100%), var(--bg-surface);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
 }
 
 [data-theme="dark"] .frame-config-card.active {
-  background: rgba(115, 103, 240, 0.12);
-  border-color: #7367F0;
+  background: rgba(212, 191, 138, 0.14);
+  border-color: #D4BF8A;
 }
 
 .config-radio-circle {
@@ -2856,8 +2856,8 @@ select[data-vuexy-select2-init="true"] {
 }
 
 .frame-config-card.active .config-radio-circle {
-  border-color: #7367F0;
-  background: #7367F0;
+  border-color: #000000;
+  background: linear-gradient(72.47deg, #000000 0%, #D4BF8A 100%);
 }
 
 .frame-config-card.active .config-radio-circle::after {
@@ -2902,8 +2902,8 @@ select[data-vuexy-select2-init="true"] {
 }
 
 .individual-photo-card:hover {
-  border-color: rgba(115, 103, 240, 0.35);
-  box-shadow: 0 6px 20px rgba(47, 43, 61, 0.06);
+  border-color: rgba(212, 191, 138, 0.5);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
 }
 
 .photo-card-top-bar {
@@ -2922,7 +2922,7 @@ select[data-vuexy-select2-init="true"] {
   height: 76px;
   border-radius: 14px;
   overflow: hidden;
-  border: 1.5px solid rgba(115, 103, 240, 0.3);
+  border: 1.5px solid rgba(212, 191, 138, 0.4);
   background: var(--bg-surface-subtle);
   display: flex;
   align-items: center;
@@ -2959,10 +2959,10 @@ select[data-vuexy-select2-init="true"] {
 .add-another-photo-btn {
   width: 100%;
   padding: 14px;
-  border: 2px dashed rgba(115, 103, 240, 0.35);
+  border: 2px dashed rgba(212, 191, 138, 0.5);
   border-radius: 14px;
-  background: rgba(115, 103, 240, 0.04);
-  color: #7367F0;
+  background: rgba(212, 191, 138, 0.06);
+  color: #000000;
   font-weight: 700;
   font-size: 14px;
   display: flex;
@@ -2976,14 +2976,14 @@ select[data-vuexy-select2-init="true"] {
 }
 
 .add-another-photo-btn:hover {
-  background: rgba(115, 103, 240, 0.1);
-  border-color: #7367F0;
+  background: rgba(212, 191, 138, 0.18);
+  border-color: #D4BF8A;
   transform: translateY(-1px);
 }
 
 .view-customer-banner {
-  background: linear-gradient(135deg, rgba(115, 103, 240, 0.08) 0%, rgba(115, 103, 240, 0.02) 100%);
-  border: 1px solid rgba(115, 103, 240, 0.2);
+  background: linear-gradient(135deg, rgba(212, 191, 138, 0.14) 0%, rgba(212, 191, 138, 0.03) 100%);
+  border: 1px solid rgba(212, 191, 138, 0.3);
   border-radius: 14px;
   padding: 20px 24px;
   margin-bottom: 20px;
@@ -2997,7 +2997,7 @@ select[data-vuexy-select2-init="true"] {
   width: 54px;
   height: 54px;
   border-radius: 14px;
-  background: linear-gradient(135deg, #7367F0 0%, #8F85F3 100%);
+  background: linear-gradient(72.47deg, #000000 0%, #D4BF8A 100%);
   color: #FFFFFF;
   font-family: var(--font-heading);
   font-weight: 800;
@@ -3005,7 +3005,7 @@ select[data-vuexy-select2-init="true"] {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 14px rgba(115, 103, 240, 0.35);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
   flex-shrink: 0;
 }
 
@@ -3031,9 +3031,9 @@ select[data-vuexy-select2-init="true"] {
   gap: 6px;
   padding: 4px 10px;
   border-radius: 20px;
-  background: #F2F0FF;
-  border: 1px solid #D6D2FB;
-  color: #7367F0;
+  background: rgba(212, 191, 138, 0.18);
+  border: 1px solid rgba(212, 191, 138, 0.4);
+  color: #B38F38;
   font-size: 12px;
   font-weight: 700;
 }
@@ -3484,8 +3484,8 @@ select[data-vuexy-select2-init="true"] {
 }
 
 .cal-day:hover {
-  background: #F2F0FF;
-  color: #7367F0;
+  background: rgba(212, 191, 138, 0.18);
+  color: #000000;
 }
 
 .cal-day.other-month {
@@ -3494,16 +3494,16 @@ select[data-vuexy-select2-init="true"] {
 }
 
 .cal-day.today {
-  border: 1.5px solid #7367F0;
-  color: #7367F0;
+  border: 1.5px solid #D4BF8A;
+  color: #000000;
   font-weight: 700;
 }
 
 .cal-day.selected {
-  background: linear-gradient(72.47deg, #7367F0 0%, #6358E1 100%) !important;
+  background: linear-gradient(72.47deg, #000000 0%, #D4BF8A 100%) !important;
   color: #FFFFFF !important;
   font-weight: 700;
-  box-shadow: 0 4px 12px rgba(115, 103, 240, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 .calendar-presets {
@@ -3529,15 +3529,15 @@ select[data-vuexy-select2-init="true"] {
 }
 
 .cal-preset-btn:hover {
-  background: #F2F0FF;
-  border-color: #D6D2FB;
-  color: #7367F0;
+  background: rgba(212, 191, 138, 0.18);
+  border-color: #D4BF8A;
+  color: #000000;
 }
 
 [data-theme="dark"] .cal-day:hover,
 [data-theme="dark"] .cal-preset-btn:hover {
-  background: rgba(115, 103, 240, 0.2);
-  color: #9E95F5;
+  background: rgba(212, 191, 138, 0.2);
+  color: #D4BF8A;
 }
 
 [data-theme="dark"] .cal-nav-btn {
