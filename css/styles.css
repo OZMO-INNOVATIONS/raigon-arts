@@ -997,10 +997,10 @@ h6 {
 }
 
 .notif-tab-btn.active {
-  background: #7367F0;
+  background: linear-gradient(72.47deg, #000000 0%, #D4BF8A 100%);
   color: #FFFFFF !important;
-  border-color: #7367F0;
-  box-shadow: 0 3px 10px rgba(115, 103, 240, 0.35);
+  border-color: #000000;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
 }
 
 .notif-body {
@@ -1114,8 +1114,8 @@ h6 {
 }
 
 .theme-toggle-btn:hover {
-  color: #7367F0;
-  background-color: var(--primary-light);
+  color: #000000;
+  background-color: rgba(212, 191, 138, 0.2);
   transform: rotate(15deg) scale(1.08);
 }
 
@@ -1259,8 +1259,8 @@ h6 {
 }
 
 .icon-primary {
-  color: #7367F0;
-  background: #F2F0FF;
+  color: #000000;
+  background: rgba(212, 191, 138, 0.18);
 }
 
 .icon-info {
@@ -1299,7 +1299,7 @@ h6 {
 }
 
 .trend-primary {
-  color: #7367F0;
+  color: #000000;
 }
 
 .trend-info {
@@ -1568,10 +1568,10 @@ h6 {
 }
 
 .page-btn.active {
-  background: #7367F0;
+  background: linear-gradient(72.47deg, #000000 0%, #D4BF8A 100%);
   color: #FFFFFF;
-  border-color: #7367F0;
-  box-shadow: var(--shadow-primary);
+  border-color: #000000;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
 }
 
 /* Action Icons */
@@ -1598,8 +1598,8 @@ h6 {
 }
 
 .action-btn.edit:hover {
-  color: #7367F0;
-  background-color: #F2F0FF;
+  color: #000000;
+  background-color: rgba(212, 191, 138, 0.18);
 }
 
 .action-btn.delete:hover {
@@ -3314,22 +3314,19 @@ select[data-vuexy-select2-init="true"] {
 }
 
 .view-photo-spec-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(115, 103, 240, 0.06);
-  border: 1px solid rgba(115, 103, 240, 0.15);
+  background: rgba(212, 191, 138, 0.14);
+  border: 1px solid rgba(212, 191, 138, 0.3);
   padding: 4px 10px;
   border-radius: 6px;
   font-size: 11.5px;
   font-weight: 600;
-  color: #7367F0;
+  color: #000000;
 }
 
 [data-theme="dark"] .view-photo-spec-pill {
-  background: rgba(115, 103, 240, 0.16);
-  border-color: rgba(115, 103, 240, 0.3);
-  color: #9E95F5;
+  background: rgba(212, 191, 138, 0.18);
+  border-color: rgba(212, 191, 138, 0.35);
+  color: #D4BF8A;
 }
 
 /* Banner Components (Theme-Aware) */
@@ -3341,19 +3338,19 @@ select[data-vuexy-select2-init="true"] {
   margin-top: 18px;
   margin-bottom: 24px;
   padding: 22px 26px;
-  background: linear-gradient(135deg, rgba(115, 103, 240, 0.04) 0%, rgba(255, 255, 255, 0.8) 100%), var(--bg-surface);
-  border: 1px solid rgba(115, 103, 240, 0.2);
+  background: linear-gradient(135deg, rgba(212, 191, 138, 0.08) 0%, rgba(255, 255, 255, 0.8) 100%), var(--bg-surface);
+  border: 1px solid rgba(212, 191, 138, 0.25);
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(47, 43, 61, 0.04);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
   flex-wrap: wrap;
 }
 
 .reports-timeframe-banner {
   margin-bottom: 22px;
   padding: 14px 20px;
-  background: linear-gradient(135deg, rgba(115, 103, 240, 0.04) 0%, rgba(255, 255, 255, 0.8) 100%), var(--bg-surface);
+  background: linear-gradient(135deg, rgba(212, 191, 138, 0.08) 0%, rgba(255, 255, 255, 0.8) 100%), var(--bg-surface);
   border-radius: 14px;
-  border: 1px solid rgba(115, 103, 240, 0.18);
+  border: 1px solid rgba(212, 191, 138, 0.25);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -3362,8 +3359,8 @@ select[data-vuexy-select2-init="true"] {
 
 [data-theme="dark"] .settings-logo-banner,
 [data-theme="dark"] .reports-timeframe-banner {
-  background: rgba(115, 103, 240, 0.08) !important;
-  border-color: rgba(115, 103, 240, 0.25) !important;
+  background: rgba(212, 191, 138, 0.12) !important;
+  border-color: rgba(212, 191, 138, 0.3) !important;
   box-shadow: none;
 }
 
@@ -3395,7 +3392,7 @@ select[data-vuexy-select2-init="true"] {
 .datepicker-icon {
   position: absolute;
   right: 14px;
-  color: #7367F0;
+  color: #000000;
   font-size: 16px;
   pointer-events: auto;
   cursor: pointer;
@@ -3404,7 +3401,7 @@ select[data-vuexy-select2-init="true"] {
 
 .datepicker-wrapper:hover .datepicker-icon {
   transform: scale(1.1);
-  color: #6358E1;
+  color: #D4BF8A;
 }
 
 .vuexy-calendar-popover {

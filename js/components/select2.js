@@ -77,7 +77,7 @@ class VuexySelect2 {
 
   enhanceAll(root = document) {
     const target = root || document;
-    const selects = target.querySelectorAll('select.form-select:not([data-vuexy-select2-init="true"]), select.form-select-sm:not([data-vuexy-select2-init="true"]), select.form-select-lg:not([data-vuexy-select2-init="true"]), select[data-select2]:not([data-vuexy-select2-init="true"])');
+    const selects = target.querySelectorAll('select.form-select:not([data-vuexy-select2-init="true"]), select.form-select-sm:not([data-vuexy-select2-init="true"]), select.form-select-lg:not([data-vuexy-select2-init="true"]), select.status-select-badge:not([data-vuexy-select2-init="true"]), select[data-select2]:not([data-vuexy-select2-init="true"])');
     selects.forEach(select => this.enhance(select));
   }
 
@@ -97,19 +97,25 @@ class VuexySelect2 {
     select.dataset.vuexySelect2Init = 'true';
     select.style.display = 'none';
 
-    // Determine size class
+    // Determine size class & status badge state
     let sizeClass = 'md';
     if (select.classList.contains('form-select-sm') || select.classList.contains('sm')) sizeClass = 'sm';
     if (select.classList.contains('form-select-lg') || select.classList.contains('lg')) sizeClass = 'lg';
 
+    const isStatusBadge = select.classList.contains('status-select-badge');
+
     // Create Vuexy Select2 Container
     const container = document.createElement('div');
     container.className = `vuexy-select2-container size-${sizeClass}`;
+    if (isStatusBadge) container.classList.add('status-select-badge-wrap');
     if (select.style.width) container.style.width = select.style.width;
 
     // Trigger Button
     const trigger = document.createElement('div');
     trigger.className = 'vuexy-select2-trigger';
+    if (isStatusBadge) {
+      trigger.className = `vuexy-select2-trigger status-select-badge status-badge-${select.value.toLowerCase()}`;
+    }
     
     const labelSpan = document.createElement('span');
     labelSpan.className = 'vuexy-select2-label';
@@ -143,10 +149,18 @@ class VuexySelect2 {
       
       const selectedOpt = select.options[select.selectedIndex] || options[0];
       labelSpan.textContent = selectedOpt ? selectedOpt.text : 'Select option';
+      
+      if (isStatusBadge && selectedOpt) {
+        const valLower = selectedOpt.value.toLowerCase();
+        trigger.className = `vuexy-select2-trigger status-select-badge status-badge-${valLower}`;
+      }
 
       options.forEach(opt => {
         const item = document.createElement('div');
         item.className = 'vuexy-select2-option';
+        if (isStatusBadge) {
+          item.classList.add(`status-option-${opt.value.toLowerCase()}`);
+        }
         if (opt.selected) {
           item.classList.add('selected');
         }
