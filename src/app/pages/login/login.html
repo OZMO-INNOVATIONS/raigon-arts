@@ -1,0 +1,75 @@
+<div class="login-view">
+  <div class="login-card-container">
+
+    <!-- LEFT BRAND BANNER -->
+    <div class="login-banner">
+      <div>
+        <div class="brand-logo" style="margin-bottom: 24px;">
+          <div class="brand-icon">
+            <i class="fa-solid fa-image"></i>
+          </div>
+          <div class="brand-text">
+            <span class="brand-title" style="font-size: 22px;">RAIGON ARTS</span>
+            <span class="brand-subtitle">CUSTOM PHOTO FRAMING</span>
+          </div>
+        </div>
+
+        <h2 class="banner-heading">
+          Crafting Fine Frames for Every Memory.
+        </h2>
+
+        <p class="banner-desc">
+          Internal customer data collection, photo gallery vault, and wholesale frame order management system.
+        </p>
+      </div>
+
+      <div class="banner-footer">
+        &copy; 2026 Raigon Arts Workshop. All rights reserved.
+      </div>
+    </div>
+
+    <!-- RIGHT FORM AREA -->
+    <div class="login-form-area">
+      <h2 class="form-title">Welcome Back</h2>
+      <p class="form-subtitle">Please sign in to access your shop dashboard.</p>
+
+      <form (ngSubmit)="onSubmit($event)">
+        @if (errorMessage) {
+          <div style="background: #FEF2F2; border: 1px solid #FCA5A5; color: #DC2626; padding: 10px 14px; border-radius: 6px; font-size: 13px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <span>{{ errorMessage }}</span>
+          </div>
+        }
+
+        <div class="form-group" style="margin-bottom: 16px;">
+          <label class="form-label"> EMAIL</label>
+          <input type="email" class="form-input" placeholder="admin@raigonarts.com" [(ngModel)]="email" name="email"
+            required>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 16px;">
+          <label class="form-label">PASSWORD</label>
+          <input type="password" class="form-input" placeholder="Enter password" [(ngModel)]="password" name="password"
+            required>
+        </div>
+
+        <div class="form-options">
+          <label class="remember-me">
+            <input type="checkbox" [(ngModel)]="rememberMe" name="rememberMe" style="accent-color: var(--primary);">
+            Remember me
+          </label>
+          <a href="#" class="forgot-link" (click)="forgotPassword($event)">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-bottom: 12px;" [disabled]="isLoading">
+          <i class="fa-solid fa-right-to-bracket"></i> {{ isLoading ? 'Signing in...' : 'Sign In to Workshop' }}
+        </button>
+
+        <button type="button" class="btn btn-secondary" style="width: 100%;" (click)="quickDemoBypass()">
+          <i class="fa-solid fa-bolt"></i> Quick Demo Bypass
+        </button>
+      </form>
+    </div>
+
+  </div>
+</div>

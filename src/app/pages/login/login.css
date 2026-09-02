@@ -1,0 +1,118 @@
+:host {
+  display: block;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.login-view {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #12100E;
+  padding: 24px;
+}
+
+.login-card-container {
+  display: flex;
+  width: 100%;
+  max-width: 960px;
+  min-height: 560px;
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.login-banner {
+  flex: 1.1;
+  background: linear-gradient(rgba(28, 25, 23, 0.78), rgba(28, 25, 23, 0.88)), url('/assets/images/sample_frame_1.jpg') center/cover no-repeat;
+  padding: 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #FFFFFF;
+}
+
+.banner-heading {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 12px;
+  color: #FFFFFF;
+}
+
+.banner-desc {
+  font-size: 13px;
+  color: #D6D3D1;
+  line-height: 1.6;
+}
+
+.banner-footer {
+  font-size: 11px;
+  color: #A8A29E;
+}
+
+.login-form-area {
+  flex: 1;
+  padding: 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--bg-surface);
+}
+
+.form-title {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.form-subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  font-size: 13px;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.forgot-link {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .login-card-container {
+    flex-direction: column;
+  }
+  .login-banner {
+    padding: 32px 24px;
+  }
+  .login-form-area {
+    padding: 32px 24px;
+  }
+}

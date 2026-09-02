@@ -1,0 +1,508 @@
+<div class="page-header">
+
+  <div>
+    <h1 class="page-title">
+      Dashboard Overview
+    </h1>
+
+    <p class="page-subtitle">
+      Welcome back, Raigon Arts Workshop Manager
+    </p>
+  </div>
+
+  <div class="flex gap-3">
+
+    <button
+      class="btn btn-primary"
+      type="button"
+      (click)="addNewOrder()">
+
+      <i class="fa-solid fa-plus"></i>
+
+      Add New Order
+
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- Stats Cards -->
+
+<div class="metrics-grid">
+
+  <!-- Total Customers -->
+
+  <div class="metric-card">
+
+    <div class="metric-info">
+
+      <p>Total Customers</p>
+
+      <h3>
+        {{ stats.totalCustomers }}
+      </h3>
+
+    </div>
+
+    <div class="metric-icon-box">
+
+      <i class="fa-solid fa-users"></i>
+
+    </div>
+
+  </div>
+
+
+  <!-- Total Orders -->
+
+  <div class="metric-card">
+
+    <div class="metric-info">
+
+      <p>Total Frame Orders</p>
+
+      <h3>
+        {{ stats.totalOrders }}
+      </h3>
+
+    </div>
+
+    <div
+      class="metric-icon-box"
+      style="color: #2563EB; background: #EFF6FF;">
+
+      <i class="fa-solid fa-boxes-packing"></i>
+
+    </div>
+
+  </div>
+
+
+  <!-- In Progress -->
+
+  <div class="metric-card">
+
+    <div class="metric-info">
+
+      <p>In Progress</p>
+
+      <h3>
+        {{ stats.inProgress }}
+      </h3>
+
+    </div>
+
+    <div
+      class="metric-icon-box"
+      style="color: #D97706; background: #FFFBEB;">
+
+      <i class="fa-solid fa-screwdriver-wrench"></i>
+
+    </div>
+
+  </div>
+
+
+  <!-- Completed -->
+
+  <div class="metric-card">
+
+    <div class="metric-info">
+
+      <p>Completed Orders</p>
+
+      <h3>
+        {{ stats.completed }}
+      </h3>
+
+    </div>
+
+    <div
+      class="metric-icon-box"
+      style="color: #059669; background: #ECFDF5;">
+
+      <i class="fa-solid fa-circle-check"></i>
+
+    </div>
+
+  </div>
+
+
+  <!-- Pending -->
+
+  <div class="metric-card">
+
+    <div class="metric-info">
+
+      <p>Pending Orders</p>
+
+      <h3>
+        {{ stats.pending }}
+      </h3>
+
+    </div>
+
+    <div
+      class="metric-icon-box"
+      style="color: #DC2626; background: #FEF2F2;">
+
+      <i class="fa-solid fa-clock font-bold"></i>
+
+    </div>
+
+  </div>
+
+
+  <!-- Revenue -->
+
+  <div class="metric-card">
+
+    <div class="metric-info">
+
+      <p>Total Revenue</p>
+
+      <h3>
+        ₹{{ stats.totalRevenue | number:'1.0-0' }}
+      </h3>
+
+    </div>
+
+    <div
+      class="metric-icon-box"
+      style="color: #7C3AED; background: #F5F3FF;">
+
+      <i class="fa-solid fa-indian-rupee-sign"></i>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- Recent Orders Section -->
+
+<div class="table-card">
+
+  <div class="table-toolbar">
+
+    <div class="toolbar-left">
+
+      <h3 class="text-lg font-bold">
+        Recent Customer Frame Orders
+      </h3>
+
+    </div>
+
+    <div class="toolbar-right">
+
+      <button
+        class="btn btn-secondary btn-sm"
+        type="button"
+        (click)="viewAllCustomers()">
+
+        View All Customers
+
+        <i class="fa-solid fa-arrow-right"></i>
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="table-container">
+
+    <table class="data-table">
+
+      <thead>
+
+        <tr>
+
+          <th>Customer ID</th>
+
+          <th>Customer Name</th>
+
+          <th>Phone</th>
+
+          <th>Frame Size</th>
+
+          <th>Frame Type</th>
+
+          <th>Qty</th>
+
+          <th>Total</th>
+
+          <th>Status</th>
+
+          <th>Actions</th>
+
+        </tr>
+
+      </thead>
+
+
+      <tbody>
+
+        @for (customer of recentCustomers; track (customer.id || $index)) {
+
+          <tr>
+
+            <td class="font-bold text-primary">
+              {{ customer.id }}
+            </td>
+
+
+            <td>
+
+              <div class="customer-avatar-cell">
+
+                <div class="avatar-circle">
+                  {{ customer.name ? customer.name.charAt(0).toUpperCase() : 'C' }}
+                </div>
+
+                <div>
+
+                  <div class="font-semibold">
+                    {{ customer.name }}
+                  </div>
+
+                  <div class="text-xs text-muted">
+                    {{ customer.city }}
+                  </div>
+
+                </div>
+
+              </div>
+
+            </td>
+
+
+            <td>
+              {{ customer.phone }}
+            </td>
+
+
+            <td class="font-medium">
+              {{ customer.frameSize }}
+            </td>
+
+
+            <td>
+              {{ customer.frameType }}
+            </td>
+
+
+            <td class="font-bold">
+              {{ customer.quantity }}
+            </td>
+
+
+            <td class="font-bold">
+              ₹{{ customer.totalAmount | number:'1.0-0' }}
+            </td>
+
+
+            <td>
+
+              <span
+                class="badge"
+                [ngClass]="getStatusClass(customer.orderStatus)">
+
+                <span class="badge-dot"></span>
+
+                {{ customer.orderStatus }}
+
+              </span>
+
+            </td>
+
+
+            <td>
+
+              <div class="table-actions">
+
+                <!-- View Customer Profile -->
+                <button
+                  class="action-btn"
+                  type="button"
+                  title="View Customer Profile"
+                  (click)="viewCustomer(customer)">
+
+                  <i class="fa-solid fa-eye"></i>
+
+                </button>
+
+                <!-- Edit Order -->
+                <button
+                  class="action-btn edit"
+                  type="button"
+                  title="Edit Order"
+                  (click)="editCustomer(customer)">
+
+                  <i class="fa-solid fa-pen-to-square"></i>
+
+                </button>
+
+                <!-- Delete / Trash Bin -->
+                <button
+                  class="action-btn delete"
+                  type="button"
+                  title="Delete Record"
+                  (click)="deleteCustomer(customer.id, customer.name)">
+
+                  <i class="fa-solid fa-trash"></i>
+
+                </button>
+
+              </div>
+
+            </td>
+
+          </tr>
+
+        }
+
+        @if (recentCustomers.length === 0) {
+
+          <tr>
+
+            <td
+              colspan="9"
+              style="text-align: center; padding: 40px;">
+
+              No customer orders found.
+
+            </td>
+
+          </tr>
+
+        }
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
+
+
+<!-- VIEW CUSTOMER DETAILS MODAL -->
+@if (showViewModal() && selectedCustomer(); as cust) {
+  <div class="modal-overlay active" (click)="closeViewModal()">
+    <div class="modal-card" (click)="$event.stopPropagation()" style="max-width: 780px; height: auto; max-height: 90vh;">
+      <div class="modal-header">
+        <h3 class="modal-title font-bold">Customer Profile & Order Summary</h3>
+        <button type="button" class="modal-close-btn" title="Close" (click)="closeViewModal()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Top Customer Row -->
+        <div class="flex justify-between items-center" style="padding-bottom: 16px; border-bottom: 1px solid var(--border-color); margin-bottom: 20px;">
+          <div class="flex items-center gap-3">
+            <div class="avatar-circle" style="width: 48px; height: 48px; font-size: 20px;">
+              {{ cust.name ? cust.name.charAt(0).toUpperCase() : 'C' }}
+            </div>
+            <div>
+              <h2 class="text-xl font-bold">{{ cust.name }}</h2>
+              <p class="text-sm text-muted">ID: <span class="text-primary font-bold">{{ cust.id }}</span> | Phone: {{ cust.phone }}</p>
+            </div>
+          </div>
+          <div>
+            <span class="badge" [ngClass]="getStatusClass(cust.orderStatus)">
+              <span class="badge-dot"></span> {{ cust.orderStatus }}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <!-- Customer Contact Card -->
+          <div class="col-6">
+            <div style="background: var(--bg-app); padding: 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); height: 100%;">
+              <h4 class="font-bold text-xs uppercase" style="margin-bottom: 12px; color: var(--text-secondary);">
+                <i class="fa-solid fa-user"></i> Customer Contact
+              </h4>
+              <p style="margin-bottom: 8px; font-size: 13px;"><strong>Primary Phone:</strong> {{ cust.phone }}</p>
+              <p style="margin-bottom: 8px; font-size: 13px;"><strong>Alt Phone:</strong> {{ cust.altPhone || 'None' }}</p>
+              <p style="margin-bottom: 8px; font-size: 13px;"><strong>Address:</strong> {{ cust.address || 'N/A' }}</p>
+              <p style="margin-bottom: 4px; font-size: 13px;"><strong>City & Pincode:</strong> {{ cust.city || '' }}{{ cust.pincode ? ' - ' + cust.pincode : '' }}</p>
+            </div>
+          </div>
+
+          <!-- Order & Payment Details Card -->
+          <div class="col-6">
+            <div style="background: var(--bg-app); padding: 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); height: 100%;">
+              <h4 class="font-bold text-xs uppercase" style="margin-bottom: 12px; color: var(--text-secondary);">
+                <i class="fa-solid fa-receipt"></i> Order & Payment Details
+              </h4>
+              <p style="margin-bottom: 8px; font-size: 13px;"><strong>Order Date:</strong> {{ cust.orderDate || 'Aug 26, 2026' }}</p>
+              <p style="margin-bottom: 8px; font-size: 13px;"><strong>Expected Delivery:</strong> {{ cust.deliveryDate || 'N/A' }}</p>
+              <p style="margin-bottom: 8px; font-size: 13px;"><strong>Total Amount:</strong> ₹{{ cust.totalAmount | number:'1.0-0' }}</p>
+              <p style="margin-bottom: 8px; font-size: 13px;"><strong>Advance Paid:</strong> ₹{{ (cust.advancePaid !== undefined ? cust.advancePaid : cust.totalAmount) | number:'1.0-0' }}</p>
+              <p style="margin-bottom: 8px; font-size: 13px;"><strong>Balance Due:</strong> <span class="font-bold text-primary">₹{{ (cust.balanceAmount !== undefined ? cust.balanceAmount : 0) | number:'1.0-0' }}</span></p>
+              <p style="margin-bottom: 4px; font-size: 13px;"><strong>Payment Status:</strong> <span class="font-semibold">{{ cust.paymentStatus || 'Paid' }}</span></p>
+            </div>
+          </div>
+
+          <!-- Frame Specifications Box -->
+          <div class="col-12" style="margin-top: 14px;">
+            <div style="background: #FFFBEB; padding: 16px; border-radius: var(--radius-sm); border: 1px solid #FDE68A;">
+              <h4 class="font-bold text-xs uppercase" style="margin-bottom: 10px; color: #B45309;">
+                Frame Specifications
+              </h4>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; font-size: 13px;">
+                <div><strong>Frame Size:</strong> {{ cust.frameSize }}</div>
+                <div><strong>Frame Type:</strong> {{ cust.frameType }}</div>
+                <div><strong>Material:</strong> {{ cust.material || 'Gold Filigree Resin' }}</div>
+                <div><strong>Color Finish:</strong> {{ cust.color || 'Antique Gold' }}</div>
+                <div><strong>Orientation:</strong> {{ cust.orientation || 'Portrait' }}</div>
+                <div><strong>Quantity:</strong> {{ cust.quantity }} Frames</div>
+              </div>
+              @if (cust.notes) {
+                <p style="margin-top: 10px; font-size: 13px;"><strong>Notes:</strong> {{ cust.notes }}</p>
+              }
+            </div>
+          </div>
+
+          <!-- Customer Photos Section -->
+          <div class="col-12" style="margin-top: 14px;">
+            <h4 class="font-bold text-xs uppercase" style="margin-bottom: 10px; color: #B45309;">
+              <i class="fa-solid fa-image"></i> Customer Photos ({{ cust.photos?.length || 0 }})
+            </h4>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px;">
+              @for (p of (cust.photos && cust.photos.length > 0 ? cust.photos : defaultPhotos); track $index) {
+                <div style="border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border-color); height: 140px; background: #FFF;">
+                  <img [src]="getPhotoUrl(p)" alt="Customer Photo" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="editFromViewModal()">
+          <i class="fa-solid fa-pen-to-square"></i> Edit Customer & Order
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="closeViewModal()">Close</button>
+      </div>
+    </div>
+  </div>
+}
+
+
+<!-- TOAST NOTIFICATION -->
+@if (toastMessage) {
+  <div class="toast-container">
+    <div class="toast toast-success" (click)="dismissToast()" style="cursor: pointer;">
+      <i class="fa-solid fa-circle-check toast-icon"></i>
+      <span>{{ toastMessage }}</span>
+    </div>
+  </div>
+}

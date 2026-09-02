@@ -1,0 +1,356 @@
+<app-modal [visible]="showOrderModal" (closed)="closeOrderModal()">
+
+  <div class="modal-header">
+    <h3 class="modal-title font-bold">
+      {{ editingId ? 'Edit Customer & Frame Order (' + editingId + ')' : 'Add New Customer & Frame Order' }}
+    </h3>
+    <button type="button" class="modal-close-btn" title="Close" (click)="closeOrderModal()">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+
+  <form (ngSubmit)="saveOrder()">
+    <div class="modal-body">
+
+      <!-- SECTION 1: CUSTOMER INFORMATION -->
+      <h4 class="form-section-header">
+        <i class="fa-solid fa-user"></i> Customer Information
+      </h4>
+      <div class="form-grid">
+        <div class="col-6 form-group">
+          <label class="form-label">Customer Name <span class="required">*</span></label>
+          <input type="text" class="form-input" [class.is-invalid]="errors['customerName']" placeholder=""
+            [(ngModel)]="order.customerName" (input)="validateField('customerName')" name="customerName">
+          @if (errors['customerName']) {
+          <span class="field-error-msg">
+            <i class="fa-solid fa-circle-exclamation"></i> {{ errors['customerName'] }}
+          </span>
+          }
+        </div>
+
+        <div class="col-6 form-group">
+          <label class="form-label">Phone Number <span class="required">*</span></label>
+          <input type="tel" class="form-input" [class.is-invalid]="errors['phone']" placeholder="" maxlength="10"
+            [(ngModel)]="order.phone" (input)="validateField('phone')" name="phone">
+          @if (errors['phone']) {
+          <span class="field-error-msg">
+            <i class="fa-solid fa-circle-exclamation"></i> {{ errors['phone'] }}
+          </span>
+          }
+        </div>
+
+        <div class="col-6 form-group">
+          <label class="form-label">Alternative Phone Number</label>
+          <input type="tel" class="form-input" [class.is-invalid]="errors['alternativePhone']" placeholder=""
+            maxlength="10" [(ngModel)]="order.alternativePhone" (input)="validateField('alternativePhone')"
+            name="alternativePhone">
+          @if (errors['alternativePhone']) {
+          <span class="field-error-msg">
+            <i class="fa-solid fa-circle-exclamation"></i> {{ errors['alternativePhone'] }}
+          </span>
+          }
+        </div>
+
+        <div class="col-6 form-group">
+          <label class="form-label">City / Town</label>
+          <input type="text" class="form-input" [class.is-invalid]="errors['city']" placeholder=""
+            [(ngModel)]="order.city" (input)="validateField('city')" name="city">
+          @if (errors['city']) {
+          <span class="field-error-msg">
+            <i class="fa-solid fa-circle-exclamation"></i> {{ errors['city'] }}
+          </span>
+          }
+        </div>
+
+        <div class="col-8 form-group">
+          <label class="form-label">Full Address</label>
+          <input type="text" class="form-input" placeholder="" [(ngModel)]="order.address" name="address">
+        </div>
+
+        <div class="col-4 form-group">
+          <label class="form-label">Pincode</label>
+          <input type="text" class="form-input" placeholder="" [(ngModel)]="order.pincode" name="pincode">
+        </div>
+      </div>
+
+      <!-- SECTION 2: PHOTO DETAILS & UPLOAD -->
+      <h4 class="form-section-header">
+        <i class="fa-solid fa-image"></i> Photo Details & Upload
+      </h4>
+      <div class="dropzone-container" (click)="fileInput.click()" (dragover)="$event.preventDefault()" (drop)="onFileDrop($event)">
+        <div class="dropzone-circle-icon">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+        </div>
+        <h4 class="font-bold text-base" style="margin-bottom: 4px;">Drag & Drop Customer Photos Here</h4>
+        <p class="text-xs text-muted" style="margin-bottom: 12px;">Supports JPG, PNG, WEBP high-resolution photo prints
+        </p>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="$event.stopPropagation(); fileInput.click()">
+          <i class="fa-solid fa-folder-open"></i> Browse Files
+        </button>
+        <input #fileInput type="file" multiple accept="image/*" style="display: none;"
+          (change)="onFilesSelected($event)">
+      </div>
+
+      <!-- PHOTO PREVIEW SECTION -->
+      <div style="margin-top: 12px;">
+        <span class="text-xs font-bold text-primary">{{ photos.length }} photos selected</span>
+        <div class="photo-preview-grid">
+          @for (photo of photos; track photo.id; let i = $index) {
+          <div class="preview-item">
+            <img [src]="photo.url" alt="Preview">
+            <button type="button" class="preview-remove-btn" title="Remove Photo" (click)="removePhoto(i)">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          }
+        </div>
+      </div>
+
+      <!-- SECTION 3: FRAME SPECIFICATIONS -->
+      <h4 class="form-section-header">
+        <i class="fa-solid fa-ruler-combined"></i> Frame Specifications
+      </h4>
+      <div class="form-grid">
+        <div class="col-6 form-group">
+          <label class="form-label">Frame Size <span class="required">*</span></label>
+          <select class="form-select" [class.is-invalid]="errors['frameSize']" [(ngModel)]="order.frameSize"
+            (change)="validateField('frameSize')" name="frameSize">
+            <option value="" disabled selected>Select Frame Size</option>
+            <option value="4 × 6 inch">4 × 6 inch</option>
+            <option value="5 × 7 inch">5 × 7 inch</option>
+            <option value="8 × 10 inch">8 × 10 inch</option>
+            <option value="8 × 12 inch">8 × 12 inch</option>
+            <option value="12 × 18 inch">12 × 18 inch</option>
+            <option value="16 × 20 inch">16 × 20 inch</option>
+            <option value="20 × 30 inch">20 × 30 inch</option>
+            <option value="Custom Size">Custom Size</option>
+          </select>
+          @if (errors['frameSize']) {
+          <span class="field-error-msg">
+            <i class="fa-solid fa-circle-exclamation"></i> {{ errors['frameSize'] }}
+          </span>
+          }
+        </div>
+
+        <div class="col-6 form-group">
+          <label class="form-label">Unit</label>
+          <select class="form-select" [(ngModel)]="order.unit" name="unit">
+            <option value="Inch">Inch</option>
+            <option value="cm">CM</option>
+          </select>
+        </div>
+
+        <div class="col-6 form-group">
+          <label class="form-label">Custom Width</label>
+          <input type="number" class="form-input" placeholder="" [(ngModel)]="order.customWidth" name="customWidth">
+        </div>
+
+        <div class="col-6 form-group">
+          <label class="form-label">Custom Height</label>
+          <input type="number" class="form-input" placeholder="" [(ngModel)]="order.customHeight" name="customHeight">
+        </div>
+
+        <div class="col-4 form-group">
+          <label class="form-label">Frame Type <span class="required">*</span></label>
+          <select class="form-select" [class.is-invalid]="errors['frameType']" [(ngModel)]="order.frameType"
+            (change)="validateField('frameType')" name="frameType">
+            <option value="" disabled selected>Select Frame Type</option>
+            <option value="Wooden Frame">Wooden Frame</option>
+            <option value="Premium Frame">Premium Frame</option>
+            <option value="Classic Frame">Classic Frame</option>
+            <option value="Canvas Float">Canvas Float</option>
+            <option value="Box Frame">Box Frame</option>
+          </select>
+          @if (errors['frameType']) {
+          <span class="field-error-msg">
+            <i class="fa-solid fa-circle-exclamation"></i> {{ errors['frameType'] }}
+          </span>
+          }
+        </div>
+
+        <div class="col-4 form-group">
+          <label class="form-label">Frame Material</label>
+          <select class="form-select" [(ngModel)]="order.frameMaterial" name="frameMaterial">
+            <option value="" disabled selected>Select Frame Material</option>
+            <option value="Teak Wood Moulding">Teak Wood Moulding</option>
+            <option value="Gold Filigree Resin">Gold Filigree Resin</option>
+            <option value="Oak Wood Moulding">Oak Wood Moulding</option>
+            <option value="Walnut Wood Moulding">Walnut Wood Moulding</option>
+            <option value="Mahogany Wood Moulding">Mahogany Wood Moulding</option>
+            <option value="Rosewood Moulding">Rosewood Moulding</option>
+            <option value="Pine Wood Moulding">Pine Wood Moulding</option>
+            <option value="MDF Moulding">MDF Moulding</option>
+            <option value="PVC Moulding">PVC Moulding</option>
+            <option value="Polystyrene Moulding">Polystyrene Moulding</option>
+            <option value="Aluminium Moulding">Aluminium Moulding</option>
+            <option value="Metal Moulding">Metal Moulding</option>
+            <option value="Acrylic Moulding">Acrylic Moulding</option>
+            <option value="Gold Leaf Resin">Gold Leaf Resin</option>
+            <option value="Silver Filigree Resin">Silver Filigree Resin</option>
+            <option value="Antique Resin Moulding">Antique Resin Moulding</option>
+            <option value="Embossed Resin Moulding">Embossed Resin Moulding</option>
+            <option value="PU Decorative Moulding">PU Decorative Moulding</option>
+          </select>
+        </div>
+
+        <div class="col-4 form-group">
+          <label class="form-label">Frame Color</label>
+          <select class="form-select" [(ngModel)]="order.frameColor" name="frameColor">
+            <option value="" disabled selected>Select Color</option>
+            <option value="Natural Wood">Natural Wood</option>
+            <option value="Dark Walnut">Dark Walnut</option>
+            <option value="Light Walnut">Light Walnut</option>
+            <option value="Teak Brown">Teak Brown</option>
+            <option value="Mahogany Brown">Mahogany Brown</option>
+            <option value="Rosewood">Rosewood</option>
+            <option value="Matte Black">Matte Black</option>
+            <option value="Glossy Black">Glossy Black</option>
+            <option value="Antique Gold">Antique Gold</option>
+            <option value="Bright Gold">Bright Gold</option>
+            <option value="Champagne Gold">Champagne Gold</option>
+            <option value="Antique Silver">Antique Silver</option>
+            <option value="Silver">Silver</option>
+            <option value="Bronze">Bronze</option>
+            <option value="Antique Bronze">Antique Bronze</option>
+            <option value="Copper">Copper</option>
+            <option value="Rose Gold">Rose Gold</option>
+            <option value="Metallic Gold">Metallic Gold</option>
+            <option value="Metallic Silver">Metallic Silver</option>
+            <option value="White">White</option>
+            <option value="Ivory">Ivory</option>
+            <option value="Cream">Cream</option>
+            <option value="Black & Gold">Black & Gold</option>
+            <option value="Brown & Gold">Brown & Gold</option>
+            <option value="Gold & Black">Gold & Black</option>
+            <option value="Custom Finish">Custom Finish</option>
+          </select>
+        </div>
+
+        <div class="col-6 form-group">
+          <label class="form-label">Photo Orientation</label>
+          <select class="form-select" [(ngModel)]="order.orientation" name="orientation">
+            <option value="" disabled selected>Select Photo Orientation</option>
+            <option value="Landscape (Horizontal)">Landscape (Horizontal)</option>
+            <option value="Portrait (Vertical)">Portrait (Vertical)</option>
+            <option value="Square">Square</option>
+          </select>
+        </div>
+
+        <div class="col-6 form-group">
+          <label class="form-label">Quantity</label>
+          <input type="number" class="form-input" min="1" [(ngModel)]="order.quantity" name="quantity">
+        </div>
+
+        <div class="col-12 form-group">
+          <label class="form-label">Special Instructions / Mounting Notes</label>
+          <textarea class="form-textarea" rows="2" placeholder="" [(ngModel)]="order.notes" name="notes"></textarea>
+        </div>
+      </div>
+
+      <!-- SECTION 4: ORDER & PAYMENT DETAILS -->
+      <h4 class="form-section-header">
+        <i class="fa-solid fa-receipt"></i> Order & Payment Details
+      </h4>
+      <div class="form-grid">
+        <div class="col-6 form-group">
+          <label class="form-label">Order Date</label>
+          <input type="text" class="form-input" [(ngModel)]="order.orderDate" name="orderDate" readonly>
+        </div>
+
+        <div class="col-6 form-group">
+          <label class="form-label">Expected Delivery Date <span class="required">*</span></label>
+          <input type="date" class="form-input" [class.is-invalid]="errors['deliveryDate']" [min]="minDeliveryDate"
+            [(ngModel)]="order.deliveryDate" (change)="validateField('deliveryDate')" name="deliveryDate">
+          @if (errors['deliveryDate']) {
+          <span class="field-error-msg">
+            <i class="fa-solid fa-circle-exclamation"></i> {{ errors['deliveryDate'] }}
+          </span>
+          }
+        </div>
+
+        <div class="col-4 form-group">
+          <label class="form-label">Total Amount (₹) <span class="required">*</span></label>
+          <input type="number" min="0" class="form-input font-bold" [class.is-invalid]="errors['totalAmount']"
+            [(ngModel)]="order.totalAmount" name="totalAmount" (input)="onAmountChange()">
+          @if (errors['totalAmount']) {
+          <span class="field-error-msg">
+            <i class="fa-solid fa-circle-exclamation"></i> {{ errors['totalAmount'] }}
+          </span>
+          }
+        </div>
+
+        <div class="col-4 form-group">
+          <label class="form-label">Advance Paid (₹)</label>
+          <input type="number" min="0" class="form-input font-bold" [class.is-invalid]="errors['advancePaid']"
+            [(ngModel)]="order.advancePaid" name="advancePaid" (input)="onAmountChange()">
+          @if (errors['advancePaid']) {
+          <span class="field-error-msg">
+            <i class="fa-solid fa-circle-exclamation"></i> {{ errors['advancePaid'] }}
+          </span>
+          }
+        </div>
+
+        <div class="col-4 form-group">
+          <label class="form-label">Balance Amount (₹)</label>
+          <input type="number" class="form-input font-bold text-primary" [value]="order.balanceAmount" readonly>
+        </div>
+
+        <div class="col-6 form-group">
+          <label class="form-label">Payment Status <span class="required">*</span></label>
+          <select class="form-select font-semibold" [class.is-invalid]="errors['paymentStatus']"
+            [(ngModel)]="order.paymentStatus" (change)="validateField('paymentStatus')" name="paymentStatus">
+            <option value="" disabled selected>Select Payment Status</option>
+            <option value="Unpaid">Unpaid</option>
+            <option value="Partial">Partial</option>
+            <option value="Paid">Paid</option>
+          </select>
+          @if (errors['paymentStatus']) {
+          <span class="field-error-msg">
+            <i class="fa-solid fa-circle-exclamation"></i> {{ errors['paymentStatus'] }}
+          </span>
+          }
+        </div>
+
+        <div class="col-6 form-group">
+          <label class="form-label">Order Status <span class="required">*</span></label>
+          <select class="form-select font-semibold" [class.is-invalid]="errors['orderStatus']"
+            [(ngModel)]="order.orderStatus" (change)="validateField('orderStatus')" name="orderStatus">
+            <option value="" disabled selected>Select Order Status</option>
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+            <option value="Delivered">Delivered</option>
+            <option value="Cancelled">Cancelled</option>
+          </select>
+          @if (errors['orderStatus']) {
+          <span class="field-error-msg">
+            <i class="fa-solid fa-circle-exclamation"></i> {{ errors['orderStatus'] }}
+          </span>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL FOOTER ACTIONS -->
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="closeOrderModal()">
+        Cancel
+      </button>
+      <button type="button" class="btn btn-dark" (click)="saveDraft()">
+        Save as Draft
+      </button>
+      <button type="submit" class="btn btn-primary">
+        <i class="fa-solid fa-check"></i> Save Customer & Order
+      </button>
+    </div>
+  </form>
+
+  @if (toastError) {
+  <div class="toast-container" style="z-index: 9999;">
+    <div class="toast toast-error" (click)="toastError = ''" style="cursor: pointer;">
+      <i class="fa-solid fa-circle-exclamation toast-icon"></i>
+      <span>{{ toastError }}</span>
+    </div>
+  </div>
+  }
+</app-modal>

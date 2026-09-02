@@ -1,0 +1,266 @@
+<div class="orders-page-wrapper">
+  <!-- PAGE HEADER -->
+  <div class="page-top-bar">
+    <div class="page-title-block">
+      <h1 class="orders-main-title">Order Management</h1>
+      <p class="orders-main-subtitle">Track, update and manage wholesale & retail custom frame orders</p>
+    </div>
+
+    <button class="btn-create-order" type="button" (click)="openCreateOrder()">
+      <i class="fa-solid fa-plus"></i> Create New Order
+    </button>
+  </div>
+
+  <!-- STATUS FILTER TABS -->
+  <div class="orders-tabs-bar">
+    @for (tab of tabs; track tab) {
+      <button
+        type="button"
+        class="order-tab-item"
+        [class.active]="selectedTab === tab"
+        (click)="setTab(tab)">
+        {{ tab }} ({{ getTabCount(tab) }})
+      </button>
+    }
+  </div>
+
+  <!-- ORDERS TABLE CARD -->
+  <div class="orders-table-card">
+    <!-- Card Toolbar with Search Box -->
+    <div class="orders-table-toolbar">
+      <div class="orders-search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input
+          type="text"
+          placeholder="Search order ID, customer name"
+          [(ngModel)]="searchQuery"
+          (input)="onSearchChange()">
+        @if (searchQuery) {
+          <button type="button" class="search-clear-x" (click)="searchQuery = ''; onSearchChange()">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- Table Container -->
+    <div class="orders-table-container">
+      <table class="orders-data-table">
+        <thead>
+          <tr>
+            <th>ORDER ID</th>
+            <th>CUSTOMER</th>
+            <th>PHONE</th>
+            <th>PHOTOS</th>
+            <th>FRAME SPECS</th>
+            <th>QTY</th>
+            <th>TOTAL AMOUNT</th>
+            <th>PAYMENT</th>
+            <th>ORDER STATUS</th>
+            <th>DELIVERY DATE</th>
+            <th>ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (order of filteredOrders; track (order.id || $index)) {
+            <tr>
+              <!-- ORDER ID -->
+              <td class="col-order-id">{{ order.id }}</td>
+
+              <!-- CUSTOMER -->
+              <td class="col-customer">{{ order.name }}</td>
+
+              <!-- PHONE -->
+              <td class="col-phone">{{ order.phone }}</td>
+
+              <!-- PHOTOS -->
+              <td class="col-photos">{{ getPhotoCount(order) }}</td>
+
+              <!-- FRAME SPECS -->
+              <td class="col-frame-specs">
+                <div class="spec-size">{{ order.frameSize }}</div>
+                <div class="spec-type">{{ order.frameType }}</div>
+              </td>
+
+              <!-- QTY -->
+              <td class="col-qty">{{ order.quantity }}</td>
+
+              <!-- TOTAL AMOUNT -->
+              <td class="col-amount">₹{{ order.totalAmount | number }}</td>
+
+              <!-- PAYMENT -->
+              <td class="col-payment">
+                <span class="payment-pill" [ngClass]="getPaymentClass(order.paymentStatus)">
+                  {{ order.paymentStatus || 'Partial' }}
+                </span>
+              </td>
+
+              <!-- ORDER STATUS (DROPDOWN) -->
+              <td class="col-status">
+                <div class="status-dropdown-wrapper">
+                  <select
+                    class="status-dropdown-select"
+                    [ngModel]="order.orderStatus"
+                    (ngModelChange)="onStatusChange(order, $event)">
+                    @for (opt of statusOptions; track opt) {
+                      <option [value]="opt">{{ opt }}</option>
+                    }
+                  </select>
+                  <i class="fa-solid fa-chevron-down status-dropdown-arrow"></i>
+                </div>
+              </td>
+
+              <!-- DELIVERY DATE -->
+              <td class="col-delivery">{{ order.deliveryDate || 'N/A' }}</td>
+
+              <!-- ACTIONS -->
+              <td class="col-actions">
+                <div class="action-buttons-group">
+                  <button
+                    type="button"
+                    class="action-btn-item"
+                    title="View Order Details"
+                    (click)="viewOrder(order)">
+                    <i class="fa-solid fa-eye"></i>
+                  </button>
+
+                  <button
+                    type="button"
+                    class="action-btn-item edit-action"
+                    title="Edit Order"
+                    (click)="editOrder(order)">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+
+          @if (filteredOrders.length === 0) {
+            <tr>
+              <td colspan="11" class="orders-empty-state">
+                <i class="fa-solid fa-box-open"></i>
+                <p>No orders found matching your filter criteria.</p>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- VIEW ORDER DETAILS MODAL -->
+@if (showViewModal() && selectedOrder(); as ord) {
+  <div class="modal-overlay active" (click)="closeViewModal()">
+    <div class="modal-card" (click)="$event.stopPropagation()" style="max-width: 760px; height: auto; max-height: 90vh;">
+      <div class="modal-header">
+        <h3 class="modal-title font-bold">Order Details & Summary</h3>
+        <button type="button" class="modal-close-btn" title="Close" (click)="closeViewModal()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="flex justify-between items-center" style="padding-bottom: 16px; border-bottom: 1px solid var(--border-color); margin-bottom: 20px;">
+          <div class="flex items-center gap-3">
+            <div class="avatar-circle" style="width: 48px; height: 48px; font-size: 20px;">
+              {{ ord.name ? ord.name.charAt(0).toUpperCase() : 'O' }}
+            </div>
+            <div>
+              <h2 class="text-xl font-bold">{{ ord.name }}</h2>
+              <p class="text-sm text-muted">Order ID: <span class="text-primary font-bold">{{ ord.id }}</span> | Phone: {{ ord.phone }}</p>
+            </div>
+          </div>
+          <div>
+            <span class="badge" [ngClass]="getStatusClass(ord.orderStatus)">
+              <span class="badge-dot"></span> {{ ord.orderStatus }}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <!-- Customer Info -->
+          <div class="col-6">
+            <div style="background: var(--bg-app); padding: 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); height: 100%;">
+              <h4 class="font-bold text-xs uppercase" style="margin-bottom: 12px; color: var(--text-secondary);">
+                <i class="fa-solid fa-user"></i> Customer Contact
+              </h4>
+              <p style="margin-bottom: 8px; font-size: 13px;"><strong>Customer:</strong> {{ ord.name }}</p>
+              <p style="margin-bottom: 8px; font-size: 13px;"><strong>Primary Phone:</strong> {{ ord.phone }}</p>
+              <p style="margin-bottom: 8px; font-size: 13px;"><strong>Alt Phone:</strong> {{ ord.altPhone || 'None' }}</p>
+              <p style="margin-bottom: 8px; font-size: 13px;"><strong>Address:</strong> {{ ord.address || 'N/A' }}</p>
+              <p style="margin-bottom: 4px; font-size: 13px;"><strong>City & Pincode:</strong> {{ ord.city || '' }}{{ ord.pincode ? ' - ' + ord.pincode : '' }}</p>
+            </div>
+          </div>
+
+          <!-- Order & Payment -->
+          <div class="col-6">
+            <div style="background: var(--bg-app); padding: 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); height: 100%;">
+              <h4 class="font-bold text-xs uppercase" style="margin-bottom: 12px; color: var(--text-secondary);">
+                <i class="fa-solid fa-receipt"></i> Order & Payment
+              </h4>
+              <p style="margin-bottom: 8px; font-size: 13px;"><strong>Order Date:</strong> {{ ord.orderDate || 'Aug 27, 2026' }}</p>
+              <p style="margin-bottom: 8px; font-size: 13px;"><strong>Delivery Date:</strong> {{ ord.deliveryDate || 'N/A' }}</p>
+              <p style="margin-bottom: 8px; font-size: 13px;"><strong>Total Amount:</strong> ₹{{ ord.totalAmount | number }}</p>
+              <p style="margin-bottom: 8px; font-size: 13px;"><strong>Advance Paid:</strong> ₹{{ (ord.advancePaid !== undefined ? ord.advancePaid : ord.totalAmount) | number }}</p>
+              <p style="margin-bottom: 8px; font-size: 13px;"><strong>Balance Due:</strong> <span class="font-bold text-primary">₹{{ (ord.balanceAmount !== undefined ? ord.balanceAmount : 0) | number }}</span></p>
+              <p style="margin-bottom: 4px; font-size: 13px;"><strong>Payment Status:</strong> <span class="font-semibold">{{ ord.paymentStatus || 'Partial' }}</span></p>
+            </div>
+          </div>
+
+          <!-- Frame Specifications -->
+          <div class="col-12" style="margin-top: 14px;">
+            <div style="background: #FFFBEB; padding: 16px; border-radius: var(--radius-sm); border: 1px solid #FDE68A;">
+              <h4 class="font-bold text-xs uppercase" style="margin-bottom: 10px; color: #B45309;">
+                <i class="fa-solid fa-crop-simple"></i> Frame Specifications
+              </h4>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; font-size: 13px;">
+                <div><strong>Frame Size:</strong> {{ ord.frameSize }}</div>
+                <div><strong>Frame Type:</strong> {{ ord.frameType }}</div>
+                <div><strong>Material:</strong> {{ ord.material || 'Solid Wood Moulding' }}</div>
+                <div><strong>Color Finish:</strong> {{ ord.color || 'Dark Walnut' }}</div>
+                <div><strong>Orientation:</strong> {{ ord.orientation || 'Portrait' }}</div>
+                <div><strong>Quantity:</strong> {{ ord.quantity }} Frames</div>
+              </div>
+              @if (ord.notes) {
+                <p style="margin-top: 10px; font-size: 13px;"><strong>Notes:</strong> {{ ord.notes }}</p>
+              }
+            </div>
+          </div>
+
+          <!-- Photos -->
+          <div class="col-12" style="margin-top: 14px;">
+            <h4 class="font-bold text-xs uppercase" style="margin-bottom: 10px; color: #B45309;">
+              <i class="fa-solid fa-image"></i> Photos ({{ (ord.photos?.length) || 3 }})
+            </h4>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 12px;">
+              @for (p of (ord.photos && ord.photos.length > 0 ? ord.photos : defaultPhotos); track $index) {
+                <div style="border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border-color); height: 110px; background: #FFF;">
+                  <img [src]="getPhotoUrl(p)" alt="Order Photo" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="editFromViewModal()">
+          <i class="fa-solid fa-pen-to-square"></i> Edit Order
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="closeViewModal()">Close</button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- TOAST NOTIFICATION -->
+@if (toastMessage) {
+  <div class="toast-container">
+    <div class="toast toast-success" (click)="dismissToast()" style="cursor: pointer;">
+      <i class="fa-solid fa-circle-check toast-icon"></i>
+      <span>{{ toastMessage }}</span>
+    </div>
+  </div>
+}

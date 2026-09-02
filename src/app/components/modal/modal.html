@@ -1,0 +1,7 @@
+@if (visible) {
+  <div class="modal-overlay active" (click)="close()">
+    <div class="modal-card" (click)="$event.stopPropagation()">
+      <ng-content></ng-content>
+    </div>
+  </div>
+}

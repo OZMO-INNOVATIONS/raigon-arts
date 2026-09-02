@@ -1,0 +1,225 @@
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Photo Collection</h1>
+    <p class="page-subtitle">Centralized digital vault for customer photo prints and framing specifications</p>
+  </div>
+
+  <div class="flex items-center gap-3">
+    @if (selectedPhotoIds.size > 0) {
+      <button class="btn btn-secondary btn-sm" type="button" (click)="downloadSelected()">
+        <i class="fa-solid fa-download"></i> Download Selected ({{ selectedPhotoIds.size }})
+      </button>
+      <button class="btn btn-danger btn-sm" type="button" (click)="deleteSelected()">
+        <i class="fa-solid fa-trash"></i> Delete Selected ({{ selectedPhotoIds.size }})
+      </button>
+    }
+
+    <!-- View Mode Switch -->
+    <div class="view-toggle-group">
+      <button
+        type="button"
+        class="view-toggle-btn"
+        [class.active]="viewMode === 'grid'"
+        title="Grid View"
+        (click)="setViewMode('grid')">
+        <i class="fa-solid fa-table-cells-large"></i>
+      </button>
+      <button
+        type="button"
+        class="view-toggle-btn"
+        [class.active]="viewMode === 'list'"
+        title="List View"
+        (click)="setViewMode('list')">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Search and Filter Toolbar Card -->
+<div class="table-card" style="margin-bottom: 24px;">
+  <div class="table-toolbar">
+    <div class="toolbar-left">
+      <!-- Search Input -->
+      <div class="table-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input
+          type="text"
+          placeholder="Search by customer name, photo..."
+          [(ngModel)]="searchQuery"
+          (input)="applyFilters()">
+      </div>
+
+      <!-- Status Filter Dropdown -->
+      <select
+        class="form-select text-sm"
+        style="width: 170px;"
+        [(ngModel)]="statusFilter"
+        (change)="applyFilters()">
+        <option value="All">All Order Statuses</option>
+        <option value="Pending">Pending</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Completed">Completed</option>
+        <option value="Delivered">Delivered</option>
+        <option value="Cancelled">Cancelled</option>
+      </select>
+    </div>
+
+    <div class="toolbar-right">
+      <span class="text-sm text-muted">
+        Showing <strong>{{ filteredPhotos.length }}</strong> photos
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- Grid View -->
+@if (viewMode === 'grid') {
+  <div class="photo-grid">
+    @for (photo of filteredPhotos; track photo.id) {
+      <div class="photo-card" [class.selected]="selectedPhotoIds.has(photo.id)">
+        <!-- Checkbox Selection -->
+        <input
+          type="checkbox"
+          class="photo-checkbox"
+          [checked]="selectedPhotoIds.has(photo.id)"
+          (change)="toggleSelect(photo.id)">
+
+        <!-- Photo Thumbnail -->
+        <div class="photo-thumbnail-wrap" (click)="openLightbox(photo)">
+          <img [src]="photo.url" [alt]="photo.name">
+        </div>
+
+        <!-- Photo Card Details -->
+        <div class="photo-details">
+          <div class="photo-filename" [title]="photo.name">{{ photo.name }}</div>
+          <div class="photo-customer" [title]="photo.customerName">
+            {{ photo.customerName }} ({{ photo.customerId }})
+          </div>
+          <div class="photo-footer">
+            <span class="photo-size">Size: {{ photo.frameSize }}</span>
+            <span class="badge" [ngClass]="getStatusBadgeClass(photo.orderStatus)">
+              {{ photo.orderStatus }}
+            </span>
+          </div>
+        </div>
+      </div>
+    }
+
+    @if (filteredPhotos.length === 0) {
+      <div class="table-card" style="grid-column: 1 / -1; padding: 60px; text-align: center; color: var(--text-muted);">
+        <i class="fa-solid fa-image" style="font-size: 40px; margin-bottom: 12px; display: block;"></i>
+        <p class="font-semibold text-lg">No photos found</p>
+        <p class="text-sm">Try adjusting your search query or filter settings.</p>
+      </div>
+    }
+  </div>
+}
+
+<!-- List View -->
+@if (viewMode === 'list') {
+  <div class="table-card">
+    <div class="table-container">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th style="width: 44px;">
+              <input
+                type="checkbox"
+                [checked]="isAllSelected()"
+                (change)="toggleSelectAll()">
+            </th>
+            <th>PREVIEW</th>
+            <th>FILE NAME</th>
+            <th>CUSTOMER</th>
+            <th>ORDER ID</th>
+            <th>FRAME SIZE</th>
+            <th>STATUS</th>
+            <th>ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (photo of filteredPhotos; track photo.id) {
+            <tr>
+              <td>
+                <input
+                  type="checkbox"
+                  [checked]="selectedPhotoIds.has(photo.id)"
+                  (change)="toggleSelect(photo.id)">
+              </td>
+              <td>
+                <img
+                  [src]="photo.url"
+                  [alt]="photo.name"
+                  class="list-photo-preview"
+                  (click)="openLightbox(photo)">
+              </td>
+              <td class="font-semibold">{{ photo.name }}</td>
+              <td>{{ photo.customerName }}</td>
+              <td class="font-bold text-primary">{{ photo.customerId }}</td>
+              <td>{{ photo.frameSize }}</td>
+              <td>
+                <span class="badge" [ngClass]="getStatusBadgeClass(photo.orderStatus)">
+                  {{ photo.orderStatus }}
+                </span>
+              </td>
+              <td>
+                <button
+                  class="action-btn"
+                  type="button"
+                  title="View Fullscreen"
+                  (click)="openLightbox(photo)">
+                  <i class="fa-solid fa-expand"></i>
+                </button>
+              </td>
+            </tr>
+          }
+
+          @if (filteredPhotos.length === 0) {
+            <tr>
+              <td colspan="8" style="text-align: center; padding: 40px; color: var(--text-muted);">
+                <i class="fa-solid fa-folder-open" style="font-size: 32px; margin-bottom: 8px; display: block;"></i>
+                No photos match your filter criteria.
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+}
+
+<!-- Lightbox Fullscreen Modal -->
+@if (activeLightboxPhoto) {
+  <div class="modal-overlay active" (click)="closeLightbox()">
+    <div class="lightbox-content" (click)="$event.stopPropagation()">
+      <div class="flex justify-between items-center" style="width: 100%; margin-bottom: 12px;">
+        <span class="text-lg font-bold" style="color: #FFF;">
+          {{ activeLightboxPhoto.name }} &ndash; {{ activeLightboxPhoto.customerName }}
+        </span>
+        <button
+          type="button"
+          class="btn-icon"
+          style="background: rgba(255,255,255,0.2); color: #FFF; border: none; border-radius: 8px;"
+          title="Close"
+          (click)="closeLightbox()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <img
+        [src]="activeLightboxPhoto.url"
+        [alt]="activeLightboxPhoto.name"
+        class="lightbox-img">
+    </div>
+  </div>
+}
+
+<!-- Toast Notification -->
+@if (toastMessage) {
+  <div class="toast-container">
+    <div class="toast toast-success" (click)="dismissToast()" style="cursor: pointer;">
+      <i class="fa-solid fa-circle-check toast-icon"></i>
+      <span>{{ toastMessage }}</span>
+    </div>
+  </div>
+}

@@ -1,0 +1,108 @@
+@if (!authService.isLoggedIn()) {
+  <app-login></app-login>
+} @else {
+  <div class="app-container">
+    <app-sidebar #sidebar></app-sidebar>
+
+    <div class="main-wrapper" [class.sidebar-collapsed]="sidebar.isCollapsed">
+      <!-- TOP HEADER -->
+      <header class="top-header">
+        <div class="header-search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input
+            type="text"
+            placeholder="Quick search customers, orders, photos..."
+            [value]="searchService.query()"
+            (input)="onSearchInput($event)"
+            (keydown.enter)="onSearchEnter()"
+            (keydown.escape)="searchService.closeDropdown()">
+
+          @if (searchService.query()) {
+            <button
+              type="button"
+              class="search-clear-btn"
+              title="Clear search"
+              (click)="clearSearch()">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          }
+
+          <!-- Live Quick Search Results Dropdown -->
+          @if (searchService.isDropdownOpen() && searchService.query().trim()) {
+            <div class="quick-search-dropdown">
+              <div class="dropdown-header">
+                <span>Matching Records ({{ searchService.results().length }})</span>
+                <span class="text-xs">Press ESC to close</span>
+              </div>
+
+              <div class="dropdown-body">
+                @for (result of searchService.results(); track result.id) {
+                  <div class="dropdown-item" (click)="selectResult(result)">
+                    <div class="dropdown-item-left">
+                      <div class="dropdown-avatar">
+                        {{ result.name ? result.name.charAt(0).toUpperCase() : 'C' }}
+                      </div>
+                      <div class="dropdown-item-info">
+                        <div class="dropdown-item-name">{{ result.name }}</div>
+                        <div class="dropdown-item-sub">
+                          <span class="text-primary font-semibold">{{ result.id }}</span>
+                          @if (result.phone) { &bull; {{ result.phone }} }
+                          @if (result.frameSize) { &bull; {{ result.frameSize }} }
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="dropdown-item-right">
+                      <span class="badge" [ngClass]="getStatusClass(result.orderStatus)">
+                        {{ result.orderStatus }}
+                      </span>
+                      @if (result.totalAmount) {
+                        <span class="dropdown-amount">₹{{ result.totalAmount | number }}</span>
+                      }
+                    </div>
+                  </div>
+                }
+
+                @if (searchService.results().length === 0) {
+                  <div class="dropdown-empty">
+                    <i class="fa-solid fa-magnifying-glass" style="font-size: 24px; margin-bottom: 8px; display: block; opacity: 0.5;"></i>
+                    No matching records found for "{{ searchService.query() }}"
+                  </div>
+                }
+              </div>
+
+              @if (searchService.results().length > 0) {
+                <div class="dropdown-footer" (click)="viewAllResults()">
+                  View all {{ searchService.results().length }} results in Customers table &rarr;
+                </div>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="header-actions">
+          <button class="btn btn-primary" type="button" (click)="openNewOrder()">
+            <i class="fa-solid fa-plus"></i> Add Customer
+          </button>
+
+          <button class="btn-icon notification-btn" type="button" title="Notifications">
+            <i class="fa-solid fa-bell"></i>
+            <span class="notification-indicator"></span>
+          </button>
+
+          <div class="user-avatar" style="width: 38px; height: 38px; cursor: pointer;">
+            RA
+          </div>
+        </div>
+      </header>
+
+      <!-- MAIN VIEW BODY -->
+      <main class="content-body">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+
+    <!-- SHARED NEW ORDER MODAL -->
+    <app-new-order></app-new-order>
+  </div>
+}
