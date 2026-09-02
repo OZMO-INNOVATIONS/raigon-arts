@@ -2340,29 +2340,14 @@ select[data-vuexy-select2-init="true"] {
 .login-banner {
   flex: 1.15;
   background:
-    linear-gradient(135deg, rgba(20, 16, 48, 0.88) 0%, rgba(30, 27, 75, 0.90) 50%, rgba(115, 103, 240, 0.65) 100%),
-    url('../assets/images/sample_frame_1.jpg') center/cover no-repeat;
+    linear-gradient(135deg, rgba(30, 27, 75, 0.55) 0%, rgba(15, 23, 42, 0.65) 100%),
+    url('../assets/images/img2.png') center/cover no-repeat;
   padding: 48px 44px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
   border-right: 1px solid rgba(255, 255, 255, 0.08);
-  overflow: hidden;
-}
-
-/* Translucent Watermark Logo Background */
-.login-watermark-logo {
-  position: absolute;
-  right: -40px;
-  bottom: -20px;
-  width: 320px;
-  height: 320px;
-  opacity: 0.15;
-  filter: drop-shadow(0 0 30px rgba(115, 103, 240, 0.6));
-  pointer-events: none;
-  transform: rotate(-12deg);
-  z-index: 1;
 }
 
 /* Glassmorphism Brand Badge */
