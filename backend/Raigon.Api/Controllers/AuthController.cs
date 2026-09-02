@@ -19,9 +19,9 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginRequest request)
     {
-        if (string.IsNullOrWhiteSpace(request.Email) || string.IsNullOrWhiteSpace(request.Password))
+        if (string.IsNullOrWhiteSpace(request?.Email) || string.IsNullOrWhiteSpace(request?.Password))
         {
-            return BadRequest(new { message = "Email and password are required." });
+            return BadRequest(new { message = "Invalid email or password." });
         }
 
         var email = request.Email.Trim().ToLower();

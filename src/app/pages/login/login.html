@@ -43,13 +43,13 @@
 
         <div class="form-group" style="margin-bottom: 16px;">
           <label class="form-label"> EMAIL</label>
-          <input type="email" class="form-input" placeholder="admin@raigonarts.com" [(ngModel)]="email" name="email"
+          <input type="email" class="form-input" placeholder="admin@raigonarts.com" [(ngModel)]="email" (ngModelChange)="onInputChange()" name="email"
             required>
         </div>
 
         <div class="form-group" style="margin-bottom: 16px;">
           <label class="form-label">PASSWORD</label>
-          <input type="password" class="form-input" placeholder="Enter password" [(ngModel)]="password" name="password"
+          <input type="password" class="form-input" placeholder="Enter password" [(ngModel)]="password" (ngModelChange)="onInputChange()" name="password"
             required>
         </div>
 
@@ -65,7 +65,7 @@
           <i class="fa-solid fa-right-to-bracket"></i> {{ isLoading ? 'Signing in...' : 'Sign In to Workshop' }}
         </button>
 
-        <button type="button" class="btn btn-secondary" style="width: 100%;" (click)="quickDemoBypass()">
+        <button type="button" class="btn btn-secondary" style="width: 100%;" (click)="quickDemoBypass()" [disabled]="isLoading">
           <i class="fa-solid fa-bolt"></i> Quick Demo Bypass
         </button>
       </form>

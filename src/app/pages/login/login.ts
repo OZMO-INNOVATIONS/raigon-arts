@@ -25,16 +25,45 @@ export class Login implements OnInit {
 
   ngOnInit(): void {
     this.errorMessage = '';
+    this.isLoading = false;
+  }
+
+  private isValidEmail(email: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  onInputChange(): void {
+    if (this.errorMessage) {
+      this.errorMessage = '';
+    }
   }
 
   onSubmit(event?: Event): void {
     if (event) event.preventDefault();
-    if (!this.email.trim()) {
-      this.errorMessage = 'Please enter your email.';
+
+    if (this.isLoading) {
       return;
     }
-    if (!this.password.trim()) {
-      this.errorMessage = 'Please enter your password.';
+
+    const emailTrimmed = this.email ? this.email.trim() : '';
+    const passwordTrimmed = this.password ? this.password.trim() : '';
+
+    if (!emailTrimmed) {
+      this.errorMessage = 'Email is required.';
+      this.isLoading = false;
+      return;
+    }
+
+    if (!this.isValidEmail(emailTrimmed)) {
+      this.errorMessage = 'Please enter a valid email address.';
+      this.isLoading = false;
+      return;
+    }
+
+    if (!passwordTrimmed) {
+      this.errorMessage = 'Password is required.';
+      this.isLoading = false;
       return;
     }
 
@@ -42,16 +71,21 @@ export class Login implements OnInit {
     this.isLoading = true;
 
     this.authService.login({
-      email: this.email.trim(),
+      email: emailTrimmed,
       password: this.password
     }).subscribe({
-      next: () => {
+      next: (res) => {
         this.isLoading = false;
-        this.router.navigate(['/'], { replaceUrl: true });
+        if (res && res.success) {
+          this.errorMessage = '';
+          this.router.navigate(['/'], { replaceUrl: true });
+        } else {
+          this.errorMessage = 'Invalid email or password.';
+        }
       },
       error: (err) => {
         this.isLoading = false;
-        this.errorMessage = err.error?.message || 'Invalid email or password. Please check your credentials.';
+        this.errorMessage = err.error?.message || 'Invalid email or password.';
       }
     });
   }
