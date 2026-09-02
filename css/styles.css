@@ -2030,32 +2030,30 @@ select.status-select-badge[data-vuexy-select2-init="true"] {
   z-index: 9999 !important;
 }
 
-/* Status Badge Select2 Trigger Styles */
+/* Status Badge Select2 Trigger Styles - Uniform Equal Width & Alignment */
 .vuexy-select2-container.status-select-badge-wrap {
-  width: auto !important;
-  min-width: 104px;
+  width: 132px !important;
+  min-width: 132px !important;
+  max-width: 132px !important;
   display: inline-block;
 }
 
 .vuexy-select2-trigger.status-select-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 6px;
-  height: 28px;
-  padding: 3px 10px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 600;
+  width: 100% !important;
+  height: 34px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px;
+  padding: 5px 12px !important;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 700;
   cursor: pointer;
   background-image: none !important;
   transition: all 0.2s ease;
-  box-shadow: none;
-}
-
-.vuexy-select2-trigger.status-select-badge .vuexy-select2-arrow {
-  font-size: 10px;
-  margin-left: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
 .vuexy-select2-trigger.status-badge-pending {
