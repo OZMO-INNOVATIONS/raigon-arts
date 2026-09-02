@@ -205,7 +205,7 @@ class AppManager {
       const mins = Math.floor(this.timerSeconds / 60).toString().padStart(2, '0');
       const secs = (this.timerSeconds % 60).toString().padStart(2, '0');
       if (timerDisplay) timerDisplay.innerText = `${mins}:${secs}`;
-      if (timerText) timerText.innerHTML = `Resend code in <strong style="color: #7367F0;">${mins}:${secs}</strong>`;
+      if (timerText) timerText.innerHTML = `Resend code in <strong style="color: #C5A869;">${mins}:${secs}</strong>`;
     };
 
     updateUI();
@@ -218,7 +218,7 @@ class AppManager {
         if (timerText) timerText.innerText = "Didn't receive code?";
         if (resendBtn) {
           resendBtn.disabled = false;
-          resendBtn.style.color = '#7367F0';
+          resendBtn.style.color = '#C5A869';
           resendBtn.style.cursor = 'pointer';
         }
       } else {

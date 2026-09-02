@@ -97,7 +97,7 @@ class CustomersView {
             <div class="photo-card-info">
               <div class="photo-card-filename"><i class="fa-solid fa-image text-primary"></i> ${p.name}</div>
               <div class="photo-card-badges">
-                <span class="badge" style="background: rgba(115,103,240,0.12); color: #7367F0; font-size: 11px; font-weight: 600;">Photo #${idx + 1}</span>
+                <span class="badge" style="background: rgba(197, 168, 105, 0.14); color: #C5A869; font-size: 11px; font-weight: 600;">Photo #${idx + 1}</span>
                 <span class="text-xs text-muted">${p.size || '3 MB'}</span>
               </div>
             </div>
@@ -622,7 +622,7 @@ class CustomersView {
                 <h4 class="view-card-title" style="margin: 0;">
                   <i class="fa-solid fa-layer-group text-primary"></i> Individual Frame Specifications Configured
                 </h4>
-                <span class="badge" style="background: #7367F0; color: #FFFFFF; font-size: 11.5px; font-weight: 700; padding: 4px 10px; border-radius: 6px;">
+                <span class="badge" style="background: #C5A869; color: #FFFFFF; font-size: 11.5px; font-weight: 700; padding: 4px 10px; border-radius: 6px;">
                   <i class="fa-solid fa-sliders"></i> ${cust.photos ? cust.photos.length : 0} Custom Frames
                 </span>
               </div>
