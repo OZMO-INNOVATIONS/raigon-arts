@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raigon Arts — Photo Frame Order & Customer Management System</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css?v=3.2">
+</head>
+
+<body>
+
+  <!-- ==========================================================================
+       1. LOGIN PAGE VIEW
+       ========================================================================== -->
+  <div id="loginView" class="login-view">
+    <!-- Ambient Background Glow Accents -->
+    <div class="login-bg-glow glow-1"></div>
+    <div class="login-bg-glow glow-2"></div>
+    <div class="login-bg-grid"></div>
+
+    <div class="login-card-container">
+      <!-- Left Hero Banner -->
+      <div class="login-banner">
+        <div class="login-banner-content">
+          <!-- Top Glassmorphic Brand Badge -->
+          <div class="login-header-wrapper">
+            <div class="login-brand-pill">
+              <div class="brand-icon glow-icon">
+                <img src="assets/images/img2.png" alt="Raigon Arts Logo">
+              </div>
+              <div class="brand-text">
+                <span class="brand-title">RAIGON ARTS</span>
+                <span class="brand-subtitle">CUSTOM PHOTO FRAMING</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Headline & Feature Chips -->
+          <div class="login-banner-hero">
+            <h2 class="login-hero-title">Crafting Fine Frames for <span class="text-gradient-gold">Every Memory.</span>
+            </h2>
+            <p class="login-hero-desc">
+              Internal customer data collection, photo gallery vault, and wholesale frame order management system.
+            </p>
+
+
+          </div>
+        </div>
+
+        <!-- Banner Footer Badge & Copyright -->
+        <div class="login-banner-footer">
+          <div class="login-badge">
+            <i class="fa-solid fa-gem"></i>
+            <span>Raigon Studio Management v2.4</span>
+          </div>
+          <div class="login-copyright">
+            &copy; 2026 Raigon Arts Workshop. All rights reserved.
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Form Area -->
+      <div class="login-form-area">
+        <!-- SIGN IN FORM CONTENT -->
+        <div id="loginFormContent" class="login-form-content">
+          <div class="login-form-header">
+            <div class="login-form-icon-wrap">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <div>
+              <h2 class="login-form-title">Welcome Back</h2>
+              <p class="login-form-subtitle">Please sign in to access your workshop dashboard.</p>
+            </div>
+          </div>
+
+          <form onsubmit="window.RaigonApp.login(event)" class="login-form">
+            <div class="form-group-custom">
+              <label class="form-label-custom" for="loginEmail">Phone Number / Username</label>
+              <div class="input-with-icon">
+                <i class="fa-solid fa-user input-icon"></i>
+                <input type="text" id="loginEmail" class="form-input-custom" placeholder="admin or +91 8921348433"
+                  value="admin" required>
+              </div>
+            </div>
+
+            <div class="form-group-custom">
+              <label class="form-label-custom" for="loginPassword">Password</label>
+              <div class="input-with-icon">
+                <i class="fa-solid fa-lock input-icon"></i>
+                <input type="password" id="loginPassword" class="form-input-custom" placeholder="••••••••"
+                  value="raigon2026" required>
+                <button type="button" class="password-toggle-btn" onclick="window.toggleLoginPasswordVisibility()"
+                  title="Toggle password visibility">
+                  <i class="fa-solid fa-eye" id="togglePasswordIcon"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="login-form-options">
+              <a href="javascript:void(0)" class="forgot-password-link"
+                onclick="window.RaigonApp.showForgotPasswordForm()">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="login-btn-primary">
+              <span>Sign In to Workshop</span>
+              <i class="fa-solid fa-arrow-right-to-bracket login-btn-icon"></i>
+            </button>
+
+
+          </form>
+        </div>
+
+        <!-- RESET / FORGOT PASSWORD FORM CONTENT (3-STEP FLOW) -->
+        <div id="forgotPasswordContent" class="login-form-content" style="display: none;">
+
+          <!-- STEP 1: PHONE NUMBER INPUT (DATABASE SAVED PHONE) -->
+          <div id="forgotStep1" class="forgot-step-container" style="width: 100%;">
+            <div class="login-form-header">
+              <div class="login-form-icon-wrap"
+                style="background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);">
+                <i class="fa-brands fa-whatsapp"></i>
+              </div>
+              <div>
+                <h2 class="login-form-title">Forgot Password?</h2>
+                <p class="login-form-subtitle">OTP will be sent to your database registered phone.</p>
+              </div>
+            </div>
+
+            <form onsubmit="window.RaigonApp.sendForgotPasswordOTP(event)" class="login-form">
+              <div class="form-group-custom">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                  <label class="form-label-custom" for="forgotPhone" style="margin-bottom: 0;">Registered Phone
+                    Number</label>
+                  <span class="badge"
+                    style="background: rgba(40,199,111,0.12); color: #28C76F; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 4px;">
+                    <i class="fa-solid fa-shield-check"></i> Database Saved
+                  </span>
+                </div>
+                <div class="input-with-icon">
+                  <i class="fa-solid fa-mobile-screen-button input-icon" style="color: #28C76F;"></i>
+                  <input type="tel" id="forgotPhone" class="form-input-custom" placeholder="+91 8921348433"
+                    value="+91 8921348433" readonly style="background: #F4F3F8; font-weight: 600; cursor: not-allowed;"
+                    required>
+                </div>
+              </div>
+
+              <button type="submit" id="btnSendOtp" class="login-btn-primary"
+                style="background: linear-gradient(72.47deg, #25D366 0%, #128C7E 100%); box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>Send OTP to Saved Number</span>
+              </button>
+
+              <div style="text-align: center; margin-top: 14px;">
+                <a href="javascript:void(0)" class="forgot-password-link" onclick="window.RaigonApp.showLoginForm()"
+                  style="font-size: 13.5px;">
+                  <i class="fa-solid fa-arrow-left"></i> Back to Sign In
+                </a>
+              </div>
+            </form>
+          </div>
+
+          <!-- STEP 2: OTP VERIFICATION & 80s COUNTDOWN TIMER -->
+          <div id="forgotStep2" class="forgot-step-container" style="display: none; width: 100%;">
+            <div class="login-form-header">
+              <div class="login-form-icon-wrap"
+                style="background: linear-gradient(135deg, #7367F0 0%, #6358E1 100%); box-shadow: 0 6px 18px rgba(115, 103, 240, 0.35);">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+              <div>
+                <h2 class="login-form-title">Enter WhatsApp OTP</h2>
+                <p class="login-form-subtitle">We sent a 4-digit code to <strong id="displayPhoneFormatted"
+                    style="color: #7367F0;">+91 8921348433</strong></p>
+              </div>
+            </div>
+
+            <form onsubmit="window.RaigonApp.verifyForgotPasswordOTP(event)" class="login-form">
+              <div class="form-group-custom">
+                <label class="form-label-custom" for="forgotOtpCode">4-Digit Verification Code <span
+                    class="required">*</span></label>
+                <div class="input-with-icon">
+                  <i class="fa-solid fa-key input-icon"></i>
+                  <input type="text" id="forgotOtpCode" class="form-input-custom"
+                    placeholder="Enter 4-digit OTP (e.g. 4829)" maxlength="6"
+                    style="letter-spacing: 4px; font-weight: 700; font-size: 16px;" required>
+                </div>
+              </div>
+
+              <!-- COUNTDOWN TIMER CONTAINER -->
+              <div
+                style="display: flex; align-items: center; justify-content: space-between; margin-top: -4px; margin-bottom: 12px; padding: 10px 14px; background: rgba(115,103,240,0.06); border-radius: 8px; border: 1px solid rgba(115,103,240,0.15);">
+                <div
+                  style="font-size: 12.5px; font-weight: 600; color: #5D596C; display: flex; align-items: center; gap: 6px;">
+                  <i class="fa-regular fa-clock" style="color: #7367F0;"></i>
+                  <span id="otpTimerText">Resend code in <strong id="otpCountdownTimer"
+                      style="color: #7367F0;">01:20</strong></span>
+                </div>
+                <button type="button" id="btnResendOtp" disabled onclick="window.RaigonApp.resendOTP()"
+                  style="background: none; border: none; font-size: 12.5px; font-weight: 700; color: #A5A2B0; cursor: not-allowed; transition: all 0.2s ease;">
+                  <i class="fa-solid fa-rotate-right"></i> Resend OTP
+                </button>
+              </div>
+
+              <button type="submit" id="btnVerifyOtp" class="login-btn-primary">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Verify OTP & Continue</span>
+              </button>
+
+              <div style="text-align: center; margin-top: 14px; font-size: 13px;">
+                <a href="javascript:void(0)" class="forgot-password-link" onclick="window.RaigonApp.showLoginForm()">
+                  <i class="fa-solid fa-arrow-left"></i> Back to Sign In
+                </a>
+              </div>
+            </form>
+          </div>
+
+          <!-- STEP 3: CREATE NEW PASSWORD -->
+          <div id="forgotStep3" class="forgot-step-container" style="display: none; width: 100%;">
+            <div class="login-form-header">
+              <div class="login-form-icon-wrap"
+                style="background: linear-gradient(135deg, #28C76F 0%, #1F9D57 100%); box-shadow: 0 6px 18px rgba(40, 199, 111, 0.35);">
+                <i class="fa-solid fa-lock"></i>
+              </div>
+              <div>
+                <h2 class="login-form-title">Create New Password</h2>
+                <p class="login-form-subtitle">Set a strong new password for your workshop account.</p>
+              </div>
+            </div>
+
+            <form onsubmit="window.RaigonApp.submitNewPassword(event)" class="login-form">
+              <div class="form-group-custom">
+                <label class="form-label-custom" for="resetNewPassword">New Password <span
+                    class="required">*</span></label>
+                <div class="input-with-icon">
+                  <i class="fa-solid fa-lock input-icon"></i>
+                  <input type="password" id="resetNewPassword" class="form-input-custom"
+                    placeholder="Enter new password (min 6 chars)" required>
+                  <button type="button" class="password-toggle-btn"
+                    onclick="window.toggleResetNewPasswordVisibility('resetNewPassword', 'toggleIcon1')">
+                    <i class="fa-solid fa-eye" id="toggleIcon1"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="form-group-custom">
+                <label class="form-label-custom" for="resetConfirmPassword">Confirm New Password <span
+                    class="required">*</span></label>
+                <div class="input-with-icon">
+                  <i class="fa-solid fa-lock input-icon"></i>
+                  <input type="password" id="resetConfirmPassword" class="form-input-custom"
+                    placeholder="Re-enter new password" required>
+                  <button type="button" class="password-toggle-btn"
+                    onclick="window.toggleResetNewPasswordVisibility('resetConfirmPassword', 'toggleIcon2')">
+                    <i class="fa-solid fa-eye" id="toggleIcon2"></i>
+                  </button>
+                </div>
+              </div>
+
+              <button type="submit" id="btnSubmitNewPassword" class="login-btn-primary"
+                style="background: linear-gradient(72.47deg, #28C76F 0%, #1F9D57 100%); box-shadow: 0 4px 14px rgba(40, 199, 111, 0.45);">
+                <i class="fa-solid fa-floppy-disk"></i>
+                <span>Save New Password & Sign In</span>
+              </button>
+
+              <div style="text-align: center; margin-top: 14px;">
+                <a href="javascript:void(0)" class="forgot-password-link" onclick="window.RaigonApp.showLoginForm()"
+                  style="font-size: 13.5px;">
+                  <i class="fa-solid fa-arrow-left"></i> Back to Sign In
+                </a>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ==========================================================================
+       2. MAIN APPLICATION SHELL
+       ========================================================================== -->
+  <div id="appContainer" class="app-container" style="display: none;">
+
+    <!-- LEFT SIDEBAR -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header"
+        onclick="if (document.getElementById('sidebar').classList.contains('collapsed')) window.RaigonApp.toggleSidebar()">
+        <div class="brand-logo" title="Raigon Arts">
+          <div class="brand-icon"><img src="assets/images/img2.png" alt="Raigon Arts Logo"></div>
+          <div class="brand-text">
+            <span class="brand-title">RAIGON ARTS</span>
+            <span class="brand-subtitle">PHOTO FRAMES</span>
+          </div>
+        </div>
+        <button class="sidebar-toggle-btn" title="Toggle Sidebar"
+          onclick="event.stopPropagation(); window.RaigonApp.toggleSidebar()">
+          <i class="fa-solid fa-bars-staggered"></i>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" data-view="dashboard">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span class="nav-text">Dashboard</span>
+        </a>
+        <a href="#" class="nav-item" data-view="customers">
+          <i class="fa-solid fa-users"></i>
+          <span class="nav-text">Customers</span>
+        </a>
+        <a href="#" class="nav-item" data-view="new-order">
+          <i class="fa-solid fa-user-plus"></i>
+          <span class="nav-text">Add New Customer</span>
+        </a>
+        <a href="#" class="nav-item" data-view="orders">
+          <i class="fa-solid fa-boxes-packing"></i>
+          <span class="nav-text">Orders</span>
+        </a>
+        <a href="#" class="nav-item" data-view="photos">
+          <i class="fa-solid fa-photo-film"></i>
+          <span class="nav-text">Photo Collection</span>
+        </a>
+        <a href="#" class="nav-item" data-view="frames">
+          <i class="fa-solid fa-ruler-combined"></i>
+          <span class="nav-text">Frame Sizes</span>
+        </a>
+        <a href="#" class="nav-item" data-view="reports">
+          <i class="fa-solid fa-chart-column"></i>
+          <span class="nav-text">Reports</span>
+        </a>
+        <a href="#" class="nav-item" data-view="settings">
+          <i class="fa-solid fa-sliders"></i>
+          <span class="nav-text">Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="#" class="nav-item logout-nav-item" onclick="window.RaigonApp.logout(); return false;" title="Logout">
+          <i class="fa-solid fa-power-off"></i>
+          <span class="nav-text">Logout</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="main-wrapper">
+      <!-- TOP HEADER -->
+      <header class="top-header">
+        <div class="header-search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="globalSearchInput" placeholder="Quick search customers, orders, photos...">
+        </div>
+
+        <div class="header-actions">
+          <button type="button" class="btn-icon theme-toggle-btn" id="themeToggleBtn" title="Switch Theme Mode"
+            onclick="window.RaigonApp.toggleThemeMode()">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+
+          <button class="btn-icon notification-btn" title="Notifications"
+            onclick="window.RaigonNotifications.toggle(event)">
+            <i class="fa-solid fa-bell"></i>
+            <span class="notification-indicator"></span>
+          </button>
+
+          <div class="user-avatar" style="width: 38px; height: 38px; cursor: pointer;"
+            onclick="window.RaigonApp.navigateTo('settings')">
+            RA
+          </div>
+        </div>
+      </header>
+
+      <!-- VIEW SECTIONS CONTAINER -->
+      <main class="content-body">
+        <div id="dashboardView" class="view-section active"></div>
+        <div id="customersView" class="view-section"></div>
+        <div id="ordersView" class="view-section"></div>
+        <div id="photosView" class="view-section"></div>
+        <div id="framesView" class="view-section"></div>
+        <div id="reportsView" class="view-section"></div>
+        <div id="settingsView" class="view-section"></div>
+      </main>
+    </div>
+  </div>
+
+
+  <!-- ==========================================================================
+       3. MODALS & DIALOG OVERLAYS
+       ========================================================================== -->
+
+  <!-- ADD / EDIT CUSTOMER & ORDER MODAL -->
+  <div id="customerModal" class="modal-overlay">
+    <form id="customerForm" class="modal-card" style="max-width: 840px;"
+      onsubmit="window.RaigonCustomersView.saveCustomerForm(event)">
+      <div class="modal-header">
+        <div class="flex items-center gap-3">
+          <div
+            style="width: 38px; height: 38px; border-radius: 10px; background: #F2F0FF; color: #7367F0; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;">
+            <i class="fa-solid fa-user-plus"></i>
+          </div>
+          <div>
+            <h3 id="customerModalTitle" class="modal-title font-bold">Add New Customer & Frame Order</h3>
+            <p class="text-xs text-muted" style="margin-top: 1px;">Fill in customer profile, workshop framing details,
+              and photos</p>
+          </div>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="window.RaigonModal.close('customerModal')"><i
+            class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="formCustId">
+
+        <!-- SECTION 1: CUSTOMER INFORMATION -->
+        <h4 class="form-section-header"><i class="fa-solid fa-user"></i> Customer Information</h4>
+        <div class="form-grid">
+          <div class="col-6 form-group">
+            <label class="form-label">Customer Name <span class="required">*</span></label>
+            <input type="text" id="formCustName" class="form-input" placeholder="e.g. Arun Kumar" required>
+          </div>
+          <div class="col-6 form-group">
+            <label class="form-label">Phone Number <span class="required">*</span></label>
+            <input type="tel" id="formCustPhone" class="form-input" placeholder="e.g. 7902261255" required>
+          </div>
+          <div class="col-6 form-group">
+            <label class="form-label">Alternative Phone Number</label>
+            <input type="tel" id="formCustAltPhone" class="form-input" placeholder="e.g. 9447000000">
+          </div>
+          <div class="col-6 form-group">
+            <label class="form-label">City / Town</label>
+            <input type="text" id="formCustCity" class="form-input" placeholder="e.g. Trivandrum, Kochi, Kollam">
+          </div>
+          <div class="col-8 form-group">
+            <label class="form-label">Full Address</label>
+            <input type="text" id="formCustAddress" class="form-input" placeholder="Street, Building No, Landmark">
+          </div>
+          <div class="col-4 form-group">
+            <label class="form-label">Pincode</label>
+            <input type="text" id="formCustPincode" class="form-input" placeholder="695001">
+          </div>
+        </div>
+
+        <!-- SECTION 2: PHOTO DETAILS & CONFIGURATION MODE -->
+        <h4 class="form-section-header"><i class="fa-solid fa-images"></i> Photo Details & Framing Options</h4>
+
+        <!-- CONFIGURATION MODE SELECTOR TOGGLE CARDS -->
+        <div class="frame-config-toggle-grid">
+          <label class="frame-config-card active" id="configCardSame"
+            onclick="window.RaigonCustomersView.setFrameConfigMode('same')">
+            <div class="config-radio-circle"></div>
+            <div class="config-card-content">
+              <div class="config-card-title"><i class="fa-solid fa-clone text-primary"></i> Same Frame for All Photos
+              </div>
+              <div class="config-card-desc">Upload multiple photos that share identical frame dimensions, material, and
+                moulding style.</div>
+            </div>
+          </label>
+
+          <label class="frame-config-card" id="configCardIndividual"
+            onclick="window.RaigonCustomersView.setFrameConfigMode('individual')">
+            <div class="config-radio-circle"></div>
+            <div class="config-card-content">
+              <div class="config-card-title"><i class="fa-solid fa-layer-group text-primary"></i> Individual Frame for
+                Each Photo</div>
+              <div class="config-card-desc">Configure separate frame size, type, material, color, and specs for every
+                photo uploaded.</div>
+            </div>
+          </label>
+        </div>
+
+        <!-- MODE A: BULK / SAME FRAME FOR ALL PHOTOS -->
+        <div id="bulkUploadSection">
+          <div class="dropzone-container" id="photoDropzone"
+            onclick="document.getElementById('photoFileInput').click()">
+            <i class="fa-solid fa-cloud-arrow-up dropzone-icon"></i>
+            <h4 class="font-bold text-base">Drag & Drop Customer Photos Here</h4>
+            <p class="text-xs text-muted" style="margin-bottom: 8px;">Supports JPG, PNG, WEBP high-resolution photo
+              prints</p>
+            <button type="button" class="btn btn-secondary btn-sm"
+              onclick="event.stopPropagation(); document.getElementById('photoFileInput').click()"><i
+                class="fa-solid fa-folder-open"></i> Browse Files</button>
+            <input type="file" id="photoFileInput" multiple accept="image/*" style="display: none;"
+              onchange="window.RaigonCustomersView.handleFileSelect(this.files); this.value='';">
+          </div>
+          <div class="flex justify-between items-center" style="margin-top: 10px; margin-bottom: 8px;">
+            <span id="photoCountBadge" class="text-xs font-bold text-primary">0 photos selected</span>
+          </div>
+          <div id="photoPreviewGrid" class="photo-preview-grid"></div>
+        </div>
+
+        <!-- MODE A COMMON FRAME SPECIFICATIONS -->
+        <div id="commonFrameSpecsSection">
+          <h4 class="form-section-header"><i class="fa-solid fa-ruler-combined"></i> Frame Specifications</h4>
+          <div class="form-grid">
+            <div class="col-6 form-group">
+              <label class="form-label">Frame Size</label>
+              <select id="formFrameSize" class="form-select">
+                <option value="4 × 6 inch">4 × 6 inch</option>
+                <option value="5 × 7 inch">5 × 7 inch</option>
+                <option value="8 × 10 inch">8 × 10 inch</option>
+                <option value="8 × 12 inch">8 × 12 inch</option>
+                <option value="12 × 18 inch" selected>12 × 18 inch</option>
+                <option value="16 × 20 inch">16 × 20 inch</option>
+                <option value="20 × 30 inch">20 × 30 inch</option>
+                <option value="Custom Size">Custom Size</option>
+              </select>
+            </div>
+
+            <div class="col-6 form-group">
+              <label class="form-label">Unit</label>
+              <select id="formUnit" class="form-select">
+                <option value="inch">Inch</option>
+                <option value="cm">CM</option>
+                <option value="mm">MM</option>
+              </select>
+            </div>
+
+            <div class="col-6 form-group">
+              <label class="form-label">Custom Width</label>
+              <input type="number" id="formCustomWidth" class="form-input" placeholder="Width (e.g. 12)">
+            </div>
+
+            <div class="col-6 form-group">
+              <label class="form-label">Custom Height</label>
+              <input type="number" id="formCustomHeight" class="form-input" placeholder="Height (e.g. 18)">
+            </div>
+
+            <div class="col-4 form-group">
+              <label class="form-label">Frame Type</label>
+              <select id="formFrameType" class="form-select">
+                <option value="Wooden Frame">Wooden Frame</option>
+                <option value="Premium Frame">Premium Frame</option>
+                <option value="Classic Frame">Classic Frame</option>
+                <option value="Canvas Float">Canvas Float</option>
+                <option value="Box Frame">Box Frame</option>
+              </select>
+            </div>
+
+            <div class="col-4 form-group">
+              <label class="form-label">Frame Material</label>
+              <input type="text" id="formFrameMaterial" class="form-input" placeholder="e.g. Teak Wood Moulding"
+                value="Teak Wood Moulding">
+            </div>
+
+            <div class="col-4 form-group">
+              <label class="form-label">Frame Color Finish</label>
+              <input type="text" id="formFrameColor" class="form-input" placeholder="e.g. Walnut Brown, Matte Black"
+                value="Walnut Brown">
+            </div>
+
+            <div class="col-6 form-group">
+              <label class="form-label">Photo Orientation</label>
+              <select id="formOrientation" class="form-select">
+                <option value="Landscape">Landscape (Horizontal)</option>
+                <option value="Portrait">Portrait (Vertical)</option>
+                <option value="Square">Square</option>
+              </select>
+            </div>
+
+            <div class="col-6 form-group">
+              <label class="form-label">Quantity</label>
+              <input type="number" id="formQuantity" class="form-input" value="1" min="1">
+            </div>
+
+            <div class="col-12 form-group">
+              <label class="form-label">Special Instructions / Mounting Notes</label>
+              <textarea id="formNotes" class="form-textarea" rows="2"
+                placeholder="Glass type (Anti-glare, Clear), Matting board margin, mounting hooks..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- MODE B: INDIVIDUAL FRAME FOR EACH PHOTO -->
+        <div id="individualPhotoSection" style="display: none;">
+          <div id="individualCardsList"></div>
+
+          <button type="button" class="add-another-photo-btn"
+            onclick="document.getElementById('indivAddMoreFileInput').click()">
+            <i class="fa-solid fa-circle-plus" style="font-size: 18px;"></i>
+            <span>Add Another Photo & Frame</span>
+          </button>
+          <input type="file" id="indivAddMoreFileInput" multiple accept="image/*" style="display: none;"
+            onchange="window.RaigonCustomersView.handleFileSelect(this.files); this.value='';">
+        </div>
+
+        <!-- SECTION 4: ORDER & PAYMENT DETAILS -->
+        <h4 class="form-section-header"><i class="fa-solid fa-receipt"></i> Order & Payment Details</h4>
+        <div class="form-grid">
+          <div class="col-6 form-group">
+            <label class="form-label">Order Date</label>
+            <input type="text" id="formOrderDate" class="form-input" readonly>
+          </div>
+
+          <div class="col-6 form-group">
+            <label class="form-label">Expected Delivery Date</label>
+            <input type="date" id="formDeliveryDate" class="form-input">
+          </div>
+
+          <div class="col-4 form-group">
+            <label class="form-label">Total Amount (₹)</label>
+            <input type="number" id="formTotalAmount" class="form-input font-bold" placeholder="0" value="2500">
+          </div>
+
+          <div class="col-4 form-group">
+            <label class="form-label">Advance Paid (₹)</label>
+            <input type="number" id="formAdvancePaid" class="form-input font-bold" placeholder="0" value="1000">
+          </div>
+
+          <div class="col-4 form-group">
+            <label class="form-label">Balance Amount (₹)</label>
+            <input type="number" id="formBalanceAmount" class="form-input font-bold text-primary" placeholder="0"
+              readonly>
+          </div>
+
+          <div class="col-6 form-group">
+            <label class="form-label">Payment Status</label>
+            <select id="formPaymentStatus" class="form-select font-semibold">
+              <option value="Unpaid">Unpaid</option>
+              <option value="Partial" selected>Partial</option>
+              <option value="Paid">Paid</option>
+            </select>
+          </div>
+
+          <div class="col-6 form-group">
+            <label class="form-label">Order Status</label>
+            <select id="formOrderStatus" class="form-select font-semibold">
+              <option value="Pending">Pending</option>
+              <option value="In Progress" selected>In Progress</option>
+              <option value="Completed">Completed</option>
+              <option value="Delivered">Delivered</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+          onclick="window.RaigonModal.close('customerModal')">Cancel</button>
+        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> Save Customer & Order</button>
+      </div>
+    </form>
+  </div>
+
+
+  <!-- VIEW CUSTOMER DETAILS MODAL -->
+  <div id="viewCustomerModal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 840px;">
+      <div class="modal-header">
+        <div class="flex items-center gap-3">
+          <div
+            style="width: 38px; height: 38px; border-radius: 10px; background: #F2F0FF; color: #7367F0; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;">
+            <i class="fa-solid fa-address-card"></i>
+          </div>
+          <div>
+            <h3 class="modal-title font-bold">Customer Order Profile & Summary</h3>
+            <p class="text-xs text-muted" style="margin-top: 1px;">Complete details and workshop framing specifications
+            </p>
+          </div>
+        </div>
+        <button class="modal-close-btn" onclick="window.RaigonModal.close('viewCustomerModal')"><i
+            class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" id="viewCustomerModalBody"></div>
+      <div class="modal-footer">
+        <button id="viewCustomerEditBtn" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i> Edit Customer
+          & Order</button>
+        <button type="button" id="viewCustomerWhatsAppBtn" class="btn"
+          style="background: #25D366; color: #FFFFFF; font-weight: 600;">
+          <i class="fa-brands fa-whatsapp"></i> Send WhatsApp Receipt
+        </button>
+        <button type="button" class="btn btn-secondary"
+          onclick="window.RaigonModal.close('viewCustomerModal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- FRAME SIZE ADD / EDIT MODAL -->
+  <div id="frameSizeModal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 520px;">
+      <div class="modal-header">
+        <div class="flex items-center gap-3">
+          <div
+            style="width: 38px; height: 38px; border-radius: 10px; background: #F2F0FF; color: #7367F0; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;">
+            <i class="fa-solid fa-ruler-combined"></i>
+          </div>
+          <div>
+            <h3 id="frameSizeModalTitle" class="modal-title font-bold">Add New Frame Size</h3>
+            <p class="text-xs text-muted" style="margin-top: 1px;">Configure workshop frame dimensions & category</p>
+          </div>
+        </div>
+        <button class="modal-close-btn" onclick="window.RaigonModal.close('frameSizeModal')"><i
+            class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="frameSizeForm" onsubmit="window.RaigonFramesView.saveFrameSize(event)">
+        <div class="modal-body">
+          <input type="hidden" id="formSizeId">
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label class="form-label">Size Name / Label <span class="required">*</span></label>
+            <input type="text" id="formSizeName" class="form-input" placeholder="e.g. 12 × 18 inch" required>
+          </div>
+          <div class="form-grid" style="margin-bottom: 16px;">
+            <div class="col-6 form-group">
+              <label class="form-label">Width <span class="required">*</span></label>
+              <input type="number" id="formSizeWidth" class="form-input" placeholder="12" required>
+            </div>
+            <div class="col-6 form-group">
+              <label class="form-label">Height <span class="required">*</span></label>
+              <input type="number" id="formSizeHeight" class="form-input" placeholder="18" required>
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label class="form-label">Measurement Unit</label>
+            <select id="formSizeUnit" class="form-select">
+              <option value="inch">Inch</option>
+              <option value="cm">CM</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <select id="formSizeCategory" class="form-select">
+              <option value="Standard Photo">Standard Photo</option>
+              <option value="Medium Portrait">Medium Portrait</option>
+              <option value="Large Gallery">Large Gallery</option>
+              <option value="Exhibition Wall Art">Exhibition Wall Art</option>
+              <option value="Custom Size">Custom Size</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary"
+            onclick="window.RaigonModal.close('frameSizeModal')">Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> Save Frame Size</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- CONFIRMATION DIALOG MODAL -->
+  <div id="confirmModal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 id="confirmModalTitle" class="modal-title font-bold">Confirm Action</h3>
+        <button class="modal-close-btn" onclick="window.RaigonModal.close('confirmModal')"><i
+            class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <p id="confirmModalMessage" class="text-base">Are you sure you want to proceed?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+          onclick="window.RaigonModal.close('confirmModal')">Cancel</button>
+        <button id="confirmModalBtn" type="button" class="btn btn-danger">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- LIGHTBOX PHOTO MODAL -->
+  <div id="lightboxModal" class="modal-overlay">
+    <div class="lightbox-content">
+      <div class="flex justify-between items-center width-full" style="width: 100%; margin-bottom: 12px;">
+        <span id="lightboxTitle" class="text-lg font-bold" style="color: #FFF;">Photo Preview</span>
+        <button class="btn-icon" style="background: rgba(255,255,255,0.2); color: #FFF; border: none;"
+          onclick="window.RaigonModal.close('lightboxModal')">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <img id="lightboxImage" src="" class="lightbox-img" alt="Lightbox Preview">
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toastContainer" class="toast-container"></div>
+
+
+  <!-- ==========================================================================
+       4. JAVASCRIPT MODULE SCRIPTS
+       ========================================================================== -->
+  <script src="js/storage.js"></script>
+  <script src="js/components/toast.js"></script>
+  <script src="js/components/modal.js"></script>
+  <script src="js/components/select2.js"></script>
+  <script src="js/components/datepicker.js"></script>
+  <script src="js/components/notifications.js"></script>
+  <script src="js/views/dashboard.js"></script>
+  <script src="js/views/customers.js"></script>
+  <script src="js/views/orders.js"></script>
+  <script src="js/views/photos.js"></script>
+  <script src="js/views/frames.js"></script>
+  <script src="js/views/reports.js"></script>
+  <script src="js/views/settings.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
