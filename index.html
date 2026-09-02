@@ -770,16 +770,29 @@
 
 
   <!-- LIGHTBOX PHOTO MODAL -->
-  <div id="lightboxModal" class="modal-overlay">
-    <div class="lightbox-content">
-      <div class="flex justify-between items-center width-full" style="width: 100%; margin-bottom: 12px;">
-        <span id="lightboxTitle" class="text-lg font-bold" style="color: #FFF;">Photo Preview</span>
-        <button class="btn-icon" style="background: rgba(255,255,255,0.2); color: #FFF; border: none;"
-          onclick="window.RaigonModal.close('lightboxModal')">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
+  <div id="lightboxModal" class="modal-overlay lightbox-overlay" onclick="if(event.target === this) window.RaigonModal.close('lightboxModal')">
+    <button type="button" class="lightbox-top-close-btn" onclick="window.RaigonModal.close('lightboxModal')" title="Close Preview (Esc)">
+      <i class="fa-solid fa-xmark"></i> Close Preview
+    </button>
+    
+    <div class="lightbox-modal-card">
+      <div class="lightbox-modal-header">
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-image" style="color: #D4BF8A; font-size: 18px;"></i>
+          <span id="lightboxTitle" class="lightbox-modal-title">Photo Preview</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="lightboxDownloadBtn" type="button" class="btn btn-primary btn-sm" style="border-radius: 20px; font-weight: 700; padding: 6px 14px; font-size: 12px;">
+            <i class="fa-solid fa-download"></i> Download
+          </button>
+          <button type="button" class="modal-close-btn lightbox-icon-close" onclick="window.RaigonModal.close('lightboxModal')" title="Close">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
       </div>
-      <img id="lightboxImage" src="" class="lightbox-img" alt="Lightbox Preview">
+      <div class="lightbox-modal-body">
+        <img id="lightboxImage" src="" class="lightbox-img" alt="Lightbox Preview">
+      </div>
     </div>
   </div>
 

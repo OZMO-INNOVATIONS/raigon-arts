@@ -56,9 +56,19 @@ class ModalManager {
 
     const img = document.getElementById('lightboxImage');
     const titleEl = document.getElementById('lightboxTitle');
+    const downloadBtn = document.getElementById('lightboxDownloadBtn');
 
-    img.src = imgUrl;
-    titleEl.textContent = title;
+    if (img) img.src = imgUrl;
+    if (titleEl) titleEl.textContent = title;
+
+    if (downloadBtn) {
+      downloadBtn.onclick = () => {
+        const a = document.createElement('a');
+        a.href = imgUrl;
+        a.download = title.replace(/[^a-z0-9]/gi, '_').toLowerCase() + '.jpg';
+        a.click();
+      };
+    }
 
     this.open('lightboxModal');
   }
