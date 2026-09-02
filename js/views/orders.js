@@ -33,7 +33,7 @@ class OrdersView {
 
       <!-- Filter Tabs -->
       <div class="filter-tabs">
-        ${['All', 'Pending', 'In Progress', 'Completed', 'Delivered', 'Cancelled'].map(tab => `
+        ${['All', 'Pending', 'In Progress', 'Completed', 'Cancelled'].map(tab => `
           <button class="tab-btn ${this.currentTab === tab ? 'active' : ''}" onclick="window.RaigonOrdersView.setTab('${tab}')">
             ${tab} ${tab === 'All' ? `(${customers.length})` : `(${customers.filter(c => c.orderStatus === tab).length})`}
           </button>
@@ -120,12 +120,11 @@ class OrdersView {
   }
 
   getStatusSelect(id, currentStatus) {
-    const statuses = ['Pending', 'In Progress', 'Completed', 'Delivered', 'Cancelled'];
+    const statuses = ['Pending', 'In Progress', 'Completed', 'Cancelled'];
     const badgeClassMap = {
       'Pending': 'status-badge-pending',
       'In Progress': 'status-badge-progress',
       'Completed': 'status-badge-completed',
-      'Delivered': 'status-badge-delivered',
       'Cancelled': 'status-badge-cancelled'
     };
     const currentClass = badgeClassMap[currentStatus] || 'status-badge-pending';

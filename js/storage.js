@@ -133,10 +133,10 @@ const INITIAL_CUSTOMERS = [
     advancePaid: 6800,
     balanceAmount: 0,
     paymentStatus: 'Paid',
-    orderStatus: 'Delivered',
+    orderStatus: 'Completed',
     orderDate: 'Aug 24, 2026',
     deliveryDate: 'Aug 27, 2026',
-    notes: 'Delivered safely via express courier.'
+    notes: 'Framing job completed successfully.'
   },
   {
     id: 'RA-1005',
@@ -185,11 +185,11 @@ const INITIAL_CUSTOMERS = [
     advancePaid: 5400,
     balanceAmount: 0,
     paymentStatus: 'Paid',
-    orderStatus: 'Delivered',
+    orderStatus: 'Completed',
     orderDate: 'Jul 10, 2026',
     deliveryDate: 'Jul 15, 2026',
     isArchived7Days: true,
-    notes: 'Completed & delivered 7+ days ago. Auto-archived from active customer list, retained in Reports.'
+    notes: 'Completed 7+ days ago. Auto-archived from active customer list, retained in Reports.'
   },
   {
     id: 'RA-0988',
@@ -211,11 +211,11 @@ const INITIAL_CUSTOMERS = [
     advancePaid: 4000,
     balanceAmount: 0,
     paymentStatus: 'Paid',
-    orderStatus: 'Delivered',
+    orderStatus: 'Completed',
     orderDate: 'Jun 12, 2026',
     deliveryDate: 'Jun 20, 2026',
     isArchived7Days: true,
-    notes: 'Completed & delivered 7+ days ago. Auto-archived from active customer list, retained in Reports.'
+    notes: 'Completed 7+ days ago. Auto-archived from active customer list, retained in Reports.'
   }
 ];
 
@@ -360,7 +360,6 @@ class StorageManager {
     const inProgress = customers.filter(c => c.orderStatus === 'In Progress').length;
     const completed = customers.filter(c => c.orderStatus === 'Completed').length;
     const pending = customers.filter(c => c.orderStatus === 'Pending').length;
-    const delivered = customers.filter(c => c.orderStatus === 'Delivered').length;
     const totalRevenue = customers.reduce((sum, c) => sum + (Number(c.totalAmount) || 0), 0);
     const totalAdvance = customers.reduce((sum, c) => sum + (Number(c.advancePaid) || 0), 0);
 
@@ -370,7 +369,6 @@ class StorageManager {
       inProgress,
       completed,
       pending,
-      delivered,
       totalRevenue,
       totalAdvance,
       todayOrders: 2

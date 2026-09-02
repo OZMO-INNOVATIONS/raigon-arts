@@ -15,7 +15,7 @@ class ReportsView {
 
     // Filter Active vs Auto-Archived (> 7 Days Completed) Customers
     const activeCustomers = allCustomers.filter(c => !c.isArchived7Days);
-    const archived7DaysCustomers = allCustomers.filter(c => c.isArchived7Days || (c.orderStatus === 'Delivered' && c.paymentStatus === 'Paid'));
+    const archived7DaysCustomers = allCustomers.filter(c => c.isArchived7Days || (c.orderStatus === 'Completed' && c.paymentStatus === 'Paid'));
 
     // Calculate timeframe multipliers for filtering demonstration
     let timeframeMultiplier = 1;

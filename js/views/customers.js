@@ -236,7 +236,6 @@ class CustomersView {
               <option value="Pending" ${this.statusFilter === 'Pending' ? 'selected' : ''}>Pending</option>
               <option value="In Progress" ${this.statusFilter === 'In Progress' ? 'selected' : ''}>In Progress</option>
               <option value="Completed" ${this.statusFilter === 'Completed' ? 'selected' : ''}>Completed</option>
-              <option value="Delivered" ${this.statusFilter === 'Delivered' ? 'selected' : ''}>Delivered</option>
               <option value="Cancelled" ${this.statusFilter === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
             </select>
           </div>
@@ -369,7 +368,6 @@ class CustomersView {
     let badgeClass = 'badge-pending';
     if (status === 'In Progress') badgeClass = 'badge-in-progress';
     if (status === 'Completed') badgeClass = 'badge-completed';
-    if (status === 'Delivered') badgeClass = 'badge-delivered';
     if (status === 'Cancelled') badgeClass = 'badge-cancelled';
 
     return `
