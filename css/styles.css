@@ -2339,15 +2339,13 @@ select[data-vuexy-select2-init="true"] {
 /* Left Hero Banner */
 .login-banner {
   flex: 1.15;
-  background:
-    linear-gradient(135deg, rgba(30, 27, 75, 0.55) 0%, rgba(15, 23, 42, 0.65) 100%),
-    url('../assets/images/img2.png') center/cover no-repeat;
+  background: #FFFFFF url('../assets/images/img2.png') center/cover no-repeat;
   padding: 48px 44px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  border-right: 1px solid var(--border-color);
 }
 
 /* Glassmorphism Brand Badge */
