@@ -1,0 +1,49 @@
+<div class="photos-page">
+  <!-- PAGE HEADER -->
+  <div class="flex items-center justify-between" style="margin-bottom: 24px;">
+    <div>
+      <h1 class="font-bold text-2xl" style="font-family: var(--font-heading);">Customer Photo Collection</h1>
+      <p class="text-xs text-muted" style="margin-top: 2px;">High-resolution customer memory prints, gallery submissions & workshop archives</p>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="flex items-center gap-2">
+      @for (filter of ['All', 'Landscape', 'Portrait', 'Square']; track filter) {
+        <button
+          type="button"
+          class="btn btn-sm"
+          [class.btn-primary]="selectedOrientation === filter"
+          [class.btn-secondary]="selectedOrientation !== filter"
+          (click)="setOrientation(filter)">
+          {{ filter }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- PHOTOS GRID -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px;">
+    @for (p of filteredPhotos; track p.id) {
+      <div class="card" style="padding: 12px; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;" (click)="openLightbox(p)">
+        <div style="width: 100%; height: 180px; border-radius: 10px; overflow: hidden; background: #0B0A0E; position: relative;">
+          <img [src]="p.photoUrl" [alt]="p.photoName" style="width: 100%; height: 100%; object-fit: cover;">
+          <span class="badge badge-in-progress" style="position: absolute; bottom: 8px; left: 8px; backdrop-filter: blur(4px); background: rgba(0,0,0,0.65); color: #D4BF8A;">
+            {{ p.frameSize }}
+          </span>
+        </div>
+
+        <div style="margin-top: 12px; padding: 0 4px;">
+          <div class="font-bold text-sm" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ p.photoName }}</div>
+          <div class="flex items-center justify-between" style="margin-top: 4px;">
+            <span class="text-xs text-muted">{{ p.customerName }}</span>
+            <span class="text-xs font-semibold text-primary">{{ p.orderId }}</span>
+          </div>
+        </div>
+      </div>
+    } @empty {
+      <div class="card col-12" style="text-align: center; padding: 40px; grid-column: 1 / -1;">
+        <p class="text-muted text-sm">No photos found matching the selected orientation.</p>
+      </div>
+    }
+  </div>
+</div>

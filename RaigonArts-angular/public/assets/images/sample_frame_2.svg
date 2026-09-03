@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="goldMoulding" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#AA884A"/>
+      <stop offset="50%" stop-color="#EED59B"/>
+      <stop offset="100%" stop-color="#8C6E33"/>
+    </linearGradient>
+    <linearGradient id="canvasBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a1c4fd"/>
+      <stop offset="100%" stop-color="#c2e9fb"/>
+    </linearGradient>
+  </defs>
+  <!-- Gold Ornate Frame Outer Moulding -->
+  <rect x="10" y="10" width="580" height="430" rx="8" fill="url(#goldMoulding)" stroke="#5E4517" stroke-width="6"/>
+  <!-- Inner Velvet / Black Float Gap -->
+  <rect x="42" y="42" width="516" height="366" fill="#1A191E" stroke="#333" stroke-width="2"/>
+  <!-- Canvas Artwork -->
+  <rect x="65" y="65" width="470" height="320" rx="2" fill="url(#canvasBg)"/>
+  <circle cx="300" cy="180" r="70" fill="#ffffff" opacity="0.5"/>
+  <path d="M 80,380 L 220,240 L 320,310 L 440,210 L 530,380 Z" fill="#1e293b" opacity="0.85"/>
+  <text x="300" y="360" font-family="sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="2">CLASSIC GOLD ORNATE 16×20</text>
+</svg>

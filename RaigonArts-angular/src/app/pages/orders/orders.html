@@ -1,0 +1,137 @@
+<div class="orders-page">
+  <!-- PAGE HEADER -->
+  <div class="flex items-center justify-between" style="margin-bottom: 24px;">
+    <div>
+      <h1 class="font-bold text-2xl" style="font-family: var(--font-heading);">Workshop Orders</h1>
+      <p class="text-xs text-muted" style="margin-top: 2px;">Track custom frame production, client deadlines, payments & workshop delivery</p>
+    </div>
+
+    <button type="button" class="btn btn-primary" (click)="openNewOrder()">
+      <i class="fa-solid fa-plus"></i> Add New Frame Order
+    </button>
+  </div>
+
+  <!-- STATUS TABS & SEARCH FILTER -->
+  <div class="card" style="margin-bottom: 20px; padding: 16px 20px;">
+    <div class="flex items-center justify-between flex-wrap gap-3">
+      <!-- Status Tabs -->
+      <div class="flex items-center gap-2">
+        @for (tab of ['All', 'In Progress', 'Pending', 'Completed', 'Cancelled']; track tab) {
+          <button
+            type="button"
+            class="btn btn-sm"
+            [class.btn-primary]="selectedFilter === tab"
+            [class.btn-secondary]="selectedFilter !== tab"
+            (click)="setFilter(tab)">
+            {{ tab }}
+          </button>
+        }
+      </div>
+
+      <!-- Search Input -->
+      <div class="header-search" style="width: 320px; background: var(--bg-surface-subtle);">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input
+          type="text"
+          placeholder="Search order #, customer, phone..."
+          [(ngModel)]="searchQuery"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- ORDERS TABLE -->
+  <div class="card">
+    <div class="data-table-container">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Order #</th>
+            <th>Customer</th>
+            <th>Frame Specifications</th>
+            <th>Order Date</th>
+            <th>Delivery Date</th>
+            <th>Total / Advance</th>
+            <th>Balance Due</th>
+            <th>Status</th>
+            <th style="text-align: right;">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (ord of filteredOrders; track ord.id) {
+            <tr>
+              <td>
+                <span class="font-bold text-sm text-primary">{{ ord.orderNumber }}</span>
+              </td>
+              <td>
+                <div class="font-bold text-sm">{{ ord.customerName }}</div>
+                <div class="text-xs text-muted">{{ ord.customerPhone }} • {{ ord.customerCity }}</div>
+              </td>
+              <td>
+                <div class="flex items-center gap-2">
+                  @if (ord.photos.length > 0) {
+                    <img [src]="ord.photos[0].photoUrl" style="width: 38px; height: 38px; object-fit: cover; border-radius: 6px; cursor: pointer;" (click)="modalService.openLightbox(ord.photos[0].photoUrl, ord.photos[0].photoName)">
+                  }
+                  <div>
+                    <div class="font-semibold text-xs">{{ ord.commonSpecs?.frameSize || ord.photos[0]?.frameSize || '12 × 18 inch' }}</div>
+                    <div class="text-xs text-muted">{{ ord.commonSpecs?.frameType || ord.photos[0]?.frameType }} (Qty: {{ ord.commonSpecs?.quantity || ord.photos.length }})</div>
+                  </div>
+                </div>
+              </td>
+              <td class="text-xs font-medium">{{ ord.orderDate }}</td>
+              <td class="text-xs font-semibold" style="color: var(--color-gold-dark);">{{ ord.deliveryDate }}</td>
+              <td>
+                <div class="text-xs">Total: <strong>₹{{ ord.totalAmount }}</strong></div>
+                <div class="text-xs text-muted">Adv: <strong>₹{{ ord.advancePaid }}</strong></div>
+              </td>
+              <td>
+                <span class="font-bold text-xs" [style.color]="ord.balanceAmount > 0 ? 'var(--color-danger)' : 'var(--color-success)'">
+                  ₹{{ ord.balanceAmount }}
+                </span>
+                <div style="margin-top: 2px;">
+                  <span class="badge" [class.badge-paid]="ord.paymentStatus === 'Paid'" [class.badge-partial]="ord.paymentStatus === 'Partial'" [class.badge-unpaid]="ord.paymentStatus === 'Unpaid'">
+                    {{ ord.paymentStatus }}
+                  </span>
+                </div>
+              </td>
+              <td>
+                <select
+                  [ngModel]="ord.orderStatus"
+                  (ngModelChange)="updateOrderStatus(ord, $event)"
+                  class="form-select"
+                  style="height: 32px; font-size: 11.5px; font-weight: 600; padding: 0 8px; width: 120px;">
+                  <option value="Pending">Pending</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Completed">Completed</option>
+                  <option value="Cancelled">Cancelled</option>
+                </select>
+              </td>
+              <td style="text-align: right;">
+                <div class="flex items-center justify-end gap-2">
+                  <button type="button" class="btn btn-secondary btn-sm" (click)="viewCustomer(ord.customerId)" title="Customer Profile">
+                    <i class="fa-solid fa-address-card"></i>
+                  </button>
+                  <button type="button" class="btn btn-secondary btn-sm" (click)="editOrder(ord)" title="Edit Order">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm" style="background: #25D366; color: #FFF;" (click)="sendWhatsAppReceipt(ord)" title="WhatsApp Receipt">
+                    <i class="fa-brands fa-whatsapp"></i>
+                  </button>
+                  <button type="button" class="btn btn-secondary btn-sm" style="color: var(--color-danger);" (click)="deleteOrder(ord)" title="Delete Order">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="9" style="text-align: center; padding: 32px;" class="text-muted">
+                No orders match your filter.
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+<aside id="sidebar" class="sidebar" [class.collapsed]="isCollapsed">
+  <!-- SIDEBAR BRAND HEADER -->
+  <div class="sidebar-header" (click)="isCollapsed && toggleSidebar()">
+    <div class="brand-logo" title="Raigon Arts">
+      <div class="brand-icon">
+        <img src="assets/images/img2.svg" alt="Raigon Arts Logo">
+      </div>
+      <div class="brand-text">
+        <span class="brand-title">RAIGON ARTS</span>
+        <span class="brand-subtitle">PHOTO FRAMES</span>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="sidebar-toggle-btn"
+      title="Toggle Sidebar"
+      (click)="$event.stopPropagation(); toggleSidebar()">
+      <i class="fa-solid fa-bars-staggered"></i>
+    </button>
+  </div>
+
+  <!-- SIDEBAR NAVIGATION -->
+  <nav class="sidebar-nav">
+    <a routerLink="/dashboard" routerLinkActive="active" class="nav-item">
+      <i class="fa-solid fa-chart-pie"></i>
+      <span class="nav-text">Dashboard</span>
+    </a>
+
+    <a routerLink="/customers" routerLinkActive="active" class="nav-item">
+      <i class="fa-solid fa-users"></i>
+      <span class="nav-text">Customers</span>
+    </a>
+
+    <a href="javascript:void(0)" class="nav-item" (click)="openNewCustomer()">
+      <i class="fa-solid fa-user-plus"></i>
+      <span class="nav-text">Add New Customer</span>
+    </a>
+
+    <a routerLink="/orders" routerLinkActive="active" class="nav-item">
+      <i class="fa-solid fa-boxes-packing"></i>
+      <span class="nav-text">Orders</span>
+    </a>
+
+    <a routerLink="/photos" routerLinkActive="active" class="nav-item">
+      <i class="fa-solid fa-photo-film"></i>
+      <span class="nav-text">Photo Collection</span>
+    </a>
+
+    <a routerLink="/frames" routerLinkActive="active" class="nav-item">
+      <i class="fa-solid fa-ruler-combined"></i>
+      <span class="nav-text">Frame Sizes</span>
+    </a>
+
+    <a routerLink="/reports" routerLinkActive="active" class="nav-item">
+      <i class="fa-solid fa-chart-column"></i>
+      <span class="nav-text">Reports</span>
+    </a>
+
+    <a routerLink="/settings" routerLinkActive="active" class="nav-item">
+      <i class="fa-solid fa-sliders"></i>
+      <span class="nav-text">Settings</span>
+    </a>
+  </nav>
+
+  <!-- SIDEBAR FOOTER -->
+  <div class="sidebar-footer">
+    <a href="javascript:void(0)" class="nav-item logout-nav-item" (click)="logout()" title="Logout">
+      <i class="fa-solid fa-power-off"></i>
+      <span class="nav-text">Logout</span>
+    </a>
+  </div>
+</aside>

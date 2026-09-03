@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 360" width="100%" height="100%">
+  <defs>
+    <!-- Filter for crisp rendering -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&amp;family=Outfit:wght@900&amp;display=swap');
+      .brush-text {
+        font-family: 'Caveat', 'Segoe Script', 'Brush Script MT', cursive, sans-serif;
+        font-weight: 700;
+        letter-spacing: 2px;
+      }
+      .bold-art {
+        font-family: 'Outfit', 'Plus Jakarta Sans', Arial, sans-serif;
+        font-weight: 900;
+      }
+    </style>
+  </defs>
+
+  <!-- Raigon stylized artistic brush script -->
+  <g fill="#080808">
+    <!-- Stylized R with characteristic extended descender stem -->
+    <path d="M 98,62 C 98,90 97,130 96,170 C 95,173 93,174 91,171 C 90,165 91,110 92,72 C 92,66 94,62 98,62 Z" />
+    <path d="M 95,68 C 105,64 124,63 134,70 C 142,76 142,88 135,97 C 127,106 114,108 102,108 L 96,108 Z" fill="none" stroke="#080808" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 112,108 C 118,118 128,136 138,154 C 141,159 146,164 150,165" fill="none" stroke="#080808" stroke-width="6.5" stroke-linecap="round"/>
+
+    <!-- 'a' -->
+    <path d="M 175,108 C 162,108 152,118 152,130 C 152,142 163,150 176,148 C 185,147 192,138 192,126 C 192,113 183,108 175,108 Z M 190,116 L 190,152 C 190,156 193,158 197,156" fill="none" stroke="#080808" stroke-width="6" stroke-linecap="round"/>
+
+    <!-- 'i' with brush dot -->
+    <path d="M 215,116 L 214,150 C 214,154 217,156 220,154" fill="none" stroke="#080808" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="217" cy="98" r="4.5" fill="#080808"/>
+
+    <!-- 'g' -->
+    <path d="M 248,110 C 238,110 230,118 230,128 C 230,138 238,146 248,146 C 257,146 264,138 264,128 C 264,118 257,110 248,110 Z" fill="none" stroke="#080808" stroke-width="5.5" stroke-linecap="round"/>
+    <path d="M 262,120 L 262,154 C 262,170 252,178 238,176 C 230,175 226,168 226,164" fill="none" stroke="#080808" stroke-width="5.5" stroke-linecap="round"/>
+
+    <!-- 'o' -->
+    <path d="M 292,110 C 280,110 274,120 274,130 C 274,142 282,150 294,150 C 305,150 312,140 312,128 C 312,118 304,110 292,110 Z" fill="none" stroke="#080808" stroke-width="6" stroke-linecap="round"/>
+
+    <!-- 'n' -->
+    <path d="M 326,120 L 326,150 M 326,126 C 334,114 345,112 354,116 C 360,120 362,128 362,140 L 362,150 C 362,154 365,156 368,154" fill="none" stroke="#080808" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <!-- Lower Section: Red Artist Palette Heart + "art" -->
+  <g transform="translate(108, 172)">
+    <!-- Red Artist Palette Heart Shape -->
+    <path d="M 52,4 C 24,4 0,26 0,56 C 0,82 18,102 44,108 C 55,110 65,102 65,90 C 65,80 58,74 58,64 C 58,52 70,42 82,42 C 94,42 104,50 104,62 C 104,82 76,95 62,112 C 54,124 66,130 78,126 C 108,114 130,90 130,56 C 130,20 94,4 52,4 Z" 
+          fill="#E31E24" />
+
+    <!-- White Thumb Hole Cutout on top of palette -->
+    <ellipse cx="48" cy="40" rx="14" ry="17" fill="#E8D5AE" />
+
+    <!-- White stylized 'a' inside the red palette -->
+    <path d="M 44,72 C 34,72 26,79 26,89 C 26,98 33,105 44,105 C 52,105 60,98 60,89 L 60,74 L 44,74 Z M 52,83 C 52,94 48,98 42,98 C 37,98 34,94 34,88 C 34,82 38,78 45,78 L 52,78 Z" fill="#E8D5AE" />
+    <path d="M 60,78 L 60,104 C 60,107 63,109 66,107" fill="none" stroke="#E8D5AE" stroke-width="6" stroke-linecap="round" />
+
+    <!-- 'rt' in heavy bold black typography -->
+    <text x="106" y="112" class="bold-art" font-size="108" fill="#0A0A0A" letter-spacing="-4">rt</text>
+  </g>
+</svg>

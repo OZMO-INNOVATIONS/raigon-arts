@@ -1,0 +1,44 @@
+<header class="top-header">
+  <!-- QUICK SEARCH -->
+  <app-quick-search></app-quick-search>
+
+  <!-- HEADER ACTIONS -->
+  <div class="header-actions">
+    <!-- THEME TOGGLE -->
+    <button
+      type="button"
+      class="btn-icon theme-toggle-btn"
+      id="themeToggleBtn"
+      title="Switch Theme Mode"
+      (click)="themeService.toggleTheme()">
+      @if (themeService.isDarkMode()) {
+        <i class="fa-solid fa-sun" style="color: #D4BF8A;"></i>
+      } @else {
+        <i class="fa-solid fa-moon"></i>
+      }
+    </button>
+
+    <!-- NOTIFICATIONS -->
+    <button
+      type="button"
+      class="btn-icon notification-btn"
+      title="Notifications"
+      (click)="notifService.toggle(); $event.stopPropagation()">
+      <i class="fa-solid fa-bell"></i>
+      @if (notifService.unreadCount > 0) {
+        <span class="notification-count-badge">{{ notifService.unreadCount }}</span>
+      }
+    </button>
+
+    <!-- NOTIFICATIONS DROPDOWN PANEL -->
+    <app-notifications></app-notifications>
+
+    <!-- USER AVATAR -->
+    <div
+      class="user-avatar"
+      (click)="goToSettings()"
+      title="Profile & Settings">
+      RA
+    </div>
+  </div>
+</header>

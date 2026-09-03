@@ -1,0 +1,199 @@
+<div class="dashboard-page">
+  <!-- DASHBOARD OVERVIEW HEADER -->
+  <div class="flex items-center justify-between" style="margin-bottom: 20px;">
+    <div>
+      <h1 class="dashboard-main-title">Dashboard Overview</h1>
+      <p class="dashboard-main-subtitle">Welcome back, Raigon Arts Workshop Manager</p>
+    </div>
+
+    <div>
+      <button type="button" class="btn-add-customer-primary" (click)="openNewCustomer()">
+        <i class="fa-solid fa-user-plus"></i>
+        <span>Add New Customer</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- 5 STAT SUMMARY CARDS GRID -->
+  <div class="dash-stats-grid">
+    <!-- Card 1: Total Frame Orders -->
+    <div class="dash-stat-card">
+      <div class="dash-stat-top">
+        <span class="dash-stat-label">Total Frame Orders</span>
+        <div class="dash-icon-box dark-icon-box">
+          <i class="fa-solid fa-boxes-packing"></i>
+        </div>
+      </div>
+      <div class="dash-stat-value">{{ totalOrdersCount }}</div>
+      <div class="dash-stat-bottom text-black">
+        <i class="fa-solid fa-arrow-up"></i>
+        <span><strong>+12%</strong> vs last month</span>
+      </div>
+    </div>
+
+    <!-- Card 2: In Progress -->
+    <div class="dash-stat-card">
+      <div class="dash-stat-top">
+        <span class="dash-stat-label">In Progress</span>
+        <div class="dash-icon-box cyan-icon-box">
+          <i class="fa-solid fa-wrench"></i>
+        </div>
+      </div>
+      <div class="dash-stat-value">{{ inProgressCount }}</div>
+      <div class="dash-stat-bottom text-cyan">
+        <i class="fa-solid fa-rotate"></i>
+        <span><strong>Active</strong> in workshop</span>
+      </div>
+    </div>
+
+    <!-- Card 3: Completed Orders -->
+    <div class="dash-stat-card">
+      <div class="dash-stat-top">
+        <span class="dash-stat-label">Completed Orders</span>
+        <div class="dash-icon-box green-icon-box">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+      </div>
+      <div class="dash-stat-value">{{ completedOrdersCount }}</div>
+      <div class="dash-stat-bottom text-green">
+        <i class="fa-solid fa-check"></i>
+        <span><strong>Ready</strong> for delivery</span>
+      </div>
+    </div>
+
+    <!-- Card 4: Pending Orders -->
+    <div class="dash-stat-card">
+      <div class="dash-stat-top">
+        <span class="dash-stat-label">Pending Orders</span>
+        <div class="dash-icon-box orange-icon-box">
+          <i class="fa-solid fa-clock"></i>
+        </div>
+      </div>
+      <div class="dash-stat-value">{{ pendingOrdersCount }}</div>
+      <div class="dash-stat-bottom text-orange">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span><strong>Urgent</strong> action needed</span>
+      </div>
+    </div>
+
+    <!-- Card 5: Total Revenue -->
+    <div class="dash-stat-card">
+      <div class="dash-stat-top">
+        <span class="dash-stat-label">Total Revenue</span>
+        <div class="dash-icon-box gold-icon-box">
+          <span>₹</span>
+        </div>
+      </div>
+      <div class="dash-stat-value">₹{{ totalRevenue | number }}</div>
+      <div class="dash-stat-bottom text-black">
+        <i class="fa-solid fa-arrow-up"></i>
+        <span><strong>+28%</strong> growth</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RECENT CUSTOMER FRAME ORDERS SECTION -->
+  <div class="dash-orders-card">
+    <div class="dash-card-header">
+      <h2 class="dash-card-title">Recent Customer Frame Orders</h2>
+
+      <button type="button" class="btn-view-all-customers" (click)="goToCustomers()">
+        <span>View All Customers</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+
+    <div class="dash-table-wrapper">
+      <table class="dash-orders-table">
+        <thead>
+          <tr>
+            <th>CUSTOMER ID</th>
+            <th>CUSTOMER NAME</th>
+            <th>PHONE NO</th>
+            <th>FRAME SIZE</th>
+            <th>FRAME TYPE</th>
+            <th>QTY</th>
+            <th>TOTAL</th>
+            <th>ORDER STATUS</th>
+            <th style="text-align: center;">ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (ord of orders; track ord.id) {
+            <tr>
+              <!-- Customer ID -->
+              <td class="font-bold text-black">{{ ord.orderNumber }}</td>
+
+              <!-- Customer Name with Avatar -->
+              <td>
+                <div class="customer-profile-cell">
+                  <div class="customer-avatar-pill">
+                    {{ getCustomerInitial(ord.customerName) }}
+                  </div>
+                  <div>
+                    <div class="customer-name-text">{{ ord.customerName }}</div>
+                    <div class="customer-city-text">{{ ord.customerCity }}</div>
+                  </div>
+                </div>
+              </td>
+
+              <!-- Phone No -->
+              <td class="phone-no-cell">{{ ord.customerPhone }}</td>
+
+              <!-- Frame Size -->
+              <td class="frame-size-cell">{{ ord.commonSpecs?.frameSize || ord.photos[0]?.frameSize || '12 × 18 inch' }}</td>
+
+              <!-- Frame Type -->
+              <td class="frame-type-cell">{{ ord.commonSpecs?.frameType || ord.photos[0]?.frameType || 'Wooden Frame' }}</td>
+
+              <!-- Quantity -->
+              <td class="qty-cell">{{ ord.commonSpecs?.quantity || ord.photos.length || 1 }}</td>
+
+              <!-- Total -->
+              <td class="total-cell">₹{{ ord.totalAmount | number }}</td>
+
+              <!-- Status Pill Badge -->
+              <td>
+                @if (ord.orderStatus === 'In Progress') {
+                  <span class="status-pill status-in-progress">
+                    <span class="status-dot"></span> In Progress
+                  </span>
+                } @else if (ord.orderStatus === 'Cancelled') {
+                  <span class="status-pill status-cancelled">
+                    <span class="status-dot"></span> Cancelled
+                  </span>
+                } @else if (ord.orderStatus === 'Completed') {
+                  <span class="status-pill status-completed">
+                    <span class="status-dot"></span> Completed
+                  </span>
+                } @else {
+                  <span class="status-pill status-pending">
+                    <span class="status-dot"></span> Pending
+                  </span>
+                }
+              </td>
+
+              <!-- Actions -->
+              <td style="text-align: center;">
+                <div class="action-icons-group">
+                  <button type="button" class="btn-action-icon" (click)="viewCustomer(ord.customerId)" title="View Customer Details">
+                    <i class="fa-regular fa-eye"></i>
+                  </button>
+                  <button type="button" class="btn-action-icon" (click)="editOrder(ord)" title="Edit Order">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="9" style="text-align: center; padding: 32px;" class="text-muted">
+                No customer orders found.
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

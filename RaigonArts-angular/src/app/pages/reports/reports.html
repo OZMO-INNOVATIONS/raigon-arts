@@ -1,0 +1,196 @@
+<div class="reports-page">
+  <!-- PAGE HEADER -->
+  <div class="flex items-center justify-between" style="margin-bottom: 20px;">
+    <div>
+      <h1 class="font-bold text-2xl" style="font-family: var(--font-heading); color: #0A0A0E; font-size: 22px;">Workshop Financial & Production Reports</h1>
+      <p class="text-xs text-muted" style="margin-top: 3px; font-weight: 500;">Summary of framing revenue, customer billing, outstanding balances & category metrics</p>
+    </div>
+
+    <button type="button" class="btn-add-customer-primary" (click)="exportCSV()">
+      <i class="fa-solid fa-file-arrow-down"></i>
+      <span>Export Report to CSV</span>
+    </button>
+  </div>
+
+  <!-- 4 STAT SUMMARY CARDS GRID -->
+  <div class="dash-stats-grid" style="grid-template-columns: repeat(4, 1fr);">
+    <!-- Card 1: Total Invoiced -->
+    <div class="dash-stat-card">
+      <div class="dash-stat-top">
+        <span class="dash-stat-label">Total Invoiced</span>
+        <div class="dash-icon-box dark-icon-box">
+          <i class="fa-solid fa-chart-line"></i>
+        </div>
+      </div>
+      <div class="dash-stat-value">₹{{ totalBilled | number }}</div>
+      <div class="dash-stat-bottom text-black">
+        <i class="fa-solid fa-arrow-up"></i>
+        <span><strong>All</strong> workshop orders</span>
+      </div>
+    </div>
+
+    <!-- Card 2: Collected Payments -->
+    <div class="dash-stat-card">
+      <div class="dash-stat-top">
+        <span class="dash-stat-label">Collected Payments</span>
+        <div class="dash-icon-box green-icon-box">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+      </div>
+      <div class="dash-stat-value">₹{{ totalCollected | number }}</div>
+      <div class="dash-stat-bottom text-green">
+        <i class="fa-solid fa-check"></i>
+        <span><strong>Advance</strong> & settlements</span>
+      </div>
+    </div>
+
+    <!-- Card 3: Outstanding Balance -->
+    <div class="dash-stat-card">
+      <div class="dash-stat-top">
+        <span class="dash-stat-label">Outstanding Balance</span>
+        <div class="dash-icon-box orange-icon-box">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+      </div>
+      <div class="dash-stat-value">₹{{ totalOutstanding | number }}</div>
+      <div class="dash-stat-bottom text-orange">
+        <i class="fa-solid fa-clock"></i>
+        <span><strong>Pending</strong> client balance</span>
+      </div>
+    </div>
+
+    <!-- Card 4: Total Orders Processed -->
+    <div class="dash-stat-card">
+      <div class="dash-stat-top">
+        <span class="dash-stat-label">Orders Processed</span>
+        <div class="dash-icon-box cyan-icon-box">
+          <i class="fa-solid fa-boxes-packing"></i>
+        </div>
+      </div>
+      <div class="dash-stat-value">{{ orders.length }}</div>
+      <div class="dash-stat-bottom text-cyan">
+        <i class="fa-solid fa-rotate"></i>
+        <span><strong>Active</strong> workshop log</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2-COLUMN BREAKDOWN WIDGETS -->
+  <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; margin-bottom: 24px;">
+    <!-- Production by Frame Type -->
+    <div class="dash-orders-card">
+      <div class="dash-card-header">
+        <h2 class="dash-card-title">Production by Frame Moulding Type</h2>
+      </div>
+      <div style="padding: 20px; display: flex; flex-direction: column; gap: 14px;">
+        @for (item of frameTypeCounts; track item.type) {
+          <div>
+            <div class="flex justify-between text-xs font-bold" style="margin-bottom: 6px;">
+              <span>{{ item.type }}</span>
+              <span class="text-primary">{{ item.count }} unit(s) ({{ item.percentage }}%)</span>
+            </div>
+            <div style="height: 8px; background: var(--bg-surface-subtle); border-radius: 99px; overflow: hidden;">
+              <div
+                [style.width.%]="item.percentage"
+                style="height: 100%; background: linear-gradient(72.47deg, #1C1B20 0%, #D4BF8A 100%); border-radius: 99px; transition: width 0.4s ease;">
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Payment Settlement Status -->
+    <div class="dash-orders-card">
+      <div class="dash-card-header">
+        <h2 class="dash-card-title">Payment Settlement Status</h2>
+      </div>
+      <div style="padding: 20px; display: flex; flex-direction: column; gap: 12px;">
+        <div class="flex items-center justify-between" style="padding: 10px 14px; background: var(--bg-surface-subtle); border-radius: 10px;">
+          <div class="flex items-center gap-3">
+            <span class="status-pill status-completed"><span class="status-dot"></span> Paid</span>
+            <span class="text-xs font-semibold">Fully Settled</span>
+          </div>
+          <span class="font-bold text-sm">{{ paidOrdersCount }} orders</span>
+        </div>
+
+        <div class="flex items-center justify-between" style="padding: 10px 14px; background: var(--bg-surface-subtle); border-radius: 10px;">
+          <div class="flex items-center gap-3">
+            <span class="status-pill status-in-progress"><span class="status-dot"></span> Partial</span>
+            <span class="text-xs font-semibold">Partially Settled</span>
+          </div>
+          <span class="font-bold text-sm">{{ partialOrdersCount }} orders</span>
+        </div>
+
+        <div class="flex items-center justify-between" style="padding: 10px 14px; background: var(--bg-surface-subtle); border-radius: 10px;">
+          <div class="flex items-center gap-3">
+            <span class="status-pill status-cancelled"><span class="status-dot"></span> Unpaid</span>
+            <span class="text-xs font-semibold">Unpaid Orders</span>
+          </div>
+          <span class="font-bold text-sm">{{ unpaidOrdersCount }} orders</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RECENT TRANSACTIONS LEDGER TABLE -->
+  <div class="dash-orders-card">
+    <div class="dash-card-header">
+      <h2 class="dash-card-title">Financial Transaction Ledger</h2>
+      <span class="text-xs text-muted font-semibold">{{ orders.length }} Total Entries</span>
+    </div>
+
+    <div class="dash-table-wrapper">
+      <table class="dash-orders-table">
+        <thead>
+          <tr>
+            <th>ORDER #</th>
+            <th>CUSTOMER NAME</th>
+            <th>ORDER DATE</th>
+            <th>FRAME SPECIFICATION</th>
+            <th>TOTAL (₹)</th>
+            <th>ADVANCE (₹)</th>
+            <th>BALANCE (₹)</th>
+            <th>PAYMENT STATUS</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (ord of orders; track ord.id) {
+            <tr>
+              <td class="font-bold text-black">{{ ord.orderNumber }}</td>
+              <td>
+                <div class="font-bold text-sm">{{ ord.customerName }}</div>
+                <div class="customer-city-text">{{ ord.customerPhone }} • {{ ord.customerCity }}</div>
+              </td>
+              <td class="text-xs font-medium">{{ ord.orderDate }}</td>
+              <td>
+                <div class="font-semibold text-xs">{{ ord.commonSpecs?.frameSize || ord.photos[0]?.frameSize || '12 × 18 inch' }}</div>
+                <div class="text-xs text-muted">{{ ord.commonSpecs?.frameType || ord.photos[0]?.frameType }}</div>
+              </td>
+              <td class="total-cell">₹{{ ord.totalAmount | number }}</td>
+              <td class="text-xs font-bold text-green">₹{{ ord.advancePaid | number }}</td>
+              <td class="text-xs font-bold" [style.color]="ord.balanceAmount > 0 ? 'var(--color-danger)' : 'var(--color-success)'">
+                ₹{{ ord.balanceAmount | number }}
+              </td>
+              <td>
+                @if (ord.paymentStatus === 'Paid') {
+                  <span class="status-pill status-completed"><span class="status-dot"></span> Paid</span>
+                } @else if (ord.paymentStatus === 'Partial') {
+                  <span class="status-pill status-in-progress"><span class="status-dot"></span> Partial</span>
+                } @else {
+                  <span class="status-pill status-cancelled"><span class="status-dot"></span> Unpaid</span>
+                }
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="8" style="text-align: center; padding: 32px;" class="text-muted">
+                No transactions recorded yet.
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<!-- Full screen login view if on /login -->
+@if (isLoginPage()) {
+  <router-outlet></router-outlet>
+} @else {
+  <!-- Main Authenticated App Shell -->
+  <div class="app-container">
+    <!-- LEFT SIDEBAR -->
+    <app-sidebar [(isCollapsed)]="isSidebarCollapsed"></app-sidebar>
+
+    <!-- MAIN WRAPPER -->
+    <div class="main-wrapper" [class.sidebar-collapsed]="isSidebarCollapsed">
+      <!-- TOP HEADER -->
+      <app-header></app-header>
+
+      <!-- PAGE CONTENT BODY -->
+      <main class="content-body">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+  </div>
+}
+
+<!-- GLOBAL MODALS & TOAST NOTIFICATIONS -->
+<app-modal></app-modal>
+<app-toast></app-toast>

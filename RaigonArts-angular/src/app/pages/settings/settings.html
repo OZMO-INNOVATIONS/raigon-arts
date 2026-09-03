@@ -1,0 +1,82 @@
+<div class="settings-page">
+  <!-- PAGE HEADER -->
+  <div class="flex items-center justify-between" style="margin-bottom: 24px;">
+    <div>
+      <h1 class="font-bold text-2xl" style="font-family: var(--font-heading);">Workshop & System Settings</h1>
+      <p class="text-xs text-muted" style="margin-top: 2px;">Configure workshop branding, business contact information, security & local data backups</p>
+    </div>
+  </div>
+
+  <form (submit)="saveSettings($event)">
+    <div class="form-grid">
+      <!-- WORKSHOP IDENTITY -->
+      <div class="col-8 card">
+        <h3 class="form-section-header"><i class="fa-solid fa-gem text-primary"></i> Workshop Identity & Contact</h3>
+        
+        <div class="form-grid">
+          <div class="col-6 form-group">
+            <label class="form-label">Workshop Name</label>
+            <input type="text" [(ngModel)]="settings.workshopName" name="workshopName" class="form-input" required>
+          </div>
+
+          <div class="col-6 form-group">
+            <label class="form-label">Workshop Subtitle</label>
+            <input type="text" [(ngModel)]="settings.subtitle" name="subtitle" class="form-input">
+          </div>
+
+          <div class="col-6 form-group">
+            <label class="form-label">Studio Contact Phone</label>
+            <input type="text" [(ngModel)]="settings.phone" name="phone" class="form-input" required>
+          </div>
+
+          <div class="col-6 form-group">
+            <label class="form-label">WhatsApp Business Number</label>
+            <input type="text" [(ngModel)]="settings.whatsappPhone" name="whatsappPhone" class="form-input" required>
+          </div>
+
+          <div class="col-12 form-group">
+            <label class="form-label">Studio Workshop Address</label>
+            <input type="text" [(ngModel)]="settings.address" name="address" class="form-input">
+          </div>
+        </div>
+
+        <h3 class="form-section-header" style="margin-top: 24px;"><i class="fa-solid fa-shield-halved text-primary"></i> Authentication & OTP Recovery</h3>
+        <div class="form-grid">
+          <div class="col-6 form-group">
+            <label class="form-label">Admin Username</label>
+            <input type="text" [(ngModel)]="settings.adminUsername" name="adminUsername" class="form-input" required>
+          </div>
+
+          <div class="col-6 form-group">
+            <label class="form-label">Registered WhatsApp for OTP</label>
+            <input type="text" [(ngModel)]="settings.registeredPhone" name="registeredPhone" class="form-input" required>
+          </div>
+        </div>
+
+        <div style="margin-top: 24px;">
+          <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-floppy-disk"></i> Save Settings
+          </button>
+        </div>
+      </div>
+
+      <!-- DATA MANAGEMENT & BACKUPS -->
+      <div class="col-4 card" style="height: fit-content;">
+        <h3 class="form-section-header"><i class="fa-solid fa-database text-primary"></i> Data Management</h3>
+        <p class="text-xs text-muted" style="margin-bottom: 16px;">
+          Export your entire customer database and order history to JSON file, or restore factory sample data.
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <button type="button" class="btn btn-secondary" style="width: 100%; justify-content: flex-start;" (click)="backupData()">
+            <i class="fa-solid fa-download"></i> Backup Data (JSON)
+          </button>
+
+          <button type="button" class="btn btn-secondary" style="width: 100%; justify-content: flex-start; color: var(--color-danger);" (click)="resetDemoData()">
+            <i class="fa-solid fa-rotate-left"></i> Restore Demo Dataset
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

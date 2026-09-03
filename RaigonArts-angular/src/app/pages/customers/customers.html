@@ -1,0 +1,112 @@
+<div class="customers-page">
+  <!-- PAGE HEADER -->
+  <div class="flex items-center justify-between" style="margin-bottom: 24px;">
+    <div>
+      <h1 class="font-bold text-2xl" style="font-family: var(--font-heading);">Customer Directory</h1>
+      <p class="text-xs text-muted" style="margin-top: 2px;">Manage client profiles, addresses, contact numbers, and order history</p>
+    </div>
+
+    <button type="button" class="btn btn-primary" (click)="openAddCustomer()">
+      <i class="fa-solid fa-user-plus"></i> Add New Customer
+    </button>
+  </div>
+
+  <!-- SEARCH & FILTER BAR -->
+  <div class="card" style="margin-bottom: 20px; padding: 16px 20px;">
+    <div class="flex items-center justify-between gap-4">
+      <div class="header-search" style="width: 100%; max-width: 420px; background: var(--bg-surface-subtle);">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input
+          type="text"
+          placeholder="Search by customer name, phone number, city, or address..."
+          [(ngModel)]="searchQuery"
+        />
+      </div>
+
+      <div class="flex items-center gap-2">
+        <span class="text-xs font-bold text-muted">{{ filteredCustomers.length }} Customer(s) Found</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUSTOMERS DATA TABLE -->
+  <div class="card">
+    <div class="data-table-container">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Customer Profile</th>
+            <th>Contact Phone</th>
+            <th>City / Town</th>
+            <th>Full Address</th>
+            <th>Orders Placed</th>
+            <th>Total Spend</th>
+            <th style="text-align: right;">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (c of filteredCustomers; track c.id) {
+            <tr>
+              <td>
+                <div class="flex items-center gap-3">
+                  <div style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #1C1B20 0%, #D4BF8A 100%); color: #FFF; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: 13px;">
+                    {{ c.name.slice(0, 2).toUpperCase() }}
+                  </div>
+                  <div>
+                    <div class="font-bold text-sm">{{ c.name }}</div>
+                    <div class="text-xs text-muted">Customer ID: {{ c.id }}</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="font-semibold text-xs" style="color: var(--color-success);">
+                  <i class="fa-solid fa-phone"></i> {{ c.phone }}
+                </div>
+                @if (c.altPhone) {
+                  <div class="text-xs text-muted">Alt: {{ c.altPhone }}</div>
+                }
+              </td>
+              <td>
+                <span class="badge badge-in-progress">{{ c.city || 'Trivandrum' }}</span>
+              </td>
+              <td class="text-xs text-muted" style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                {{ c.address || '—' }}
+              </td>
+              <td>
+                <span class="font-bold text-xs">{{ c.totalOrdersCount || 0 }} order(s)</span>
+              </td>
+              <td>
+                <span class="font-bold text-sm text-primary">₹{{ c.totalSpent || 0 }}</span>
+              </td>
+              <td style="text-align: right;">
+                <div class="flex items-center justify-end gap-2">
+                  <button type="button" class="btn btn-secondary btn-sm" (click)="viewCustomer(c)" title="View Profile & Orders">
+                    <i class="fa-solid fa-address-card"></i>
+                  </button>
+                  <button type="button" class="btn btn-primary btn-sm" (click)="addNewOrderForCustomer(c)" title="New Order">
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                  <button type="button" class="btn btn-secondary btn-sm" (click)="editCustomer(c)" title="Edit Profile">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm" style="background: #25D366; color: #FFF;" (click)="sendWhatsApp(c)" title="WhatsApp Contact">
+                    <i class="fa-brands fa-whatsapp"></i>
+                  </button>
+                  <button type="button" class="btn btn-secondary btn-sm" style="color: var(--color-danger);" (click)="deleteCustomer(c)" title="Delete Customer">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="7" style="text-align: center; padding: 32px;" class="text-muted">
+                No matching customers found.
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
