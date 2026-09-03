@@ -1,0 +1,413 @@
+{
+  "customers": [
+    {
+      "id": "cust_101",
+      "name": "Arun Kumar",
+      "phone": "+91 7902261255",
+      "altPhone": "+91 9447000000",
+      "city": "Trivandrum",
+      "address": "Villa 42, Palm Meadows, Kowdiar",
+      "pincode": "695003",
+      "createdAt": "2026-08-20T10:00:00Z",
+      "totalOrdersCount": 2,
+      "totalSpent": 4800
+    },
+    {
+      "id": "cust_102",
+      "name": "Meera Nair",
+      "phone": "+91 9847123456",
+      "altPhone": "+91 7902261255",
+      "city": "Kochi",
+      "address": "4B Skyline Horizon, Marine Drive",
+      "pincode": "682031",
+      "createdAt": "2026-08-25T14:30:00Z",
+      "totalOrdersCount": 1,
+      "totalSpent": 3200
+    },
+    {
+      "id": "cust_103",
+      "name": "Rahul Varma",
+      "phone": "+91 9446554433",
+      "altPhone": "",
+      "city": "Kollam",
+      "address": "Beach Road, Near Light House",
+      "pincode": "691001",
+      "createdAt": "2026-08-28T11:00:00Z",
+      "totalOrdersCount": 1,
+      "totalSpent": 1800
+    },
+    {
+      "id": "cust_104",
+      "name": "Ananya Sreedhar",
+      "phone": "+91 8129001122",
+      "altPhone": "+91 9895003344",
+      "city": "Calicut",
+      "address": "Green Valley Villa 12, Chevayur",
+      "pincode": "673017",
+      "createdAt": "2026-09-01T09:00:00Z",
+      "totalOrdersCount": 1,
+      "totalSpent": 5500
+    }
+  ],
+  "orders": [
+    {
+      "id": "ord_1006",
+      "orderNumber": "RA-1006",
+      "customerId": "cust_101",
+      "customerName": "Arun Kumar",
+      "customerPhone": "+91 7902261255",
+      "customerCity": "Trivandrum",
+      "orderDate": "2026-09-02",
+      "deliveryDate": "2026-09-09",
+      "totalAmount": 2500,
+      "advancePaid": 1000,
+      "balanceAmount": 1500,
+      "paymentStatus": "Partial",
+      "orderStatus": "In Progress",
+      "configMode": "same",
+      "photos": [
+        {
+          "id": "p6",
+          "photoUrl": "assets/images/sample_frame_1.svg",
+          "photoName": "Gallery_Memory.jpg",
+          "frameSize": "12 × 18 inch",
+          "unit": "inch",
+          "frameType": "Wooden Frame",
+          "frameMaterial": "Teak Wood Moulding",
+          "frameColor": "Walnut Brown",
+          "orientation": "Landscape",
+          "quantity": 1
+        }
+      ],
+      "commonSpecs": {
+        "frameSize": "12 × 18 inch",
+        "unit": "inch",
+        "frameType": "Wooden Frame",
+        "frameMaterial": "Teak Wood Moulding",
+        "frameColor": "Walnut Brown",
+        "orientation": "Landscape",
+        "quantity": 1,
+        "notes": "Anti-glare glass coating with back mounting hook"
+      },
+      "createdAt": "2026-09-02T10:00:00Z"
+    },
+    {
+      "id": "ord_1001",
+      "orderNumber": "RA-1001",
+      "customerId": "cust_101",
+      "customerName": "Arun Kumar",
+      "customerPhone": "+91 7902261255",
+      "customerCity": "Trivandrum",
+      "orderDate": "2026-08-28",
+      "deliveryDate": "2026-09-05",
+      "totalAmount": 4500,
+      "advancePaid": 0,
+      "balanceAmount": 4500,
+      "paymentStatus": "Unpaid",
+      "orderStatus": "Cancelled",
+      "configMode": "same",
+      "photos": [
+        {
+          "id": "p1",
+          "photoUrl": "assets/images/sample_frame_1.svg",
+          "photoName": "Family_Portrait_Kowdiar.jpg",
+          "frameSize": "12 × 18 inch",
+          "unit": "inch",
+          "frameType": "Wooden Frame",
+          "frameMaterial": "Teak Wood Moulding",
+          "frameColor": "Walnut Brown",
+          "orientation": "Landscape",
+          "quantity": 2
+        }
+      ],
+      "commonSpecs": {
+        "frameSize": "12 × 18 inch",
+        "unit": "inch",
+        "frameType": "Wooden Frame",
+        "frameMaterial": "Teak Wood Moulding",
+        "frameColor": "Walnut Brown",
+        "orientation": "Landscape",
+        "quantity": 2
+      },
+      "createdAt": "2026-08-28T10:30:00Z"
+    },
+    {
+      "id": "ord_1002",
+      "orderNumber": "RA-1002",
+      "customerId": "cust_102",
+      "customerName": "Meera Nair",
+      "customerPhone": "+91 9847123456",
+      "customerCity": "Kochi",
+      "orderDate": "2026-08-29",
+      "deliveryDate": "2026-09-06",
+      "totalAmount": 2200,
+      "advancePaid": 1000,
+      "balanceAmount": 1200,
+      "paymentStatus": "Partial",
+      "orderStatus": "In Progress",
+      "configMode": "same",
+      "photos": [
+        {
+          "id": "p2",
+          "photoUrl": "assets/images/sample_frame_2.svg",
+          "photoName": "Studio_Portraits.jpg",
+          "frameSize": "8 × 12 inch",
+          "unit": "inch",
+          "frameType": "Premium Frame",
+          "frameMaterial": "Gold Leaf Moulding",
+          "frameColor": "Classic Gold",
+          "orientation": "Portrait",
+          "quantity": 1
+        }
+      ],
+      "commonSpecs": {
+        "frameSize": "8 × 12 inch",
+        "unit": "inch",
+        "frameType": "Premium Frame",
+        "frameMaterial": "Gold Leaf Moulding",
+        "frameColor": "Classic Gold",
+        "orientation": "Portrait",
+        "quantity": 1
+      },
+      "createdAt": "2026-08-29T14:15:00Z"
+    },
+    {
+      "id": "ord_1003",
+      "orderNumber": "RA-1003",
+      "customerId": "cust_103",
+      "customerName": "Rahul Varma",
+      "customerPhone": "+91 9446554433",
+      "customerCity": "Kollam",
+      "orderDate": "2026-08-30",
+      "deliveryDate": "2026-09-02",
+      "totalAmount": 12000,
+      "advancePaid": 12000,
+      "balanceAmount": 0,
+      "paymentStatus": "Paid",
+      "orderStatus": "Completed",
+      "configMode": "same",
+      "photos": [
+        {
+          "id": "p3",
+          "photoUrl": "assets/images/sample_frame_1.svg",
+          "photoName": "Lighthouse_Sunset.jpg",
+          "frameSize": "16 × 20 inch",
+          "unit": "inch",
+          "frameType": "Classic Frame",
+          "frameMaterial": "Matte Black Wood",
+          "frameColor": "Matte Black",
+          "orientation": "Landscape",
+          "quantity": 4
+        }
+      ],
+      "commonSpecs": {
+        "frameSize": "16 × 20 inch",
+        "unit": "inch",
+        "frameType": "Classic Frame",
+        "frameMaterial": "Matte Black Wood",
+        "frameColor": "Matte Black",
+        "orientation": "Landscape",
+        "quantity": 4
+      },
+      "createdAt": "2026-08-30T11:00:00Z"
+    },
+    {
+      "id": "ord_1004",
+      "orderNumber": "RA-1004",
+      "customerId": "cust_104",
+      "customerName": "Ananya Sreedhar",
+      "customerPhone": "+91 8129001122",
+      "customerCity": "Calicut",
+      "orderDate": "2026-08-31",
+      "deliveryDate": "2026-09-07",
+      "totalAmount": 6800,
+      "advancePaid": 0,
+      "balanceAmount": 6800,
+      "paymentStatus": "Unpaid",
+      "orderStatus": "Cancelled",
+      "configMode": "same",
+      "photos": [
+        {
+          "id": "p4",
+          "photoUrl": "assets/images/sample_frame_2.svg",
+          "photoName": "Canvas_Art_Mural.jpg",
+          "frameSize": "20 × 30 inch",
+          "unit": "inch",
+          "frameType": "Canvas Float",
+          "frameMaterial": "Natural Pine Wood",
+          "frameColor": "Natural Pine",
+          "orientation": "Square",
+          "quantity": 1
+        }
+      ],
+      "commonSpecs": {
+        "frameSize": "20 × 30 inch",
+        "unit": "inch",
+        "frameType": "Canvas Float",
+        "frameMaterial": "Natural Pine Wood",
+        "frameColor": "Natural Pine",
+        "orientation": "Square",
+        "quantity": 1
+      },
+      "createdAt": "2026-08-31T16:00:00Z"
+    },
+    {
+      "id": "ord_1005",
+      "orderNumber": "RA-1005",
+      "customerId": "cust_102",
+      "customerName": "Meera Nair",
+      "customerPhone": "+91 9847123456",
+      "customerCity": "Kochi",
+      "orderDate": "2026-09-01",
+      "deliveryDate": "2026-09-08",
+      "totalAmount": 3600,
+      "advancePaid": 1500,
+      "balanceAmount": 2100,
+      "paymentStatus": "Partial",
+      "orderStatus": "In Progress",
+      "configMode": "same",
+      "photos": [
+        {
+          "id": "p5",
+          "photoUrl": "assets/images/sample_frame_1.svg",
+          "photoName": "Landscape_Prints.jpg",
+          "frameSize": "12 × 18 inch",
+          "unit": "inch",
+          "frameType": "Wooden Frame",
+          "frameMaterial": "Teak Wood Moulding",
+          "frameColor": "Walnut Brown",
+          "orientation": "Landscape",
+          "quantity": 1
+        }
+      ],
+      "commonSpecs": {
+        "frameSize": "12 × 18 inch",
+        "unit": "inch",
+        "frameType": "Wooden Frame",
+        "frameMaterial": "Teak Wood Moulding",
+        "frameColor": "Walnut Brown",
+        "orientation": "Landscape",
+        "quantity": 1
+      },
+      "createdAt": "2026-09-01T12:00:00Z"
+    }
+  ],
+  "frames": [
+    {
+      "id": "f1",
+      "code": "FS-01",
+      "name": "4 × 6 inch",
+      "width": 4,
+      "height": 6,
+      "unit": "inch",
+      "category": "Standard Photo",
+      "activeOrdersCount": 142,
+      "status": "Active"
+    },
+    {
+      "id": "f2",
+      "code": "FS-02",
+      "name": "5 × 7 inch",
+      "width": 5,
+      "height": 7,
+      "unit": "inch",
+      "category": "Standard Photo",
+      "activeOrdersCount": 98,
+      "status": "Active"
+    },
+    {
+      "id": "f3",
+      "code": "FS-03",
+      "name": "8 × 10 inch",
+      "width": 8,
+      "height": 10,
+      "unit": "inch",
+      "category": "Medium Portrait",
+      "activeOrdersCount": 210,
+      "status": "Active"
+    },
+    {
+      "id": "f4",
+      "code": "FS-04",
+      "name": "8 × 12 inch",
+      "width": 8,
+      "height": 12,
+      "unit": "inch",
+      "category": "Medium Portrait",
+      "activeOrdersCount": 320,
+      "status": "Active"
+    },
+    {
+      "id": "f5",
+      "code": "FS-05",
+      "name": "12 × 18 inch",
+      "width": 12,
+      "height": 18,
+      "unit": "inch",
+      "category": "Large Gallery",
+      "activeOrdersCount": 455,
+      "status": "Active"
+    },
+    {
+      "id": "f6",
+      "code": "FS-06",
+      "name": "16 × 20 inch",
+      "width": 16,
+      "height": 20,
+      "unit": "inch",
+      "category": "Large Gallery",
+      "activeOrdersCount": 184,
+      "status": "Active"
+    },
+    {
+      "id": "f7",
+      "code": "FS-07",
+      "name": "20 × 30 inch",
+      "width": 20,
+      "height": 30,
+      "unit": "inch",
+      "category": "Exhibition Wall Art",
+      "activeOrdersCount": 92,
+      "status": "Active"
+    }
+  ],
+  "settings": {
+    "workshopName": "Raigon Arts",
+    "subtitle": "Custom Photo Framing & Studio Workshop",
+    "phone": "+91 7902261255",
+    "whatsappPhone": "+91 7902261255",
+    "address": "Workshop St, Art District, Trivandrum, Kerala 695001",
+    "currency": "₹",
+    "adminUsername": "admin",
+    "adminPassword": "raigon2026",
+    "taxRate": 5,
+    "registeredPhone": "+91 7902261255"
+  },
+  "notifications": [
+    {
+      "id": "n1",
+      "title": "New Order Received",
+      "message": "Order #RA-1006 created for Arun Kumar",
+      "time": "10m ago",
+      "isRead": false,
+      "type": "order"
+    },
+    {
+      "id": "n2",
+      "title": "Payment Updated",
+      "message": "Advance paid ₹1000 for Order #RA-1006",
+      "time": "1h ago",
+      "isRead": false,
+      "type": "order"
+    },
+    {
+      "id": "n3",
+      "title": "Customer Profile Created",
+      "message": "Ananya Sreedhar added from Calicut",
+      "time": "2h ago",
+      "isRead": true,
+      "type": "customer"
+    }
+  ],
+  "otpSessions": {}
+}
